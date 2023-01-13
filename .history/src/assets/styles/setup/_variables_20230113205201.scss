@@ -14,10 +14,9 @@ $clr10: #f6f6f6;
 $layoutPadding: 20px;
 
 // Breakpoints
-$break-narrow: 490px;
+$break-narrow: 550px;
 $break-585: 585px;
-// $break-normal: 760px;
-$break-normal: 720px; // check with Ori
+$break-normal: 760px;
 $break-wide: 1040px;
 
 $padded-break-narrow: $break-narrow + $layoutPadding * 2;

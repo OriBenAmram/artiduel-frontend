@@ -2,7 +2,6 @@ import { HomePage } from './pages/home-page';
 import { Feed } from './pages/feed';
 import { LoginPage } from './pages/login-page';
 import { SignupPage } from './pages/signup-page';
-import { UserProfile } from './pages/user-profile';
 
 export interface RootRoute {
     path: string
@@ -25,10 +24,6 @@ const routes: RootRoute[] = [
     {
         path: '/signup',
         element: <SignupPage />,
-    },
-    {
-        path: '/profile/:userId',
-        element: <UserProfile />,
     }
 ];
 

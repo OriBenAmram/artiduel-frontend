@@ -1,0 +1,14 @@
+.profile-page-container{
+    grid-template-columns: 30% 70%;
+    padding: 30px;
+
+    .info-container{
+        grid-column-start: 1;
+    }
+    
+    .main-profile-container{
+        grid-column-start: 2;
+        margin: 0 auto;
+    }
+}
+

@@ -42,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux": "^4.2.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
+    "webpack": "^5.75.0"
   }
 }

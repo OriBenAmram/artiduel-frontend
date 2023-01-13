@@ -1,0 +1,47 @@
+.profile-page-container {
+    background-color: $clr5;
+    padding: 30px;
+
+    .info-container {
+        color: $clr2;
+        
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            
+            img {
+                width: 50%;
+                min-width: 150px;
+                max-width: 250px;
+                border-radius: 50%;
+            }
+        }
+        
+        // @include for-normal-layout {
+        //     grid-column-start: 1;
+        // }
+
+    }
+
+    .main-profile-container {
+        padding: 0 42px;
+        gap: 1rem;
+
+        .achievements {
+            color: $clr2;
+        }
+
+        .profile-btn {
+            width: 47%;
+            max-width: 240px;
+            margin: auto;
+            font-size: 1.05em;
+        }
+    }
+
+    @include for-normal-layout {
+        grid-template-columns: 25% 75%;
+    }
+
+}

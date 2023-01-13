@@ -12,8 +12,8 @@ export function PostPreview({ post }: PostPreviewProps) {
 
     const onMouseEnter = () => {
         if (post || !headerRef.current) return
-        headerRef.current.classList.add('open')
-        headerRef.current.innerText = 'Your next master-piece!'
+        headerRef.current .classList.add('open');
+        headerRef.current .innerText = 'Your next master-piece!'
     }
 
     const onMouseLeave = () => {
