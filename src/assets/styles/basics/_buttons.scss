@@ -1,0 +1,35 @@
+button {
+    cursor: pointer;
+}
+// btns
+.primary-btn { 
+    text-align: center;
+    width: 100%;
+    padding: 14px;
+    background-color: $clr1;
+    color: $clr2;
+    border-radius: 8px;
+    border: none;
+
+    &:hover {
+        color: $clr3;
+        background-color: $clr6;
+    }
+}
+
+.secondary-btn {
+    text-align: center;
+    padding: 14px;
+    letter-spacing: -.03em;
+    color: #f8fafd;
+    background-color: $clr5;
+    border-radius: 8px;
+    border: 2px solid #f8fafd;
+    transition: border-color .1s ease-out,background-color .1s ease-out,color .1s ease-out;
+
+    &:hover {
+        color: $clr5;
+        background-color: #f8fafd;
+        border-color: #f8fafd;
+    }
+}

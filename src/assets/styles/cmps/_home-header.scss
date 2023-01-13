@@ -1,0 +1,162 @@
+.home-header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 30px 20px;
+
+    @include for-wide-layout {
+        top: 20px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        margin: 0 30px;
+        border-radius: 16px;
+        box-shadow: 0 0 2px rgb(0 0 0 / 80%), 0 4px 12px rgb(0 0 0 / 36%), inset 0 0 0 0.5px rgb(237 237 237 / 36%);
+        flex-direction: row;
+        justify-content: space-between;
+        width: unset;
+    }
+
+    .logo {
+        margin-right: rem(35px);
+        &.mobile {
+            @include for-wide-layout {
+                display: none;
+            }
+        }
+
+        &.desktop {
+            display: none;
+            @include for-wide-layout {
+                display: inline;
+            }
+        }
+    }
+
+    .nav-container {
+        position: fixed;
+        height: 100vh;
+        top: 0;
+        right: 0;
+        width: 240px;
+        transform: translateX(100%);
+        transition: transform 0.6s, box-shadow 0.6s;
+        background-color: $clr5;
+        padding: 40px 0px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &.open {
+            box-shadow: 0px 0px 30px rgb(0 0 0 / 30%);
+            transform: translateX(0);
+        }
+
+        a {
+            text-align: center;
+            padding: 6px;
+            transition: background-color 0.3s;
+            font-weight: 400;
+            margin: 0;
+            width: 100%;
+            white-space: nowrap;
+
+            &:hover { 
+                background-color: $clr7;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: transparent;
+            border: none;
+            color: $clr2;
+            margin: 0;
+
+            .close-icon { 
+                color: $clr2;
+                font-size: 16px;
+                line-height: 16px;
+            }
+
+            @include for-wide-layout {
+                display: none;
+            }
+        }
+
+        @include for-wide-layout {
+            position: static;
+            flex-direction: row;
+            height: inherit;
+            width: fit-content;
+            transform: translateX(0);
+            padding: 0;
+
+            a {
+                border: none;
+            }
+        }
+    }
+
+    .nav-container > * {
+        margin-right: rem(20px);
+        font-size: rem(18px);
+    }
+
+    .auth-options {
+        display: none;
+
+        @include for-wide-layout {
+            display: flex;
+            align-items: center;
+            display: inline;
+        }
+
+        .sign-up-btn {
+            @include primary-btn;
+            padding: 8px 14px;
+        }
+    }
+
+    .auth-options > * {
+        margin-right: rem(25px);
+        font-size: rem(14px);
+    }
+
+    .hamburger-btn {
+        background-color: transparent;
+        border: none;
+        color: whitesmoke;
+
+        @include for-wide-layout {
+            display: none;
+        }
+
+        .hamburger-icon {
+            font-size: 25px;
+            line-height: 25px;
+        }
+    }
+
+    .screen-overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.35);
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s;
+        &.open {
+            pointer-events: auto;
+            opacity: 1;
+        }
+    }
+}

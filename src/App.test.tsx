@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import RootCmp from './root-cmp';
 
 test('renders learn react link', () => {
-  render(<App />);
+  render(<RootCmp />);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });

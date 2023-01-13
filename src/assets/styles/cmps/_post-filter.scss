@@ -1,0 +1,45 @@
+.post-filter-container { 
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 30px;
+
+    .search-input { 
+        margin-bottom: rem(20px);
+        @include primary-search-input;
+
+        @include for-normal-layout {
+            width: 70%;
+            margin: 0 rem(8px) 0 0;
+        }
+    }
+
+    .filter-options { 
+        display: flex;
+        align-items: center;
+
+        & :first-child { 
+            margin-right: rem(20px);
+        }
+
+        & >* { 
+
+            .icon { 
+                margin-right: 7px;
+            }
+        }
+        
+        @include for-normal-layout { 
+            flex: 1;
+        }
+
+        .sort-btn { 
+            @include option-btn;
+        }
+        
+        .filter-btn {
+            @include option-btn;
+
+        }
+    }
+}
