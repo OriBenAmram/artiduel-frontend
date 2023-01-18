@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { signup } from "../store/actions/user.actions";
 
 export function SignupPage() {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
+    const navigate = useNavigate()
 
-    const handleChange = (ev : any) => {
+    const handleChange = (ev: any) => {
         const field = ev.target.name
         const value = ev.target.value
         setCredentials((prevCreds) => ({ ...prevCreds, [field]: value }))
@@ -15,18 +16,19 @@ export function SignupPage() {
         setCredentials({ username: '', password: '', fullname: '' })
     }
 
-    const onSubmit = async (ev : any) => {
+    const onSubmit = async (ev: any) => {
         ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
-        try { 
+        try {
             const user = await signup(credentials)
+            if (user) navigate('/feed')
             console.log('Hello', user.fullname)
             clearState()
-        } catch { 
+        } catch {
             console.log('Could not signup')
         }
     }
-    
+
     return <div className="register-page">
         <h1 className="logo">ArtiDuel</h1>
         <h3 className="short-desc">Log in to ArtiDuel</h3>

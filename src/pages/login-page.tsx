@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { login } from "../store/actions/user.actions";
 
 export function LoginPage() {
     const [credentials, setCredentials] = useState({ username: '', password: '' })
-
-    const handleChange = (ev : any) => {
+    const navigate = useNavigate()
+    const handleChange = (ev: any) => {
         const field = ev.target.name
         const value = ev.target.value
         setCredentials((prevCreds) => ({ ...prevCreds, [field]: value }))
@@ -16,16 +16,21 @@ export function LoginPage() {
         setCredentials({ username: '', password: '' })
     }
 
-    const onSubmit = async (ev : any) => {
+    const onSubmit = async (ev: any) => {
         ev.preventDefault()
         if (!credentials.username || !credentials.password) {
+            // TODO - add nice visuall message 
             console.log('Please fill out all the fields in the form')
             return
         }
-        console.log('credentials:', credentials);
-        // await login(credentials)
-        // console.log('Welcome user!')
-        // TODO - login action and flow.
+        try {
+            const user = await login(credentials)
+            if (user) navigate('/feed')
+            // showSuccessMsg(`Welcome: ${user.fullname}`)
+        } catch (err) {
+            console.log('could not login')
+            // showErrorMsg('Cannot login')
+        }
     }
 
     return <div className="register-page">
