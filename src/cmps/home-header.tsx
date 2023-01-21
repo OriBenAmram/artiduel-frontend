@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { logout } from '../store/actions/user.actions';
 
 export function HomeHeader() {
 
@@ -12,6 +13,16 @@ export function HomeHeader() {
         setMenuState(!isMenuOpen)
     }
 
+    async function onLogout() {
+        try {
+            await logout()
+            console.log('bye now')
+            // showSuccessMsg(`Bye now`)
+        } catch(err) {
+            console.log('cannot logout')
+            // showErrorMsg('Cannot logout')
+        }
+    }
 
     return (
         <header className="home-header">
@@ -31,6 +42,7 @@ export function HomeHeader() {
                 <NavLink to={'/feed'}>Enter as Guest</NavLink>
                 <NavLink to={'/login'}>Log in</NavLink>
                 <NavLink className="sign-up-btn" to={'/signup'}>Sign Up</NavLink>
+                <button onClick={onLogout}>Log out</button>
             </div>
             <button className="hamburger-btn" onClick={() => {
                 toggleMenu()
