@@ -25,7 +25,7 @@ export function userReducer(state = initialState, action) {
             break
     }
     // For debug:
-    // window.userState = newState
-    // console.log('State:', newState)
+    // window.userState = newState;
+    // console.log('State:', newState);
     return newState
 }

@@ -61,8 +61,7 @@ async function getById(userId) {
 
 async function update(user){
     try{
-      const updatedUser = await httpService.put(`${USER_URL}/${user._id}`, user)
-      return updatedUser
+      await httpService.put(`${USER_URL}/${user._id}`, user)
     }catch(err){
       console.error('Cannot update user' ,err)
     }

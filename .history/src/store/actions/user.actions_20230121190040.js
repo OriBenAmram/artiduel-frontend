@@ -42,9 +42,9 @@ export async function logout() {
     }
 }
 
-export async function updateUser(userToSave) {
+export async function updateUser(user) {
     try {
-        const user = await userService.update(userToSave)
+        const user = await userService.update(user)
         store.dispatch({
             type: 'SET_USER',
             user

@@ -17,15 +17,17 @@ export function LoginPage() {
     }
 
     const onSubmit = async (ev : any) => {
-        ev.preventDefault()
-        if (!credentials.username || !credentials.password) {
-            return console.log('Please fill out all the fields in the form') 
-        }
-
         try{
+            ev.preventDefault()
+            if (!credentials.username || !credentials.password) {
+                console.log('Please fill out all the fields in the form')
+                return
+            }
+            console.log('credentials:', credentials);
             const loggedInUser = await login(credentials)
         } catch(err){
             console.error('Cannot login', err)
+
         }
     }
 

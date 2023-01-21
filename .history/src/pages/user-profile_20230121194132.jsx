@@ -26,6 +26,7 @@ export function UserProfile() {
 
         userService.getById(userId)
             .then(user => {
+                console.log('user!', user)
                 setIsLoggedInProfile(false)
                 setUser(user)
             })
@@ -40,6 +41,7 @@ export function UserProfile() {
         try{
           const userToSave = {...user, imgUrl}
           const s = await updateUser(userToSave)
+          console.log('s', s)
         }catch(err){
         console.error('Cannot upload img' ,err)
         }

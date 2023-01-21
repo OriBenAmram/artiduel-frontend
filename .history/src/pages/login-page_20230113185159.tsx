@@ -19,14 +19,13 @@ export function LoginPage() {
     const onSubmit = async (ev : any) => {
         ev.preventDefault()
         if (!credentials.username || !credentials.password) {
-            return console.log('Please fill out all the fields in the form') 
+            console.log('Please fill out all the fields in the form')
+            return
         }
-
-        try{
-            const loggedInUser = await login(credentials)
-        } catch(err){
-            console.error('Cannot login', err)
-        }
+        console.log('credentials:', credentials);
+        // await login(credentials)
+        // console.log('Welcome user!')
+        // TODO - login action and flow.
     }
 
     return <div className="register-page">

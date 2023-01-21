@@ -42,14 +42,14 @@ export async function logout() {
     }
 }
 
-export async function updateUser(userToSave) {
+export async function updateUser(user) {
     try {
-        const user = await userService.update(userToSave)
+        const userToSave = await userService.update(user)
         store.dispatch({
             type: 'SET_USER',
-            user
+            user: userToSave
         })
-        return user
+        return userToSave
     } catch (err) {
         console.log('Cannot update user', err)
         throw err

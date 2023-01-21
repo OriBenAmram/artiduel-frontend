@@ -3,11 +3,10 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
 import { userService } from "../services/user.service"
-import {updateUser} from "../store/actions/user.actions"
+import avatar from "../assets/imgs/avatar2.jpg"
 
 import { PostList } from "../cmps/post-list"
 import {ImgUploader} from "../cmps/img-uploader"
-import avatar from "../assets/imgs/avatar2.jpg"
 
 export function UserProfile() {
     
@@ -26,23 +25,22 @@ export function UserProfile() {
 
         userService.getById(userId)
             .then(user => {
+                console.log('user!', user)
                 setIsLoggedInProfile(false)
                 setUser(user)
             })
             .catch(err => {
-                console.log('Some Error', err)
+                console.log('Some Error@@@', err)
                 navigate('/')
             })
-    }, [loggedinUser])
-
+    }, [])
 
     async function onUploadedImg(imgUrl) {
-        try{
-          const userToSave = {...user, imgUrl}
-          const s = await updateUser(userToSave)
-        }catch(err){
-        console.error('Cannot upload img' ,err)
-        }
+    //     try(){
+    //     await userService.updateUser
+    //     }catch(err){
+    //     console.error('' ,err)
+    //     }
 
     }
 
@@ -113,6 +111,8 @@ export function UserProfile() {
             likesIds: ['123', '234', '345']
         },
     ]
+
+    console.log(user)
 
     return <div className="profile-page-container grid">
         <div className="info-container">

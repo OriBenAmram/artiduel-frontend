@@ -26,6 +26,7 @@ export function UserProfile() {
 
         userService.getById(userId)
             .then(user => {
+                console.log('user!', user)
                 setIsLoggedInProfile(false)
                 setUser(user)
             })
@@ -33,13 +34,12 @@ export function UserProfile() {
                 console.log('Some Error', err)
                 navigate('/')
             })
-    }, [loggedinUser])
-
+    }, [])
 
     async function onUploadedImg(imgUrl) {
         try{
           const userToSave = {...user, imgUrl}
-          const s = await updateUser(userToSave)
+          await updateUser(userToSave)
         }catch(err){
         console.error('Cannot upload img' ,err)
         }
@@ -113,6 +113,8 @@ export function UserProfile() {
             likesIds: ['123', '234', '345']
         },
     ]
+
+    console.log(user)
 
     return <div className="profile-page-container grid">
         <div className="info-container">

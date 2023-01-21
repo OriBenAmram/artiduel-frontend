@@ -6,8 +6,7 @@ export const userService = {
     signup,
     logout,
     getLoggedinUser,
-    getById,
-    update
+    getById
 }
 
 const USER_KEY = 'user'
@@ -40,6 +39,7 @@ async function logout() {
 
 async function signup(userToSave) {
     try{
+        if (!userToSave.imgUrl) userToSave.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
         // const user = await storageService.post(USER_KEY, userToSave)
         const user = await httpService.post(`${AUTH_URL}/signup`, userToSave)
         return _setLoggedinUser(userToSave)
@@ -59,27 +59,12 @@ async function getById(userId) {
     }
 }
 
-async function update(user){
-    try{
-      const updatedUser = await httpService.put(`${USER_URL}/${user._id}`, user)
-      return updatedUser
-    }catch(err){
-      console.error('Cannot update user' ,err)
-    }
-}
-
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(LOGGEDIN_USER_KEY))
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = {
-        _id: user._id,
-        fullname: user.fullname,
-        score: user.score,
-        draws: user.draws,
-        imgUrl:user.imgUrl
-    }
+    const userToSave = {_id: user._id, fullname: user.fullname, score: user.score}
     sessionStorage.setItem(LOGGEDIN_USER_KEY, JSON.stringify(userToSave))
     return userToSave
 }

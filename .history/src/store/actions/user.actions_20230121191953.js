@@ -42,12 +42,13 @@ export async function logout() {
     }
 }
 
-export async function updateUser(userToSave) {
+export async function updateUser(user) {
     try {
-        const user = await userService.update(userToSave)
+        const userToSave = await userService.update(user)
+        console.log('ss', ss)
         store.dispatch({
             type: 'SET_USER',
-            user
+            userToSave
         })
         return user
     } catch (err) {

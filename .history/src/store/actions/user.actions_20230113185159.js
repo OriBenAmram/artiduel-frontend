@@ -42,20 +42,6 @@ export async function logout() {
     }
 }
 
-export async function updateUser(userToSave) {
-    try {
-        const user = await userService.update(userToSave)
-        store.dispatch({
-            type: 'SET_USER',
-            user
-        })
-        return user
-    } catch (err) {
-        console.log('Cannot update user', err)
-        throw err
-    }
-}
-
 export async function loadUsers() {
     try {
         store.dispatch({ type: 'LOADING_START' })

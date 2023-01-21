@@ -26,6 +26,7 @@ export function UserProfile() {
 
         userService.getById(userId)
             .then(user => {
+                console.log('user!', user)
                 setIsLoggedInProfile(false)
                 setUser(user)
             })

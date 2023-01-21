@@ -6,8 +6,7 @@ export const userService = {
     signup,
     logout,
     getLoggedinUser,
-    getById,
-    update
+    getById
 }
 
 const USER_KEY = 'user'
@@ -20,6 +19,7 @@ async function login(userCred) {
         // const users = await storageService.query(USER_KEY)
         // const user = users.find(user => user.username === userCred.username)
         const user = await httpService.post(`${AUTH_URL}/login`, userCred)
+        console.log('user', user)
         return _setLoggedinUser(user)
     }catch(err){
         console.error('Invalid credentials', err)
@@ -34,12 +34,12 @@ async function logout() {
       // socketService.logout()
     }catch(err) {
       console.error('Cannot logout' ,err)
-      throw err
     }
 }
 
 async function signup(userToSave) {
     try{
+        if (!userToSave.imgUrl) userToSave.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
         // const user = await storageService.post(USER_KEY, userToSave)
         const user = await httpService.post(`${AUTH_URL}/signup`, userToSave)
         return _setLoggedinUser(userToSave)
@@ -49,22 +49,12 @@ async function signup(userToSave) {
     }
 }
 
-async function getById(userId) {
-    try{
-      const user = await httpService.get(`${USER_URL}/${userId}`)
+function getById(userId) {
+    try(){
+      const user = await httpService.post(`${USER_URL}/${userId}`, userToSave)
       return user
     }catch(err){
       console.error('Cannot get user' ,err)
-      throw err
-    }
-}
-
-async function update(user){
-    try{
-      const updatedUser = await httpService.put(`${USER_URL}/${user._id}`, user)
-      return updatedUser
-    }catch(err){
-      console.error('Cannot update user' ,err)
     }
 }
 
@@ -73,13 +63,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = {
-        _id: user._id,
-        fullname: user.fullname,
-        score: user.score,
-        draws: user.draws,
-        imgUrl:user.imgUrl
-    }
+    const userToSave = {_id: user._id, fullname: user.fullname, balance: user.balance}
     sessionStorage.setItem(LOGGEDIN_USER_KEY, JSON.stringify(userToSave))
     return userToSave
 }
