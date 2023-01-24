@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { signup } from "../store/actions/user.actions";
+import { useDispatch } from "react-redux";
+import { userService } from "../services/user.service";
+import { setUser } from "../store/slicers/user.slice";
 
 export function SignupPage() {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
     const handleChange = (ev: any) => {
         const field = ev.target.name
         const value = ev.target.value
@@ -20,7 +22,8 @@ export function SignupPage() {
         ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         try {
-            const user = await signup(credentials)
+            const user = await userService.signup(credentials)
+            dispatch(setUser(user))
             if (user) navigate('/feed')
             console.log('Hello', user.fullname)
             clearState()

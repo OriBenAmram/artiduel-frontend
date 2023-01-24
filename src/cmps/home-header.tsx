@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { NavLink } from 'react-router-dom';
+
+import { logout } from '../store/actions/user.actions';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
-import { logout } from '../store/actions/user.actions';
 
 export function HomeHeader() {
-
+    // const loggedinUser = useSelector(storeState => storeState.userModule.user)
     const [isMenuOpen, setMenuState] = useState(false)
 
     const toggleMenu = () => {
@@ -18,7 +21,7 @@ export function HomeHeader() {
             await logout()
             console.log('bye now')
             // showSuccessMsg(`Bye now`)
-        } catch(err) {
+        } catch (err) {
             console.log('cannot logout')
             // showErrorMsg('Cannot logout')
         }

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import RootCmp from './root-cmp';
 // import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
-import { store } from './store/store'
+import store from './store/store'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './assets/styles/style.scss'
 

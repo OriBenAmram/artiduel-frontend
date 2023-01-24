@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { login } from "../store/actions/user.actions";
+import { userService } from "../services/user.service";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/slicers/user.slice";
 
 export function LoginPage() {
+    const dispatch = useDispatch()
     const [credentials, setCredentials] = useState({ username: '', password: '' })
     const navigate = useNavigate()
     const handleChange = (ev: any) => {
@@ -24,7 +27,8 @@ export function LoginPage() {
             return
         }
         try {
-            const user = await login(credentials)
+            const user = await userService.login(credentials)
+            dispatch(setUser(user))
             if (user) navigate('/feed')
             // showSuccessMsg(`Welcome: ${user.fullname}`)
         } catch (err) {

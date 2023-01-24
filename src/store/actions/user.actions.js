@@ -1,5 +1,5 @@
 import { userService } from '../../services/user.service.js'
-import { store } from '../store.js'
+import store from '../store.ts'
 
 export async function login(credentials) {
     try {

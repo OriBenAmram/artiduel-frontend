@@ -160,3 +160,34 @@
         }
     }
 }
+
+.hero-container { 
+    display: flex;
+    flex-direction: column;
+
+    // 960px
+    @include for-normal-layout { 
+        flex-direction: row;
+    }
+
+    h1 { 
+        font-size: rem(20px);
+        
+        @include for-narrow-layout { 
+            font-size: rem(24px);
+        }
+        
+        @include for-normal-layout { 
+            font-size: rem(30px);
+        }
+        
+        @include for-wide-layout { 
+            font-size: rem(34px);
+        }
+    }
+}
+
+// 350px - 550px
+// 550px - 760px 
+// 760 - 1000px
+// 1000px+

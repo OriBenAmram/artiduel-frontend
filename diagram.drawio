@@ -1,0 +1,49 @@
+<mxfile host="65bd71144e">
+    <diagram id="TUHdNBUrZO3D-YLKqAKr" name="Page-1">
+        <mxGraphModel dx="864" dy="162" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Signup" style="whiteSpace=wrap;html=1;fillColor=#962EFF;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Login" style="whiteSpace=wrap;html=1;fillColor=#962EFF;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Feed" style="whiteSpace=wrap;html=1;fillColor=#962EFF;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Profile" style="whiteSpace=wrap;html=1;fillColor=#962EFF;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="760" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Game/gameId" style="whiteSpace=wrap;html=1;fillColor=#962EFF;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="160" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Home" style="whiteSpace=wrap;html=1;fillColor=#962EFF;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="OpponentCanvas" style="whiteSpace=wrap;html=1;fillColor=#D879B5;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+                    <mxGeometry x="520" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="UserCanvas" style="whiteSpace=wrap;html=1;fillColor=#D879B5;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Canvas" style="whiteSpace=wrap;html=1;fillColor=#D879B5;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="380" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="ToolBar" style="whiteSpace=wrap;html=1;fillColor=#D879B5;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+                    <mxGeometry x="830" y="380" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="NavOptions" style="whiteSpace=wrap;html=1;fillColor=#D879B5;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+                    <mxGeometry x="980" y="380" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="canvas" style="whiteSpace=wrap;html=1;fillColor=#D879B5;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+                    <mxGeometry x="520" y="380" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Timer" style="whiteSpace=wrap;html=1;fillColor=#D879B5;fontColor=#ffffff;strokeColor=#A50040;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
