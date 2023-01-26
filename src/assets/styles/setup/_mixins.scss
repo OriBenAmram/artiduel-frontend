@@ -78,13 +78,13 @@
     cursor: text;
     
     &:hover { 
-        border: 1px solid $clr8;
+        border: 1px solid $purple-strong;
     }
     
     &:focus-visible{ 
         transition: border-color 200ms ease-in 0s;
-        outline: $clr8;
-        border: 1px solid $clr8;
+        outline: $purple-strong;
+        border: 1px solid $purple-strong;
         background-color: $clr3;
     }
 }
@@ -99,13 +99,13 @@
     margin: 0 0 1.2em;
 
     &:hover { 
-        border: 1px solid $clr8;
+        border: 1px solid $purple-strong;
     }
     
     &:focus-visible{ 
         transition: border-color 200ms ease-in 0s;
-        outline: $clr8;
-        border: 1px solid $clr8;
+        outline: $purple-strong;
+        border: 1px solid $purple-strong;
         background-color: $clr3;
     }
 }
@@ -122,7 +122,7 @@
     align-items: center;
 
     &:hover {
-        color: $clr8;
+        color: $purple-strong;
         background-color: $clr9;
     }
 }

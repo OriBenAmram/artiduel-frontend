@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userService } from "../services/user.service";
+
 import { setUser } from "../store/slicers/user.slice";
+
+import { userService } from "../services/user.service";
+
 
 export function SignupPage() {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const handleChange = (ev: any) => {
         const field = ev.target.name
         const value = ev.target.value
@@ -48,7 +52,7 @@ export function SignupPage() {
             <div className="nav-options">
                 <NavLink to='/'>Back</NavLink>
                 <span>|</span>
-                <NavLink to='/signup'>Sign up for an account</NavLink>
+                <NavLink to='/login'>Login</NavLink>
             </div>
         </div>
     </div>

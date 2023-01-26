@@ -1,15 +1,20 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { NavLink } from 'react-router-dom';
 
 import { logout } from '../store/actions/user.actions';
 
+import { IUser } from '../interfaces/IUser';
+
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 
-export function HomeHeader() {
-    // const loggedinUser = useSelector(storeState => storeState.userModule.user)
+
+interface HomeHeaderProps {
+    user: IUser | null
+}
+
+export function HomeHeader({user} : HomeHeaderProps) {
     const [isMenuOpen, setMenuState] = useState(false)
 
     const toggleMenu = () => {
@@ -41,12 +46,10 @@ export function HomeHeader() {
                 <NavLink to={'/about'}>Who are we</NavLink>
                 <NavLink to={'/instructions'}>Instructions</NavLink>
             </div>
-            <div className="auth-options">
-                <NavLink to={'/feed'}>Enter as Guest</NavLink>
+            {!user && <div className="auth-options">
                 <NavLink to={'/login'}>Log in</NavLink>
                 <NavLink className="sign-up-btn" to={'/signup'}>Sign Up</NavLink>
-                <button onClick={onLogout}>Log out</button>
-            </div>
+            </div>}
             <button className="hamburger-btn" onClick={() => {
                 toggleMenu()
             }}>
