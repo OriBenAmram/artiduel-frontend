@@ -1,0 +1,70 @@
+.profile-page-container {
+    background-color: $clr5;
+
+    .info-container {
+        color: $clr2;
+        font-size: 0.9em;
+        margin-bottom: 1rem;
+        
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            
+            img {
+                width: 50%;
+                min-width: 150px;
+                max-width: 250px;
+                border-radius: 50%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+            }
+        }
+
+        @include for-normal-layout {
+            font-size: unset;
+            margin-bottom: unset;
+        }
+
+    }
+
+    .main-profile-container {
+        padding: 0 42px;
+        gap: 1rem;
+        font-size: 0.9em;
+
+        .achievements {
+            color: $clr2;
+
+            .score{
+                color: $clr1;
+                white-space:pre
+            }
+        }
+
+        .profile-btn {
+            width: 47%;
+            max-width: 240px;
+            margin: auto;
+            font-size: 1.05em;
+        }
+
+        @include for-normal-layout {
+            font-size: unset;
+        }
+    }
+
+    @include for-normal-layout {
+        grid-template-columns: 25% 75%;
+        padding: 30px;
+    }
+
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    @include secondary-btn();
+}

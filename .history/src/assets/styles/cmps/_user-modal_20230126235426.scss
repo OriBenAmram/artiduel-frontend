@@ -1,0 +1,40 @@
+.user-modal{
+    pointer-events: none;
+    width: 136px;
+    height: 155px;
+    background-color: $clr2;
+    position: absolute;
+    transform: translate(calc(-100% + 30px), 5px);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 16px;
+    color: $clr4;
+
+    .links-container{
+        flex-grow: 1;
+    }
+
+    h4, Link{
+        margin: 0;
+        display: block;
+    }
+    
+    .logout{
+        opacity: 0.8;
+        border-top: 1px solid rgba(0, 0, 0, 0.103);
+        padding-top: 16px;
+        // pointer-events: auto;
+    }
+
+    .close-btn{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border: none;
+        font-size: 0.7em;
+        // pointer-events: auto;
+    }
+}
+
