@@ -1,6 +1,11 @@
-import { useState, MouseEvent } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { SOCKET_EMIT_ENTER_ROOM } from '../services/socket.service'
 
 import { MdClose } from 'react-icons/md'
+import { utilService } from '../services/util.service'
+import { socketService } from '../services/socket.service'
 
 interface GameModalProps {
     toggleMenu: () => void
@@ -8,10 +13,32 @@ interface GameModalProps {
 
 export function GameModalScreen({ toggleMenu }: GameModalProps) {
     const [level, setLevel] = useState('Easy')
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        loadOpenRooms()
+    }, [])
+
+    const loadOpenRooms = () => {
+        console.log('loading')
+    }
 
     const onClickModal = (ev: MouseEvent) => {
         ev.stopPropagation()
-        console.log('modal')
+    }
+
+    const onNewGame = () => {
+        // if there is already a room with the same chosed level - go there. else - create a new one.
+        const roomId = utilService.makeId()
+        const socketInfo = { roomId, level }
+        socketService.emit('room-level-entrance', JSON.stringify(socketInfo))
+        navigate(`/game/${roomId}`)
+        toggleMenu()
+    }
+
+    const onPlayFriends = () => {
+        toggleMenu()
+        navigate('/friends')
     }
 
     return <div className={`screen-overlay`} onClick={toggleMenu}>
@@ -20,12 +47,12 @@ export function GameModalScreen({ toggleMenu }: GameModalProps) {
             <h2>Draw to win!</h2>
             <div className="level-display">{level}</div>
             <div className="level-options">
-                <button onClick={() => setLevel('Easy')}>Easy</button>
-                <button onClick={() => setLevel('Meduim')}>Medium</button>
-                <button onClick={() => setLevel('Hard')}>Hard</button>
+                <button className="secondary-btn-light" onClick={() => setLevel('Easy')}>Easy</button>
+                <button className="secondary-btn-light" onClick={() => setLevel('Meduim')}>Medium</button>
+                <button className="secondary-btn-light" onClick={() => setLevel('Hard')}>Hard</button>
             </div>
-            <button className="primary-btn">Start Game</button>
-            <button className="alternative-opt-btn">Against friends</button>
+            <button className="primary-btn" onClick={onNewGame}>Start Game</button>
+            <button className="alternative-opt-btn secondary-btn-light" onClick={onPlayFriends}>Play against friends</button>
         </div>
     </div>
 }

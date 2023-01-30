@@ -77,9 +77,9 @@
                 }
             }
         }
-        
+
         h2 {
-            font-size: rem(24px);
+            font-size: rem(38px);
             font-weight: 700;
 
             @include for-narrow-layout {
@@ -91,8 +91,15 @@
             }
         }
 
-        .level-display { 
+        .level-display {
             // ADD
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include info-theme-box;
+            width: 100%;
+            height: rem(60px);
+            color: $purple-strong;
         }
 
         .level-options {
@@ -100,9 +107,23 @@
             align-items: center;
             width: 100%;
 
-            & >* { 
+            & > * {
                 flex: 1;
             }
+
+            button:first-child {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+
+            button:last-child {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+        }
+
+        .alternative-opt-btn { 
+            padding: 20px 0;
         }
     }
 }

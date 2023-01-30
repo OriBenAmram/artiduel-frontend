@@ -1,4 +1,5 @@
 // React and stuff
+import { useEffect } from 'react'
 import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // Cmps
@@ -22,11 +23,24 @@ import { GameModalScreen } from './game-modal-screen';
 export function AppHeader() {
     const user = useSelector(selectedUser)
     const [isMenuOpen, setMenuState] = useState(false)
+    const [isNarrow, setIsNarrow] = useState(window.matchMedia("(max-width: 760px)").matches)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location: Location = useLocation()
     const isRegister = (location.pathname === '/login' || location.pathname === '/signup')
     const isHome = (location.pathname === '/')
+
+    function onWindowWidthChange(x: any) {
+        if (x.matches) {
+            setIsNarrow(true)
+        } else {
+            setIsNarrow(false)
+        }
+    }
+
+    const mmObj = window.matchMedia("(max-width: 760px)")
+    mmObj.addListener(onWindowWidthChange);
 
     async function onLogout() {
         try {
@@ -46,26 +60,23 @@ export function AppHeader() {
     }
 
     const onOpenGameModal = () => {
-        console.log('start')
         toggleMenu()
     }
 
-    const toggleMenu = () => { 
+    const toggleMenu = () => {
         setMenuState(!isMenuOpen)
     }
-
-    console.log('isMenuOpen:', isMenuOpen);
-
+    
     return (
         <header className={`app-header full ${(isRegister || isHome) ? 'hide' : ''}`}>
-            
-            {isMenuOpen && <GameModalScreen toggleMenu={toggleMenu}/>}
+
+            {isMenuOpen && <GameModalScreen toggleMenu={toggleMenu} />}
             <div className="header-content">
 
                 <NavLink className={`logo mobile`} to={user ? '/feed' : '/'}>ArtiDuel</NavLink>
 
-                <div className={`nav-container `}>
-                    <button className='primary-btn' onClick={onOpenGameModal}>New game</button>
+                <div className={`nav-container ${isMenuOpen ? 'low-nav' : ''} `}>
+                    {(!isMenuOpen || !isNarrow) && <button className='primary-btn' onClick={onOpenGameModal}>New game</button>}
 
 
                     <NavLink className='logo desktop' to={user ? '/feed' : '/'}>ArtiDuel</NavLink>
