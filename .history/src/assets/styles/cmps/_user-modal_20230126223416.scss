@@ -1,0 +1,8 @@
+.user-modal{
+    width: 150px;
+    height: 150px;
+    background-color: $clr2;
+    position: absolute;
+    transform: translate(calc(-100% + 30px), 5px);
+    border-radius: 5px;
+}

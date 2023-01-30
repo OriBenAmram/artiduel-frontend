@@ -148,3 +148,18 @@
         transition: border-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
     }
 }
+
+@mixin secondary-btn($color: $clr3) {
+    color: $color;
+    letter-spacing: -0.03em;
+    border-radius: 8px;
+    padding: 0 6px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $clr6;
+        border-color: $clr6;
+        transition: border-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
+    }
+}

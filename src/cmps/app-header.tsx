@@ -1,5 +1,5 @@
 // React and stuff
-import { useEffect } from 'react'
+import { useEffect, MouseEvent } from 'react'
 import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // Cmps
@@ -19,12 +19,14 @@ import { FaUserAlt } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState } from 'react';
 import { GameModalScreen } from './game-modal-screen';
+import { UserModal } from './user-modal';
 
 export function AppHeader() {
     const user = useSelector(selectedUser)
     const [isMenuOpen, setMenuState] = useState(false)
     const [isNarrow, setIsNarrow] = useState(window.matchMedia("(max-width: 760px)").matches)
 
+    const [isUserModalOpen, setUserModalOpen] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location: Location = useLocation()
@@ -42,7 +44,8 @@ export function AppHeader() {
     const mmObj = window.matchMedia("(max-width: 760px)")
     mmObj.addListener(onWindowWidthChange);
 
-    async function onLogout() {
+    async function onLogout(ev: MouseEvent ) {
+        ev.stopPropagation()
         try {
             await userService.logout()
             dispatch(setUser(null))
@@ -55,18 +58,19 @@ export function AppHeader() {
         }
     }
 
-    const openProfileModal = () => {
-        onLogout()
-    }
-
     const onOpenGameModal = () => {
         toggleMenu()
     }
 
-    const toggleMenu = () => {
-        setMenuState(!isMenuOpen)
+    const toggleMenu = () => { 
+        setMenuState(prevIsMenuOpen => !prevIsMenuOpen)
     }
-    
+  
+    const toggleUserModal = (ev: MouseEvent) => {
+        ev.stopPropagation()
+        setUserModalOpen(prevIsUserModalOpen => !prevIsUserModalOpen)
+    }
+
     return (
         <header className={`app-header full ${(isRegister || isHome) ? 'hide' : ''}`}>
 
@@ -85,10 +89,12 @@ export function AppHeader() {
                         {/* feed */}
                         <NavLink to={'/feed'}> <li className="feed-title">Feed</li><li className="feed-icon nav-icon"><AiFillHome /></li></NavLink>
                         {/* user */}
-                        {user && <button className='user-icon-btn' onClick={openProfileModal}>
+                        {user && <div className='user-icon-btn' onClick={toggleUserModal}>
                             <FaUserAlt className='nav-icon user' />
                             <GiHamburgerMenu className='nav-icon hamburger' />
-                        </button>}
+                            {isUserModalOpen && <div className="screen"></div>}
+                            {isUserModalOpen && <UserModal toggleUserModal={toggleUserModal} onLogout={onLogout}/>}
+                        </div>}
 
                         {/*  */}
                         {!user && <NavLink className="register-link" to={'/login'}> <li>Login</li></NavLink>}
@@ -96,7 +102,6 @@ export function AppHeader() {
                     </ul>
                 </div>
             </div>
-
         </header>
     )
 }

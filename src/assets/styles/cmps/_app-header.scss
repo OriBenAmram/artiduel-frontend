@@ -172,7 +172,7 @@
             justify-content: end;
             height: inherit;
             width: fit-content;
-            transform: translateX(0);
+            // transform: translateX(0);
             > * {
                 margin-right: 30px;
             }
@@ -198,4 +198,14 @@
     a.active {
         color: $clr1;
     }
+}
+
+.screen{
+    // display: none;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
