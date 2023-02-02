@@ -75,6 +75,11 @@
             height: unset;
             flex-direction: row;
             justify-content: space-between;
+            padding: 0 10px;
+        }
+        
+        &.low-nav { 
+            padding: 0 rem(10px);
         }
 
         .primary-btn {
@@ -102,6 +107,7 @@
                 background-color: #33373cfa;
             }
         }
+
 
         .nav-icon { 
             font-size: rem(24px);

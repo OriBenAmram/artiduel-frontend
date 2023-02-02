@@ -62,7 +62,6 @@
       object-fit: cover;
     }
   }
-  
 
 // Elements
 // Form
@@ -125,6 +124,12 @@
         color: $purple-strong;
         background-color: $clr9;
     }
+}
+
+@mixin info-theme-box { 
+    border-radius: rem(6px);
+    border: 1px solid $purple-strong;
+    background-color: rgb(237 236 252);
 }
 
 // Buttons

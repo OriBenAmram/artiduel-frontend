@@ -9,7 +9,7 @@ export function HomeContent() {
                 <h5>Find an online opponent to duel in real time, and collect coins as you win!</h5>
                 <div className="btns-container">
                     <NavLink to={'/signup'} className="primary-btn">Sign up</NavLink>
-                    <NavLink to={'/feed'} className="secondary-btn">Guest mode</NavLink>
+                    <NavLink to={'/feed'} className="secondary-btn-dark">Guest mode</NavLink>
                 </div>
             </section>
         </div>

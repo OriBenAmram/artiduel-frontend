@@ -1,5 +1,6 @@
 import { storageService } from "./async-storage.service"
 import { httpService } from "./http.service"
+import { socketService } from "./socket.service"
 import { utilService } from "./util.service"
 
 export const userService = {
@@ -21,7 +22,10 @@ async function login(userCred) {
         // const users = await storageService.query(USER_KEY)
         // const user = users.find(user => user.username === userCred.username)
         const user = await httpService.post(`${AUTH_URL}/login`, userCred)
-        return _setLoggedinUser(user)
+        if (user) {
+            socketService.login(user._id)
+            return _setLoggedinUser(user)
+        }
     } catch (err) {
         console.error('Invalid credentials', err)
         throw err
@@ -32,7 +36,7 @@ async function logout() {
     try {
         await httpService.post(`${AUTH_URL}/logout`)
         sessionStorage.removeItem(LOGGEDIN_USER_KEY)
-        // socketService.logout()
+        socketService.logout()
     } catch (err) {
         console.error('Cannot logout', err)
         throw err
@@ -43,6 +47,7 @@ async function signup(userToSave) {
     try {
         // const user = await storageService.post(USER_KEY, userToSave)
         const user = await httpService.post(`${AUTH_URL}/signup`, userToSave)
+        socketService.login(user._id)
         return _setLoggedinUser(user)
     } catch (err) {
         console.error('Cannot signup', err)
