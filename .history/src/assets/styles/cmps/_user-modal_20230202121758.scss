@@ -29,7 +29,6 @@
         font-size: 0.95em;
         font-weight: 500;
         border-radius: 5px;
-        letter-spacing: .2px;
         
         &:hover {
             color: $clr1;
@@ -37,7 +36,7 @@
         }
     }
 
-    .logout {
+    .modal-item.logout {
         margin-top: 10px;
         font-weight: 100;
         position: relative;
@@ -50,6 +49,19 @@
             position: absolute;
             left: 0;
             top: -10px;
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border: none;
+        font-size: 0.7em;
+        font-weight: 700;
+
+        &:hover {
+            opacity: 0.8;
         }
     }
 }

@@ -144,18 +144,17 @@
     }
 }
 
-@mixin secondary-btn($color: $clr3, $hover-color: $clr7) {
+@mixin secondary-btn($color: $clr3) {
     color: $color;
     letter-spacing: -0.03em;
     border-radius: 8px;
     padding: 0 6px;
-    display: flex;
     text-align: center;
-    justify-content: center;
     cursor: pointer;
 
     &:hover {
-        background-color: $hover-color;
-        transition: background-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
+        background-color: $clr7;
+        // border-color: $clr6;
+        transition: border-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
     }
 }
