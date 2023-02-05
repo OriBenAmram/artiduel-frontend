@@ -1,5 +1,5 @@
 .user-modal {
-    width: 233px;
+    width: 280px;
     min-height: 225px;
     background-color: $clr4;
     color: $clr2;
@@ -9,8 +9,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 10px;
-    box-shadow: .3px 0px 0px 0px $clr2, 0px .3px 0px 0px $clr2,  -.3px 0px 0px 0px $clr2,  0px -.3px 0px 0px $clr2;
+    padding: 12px;
+    box-shadow: .25px 0px 0px 0px $clr2, 0px .25px 0px 0px $clr2,  -.25px 0px 0px 0px $clr2,  0px -.25px 0px 0px $clr2;
 
     .links-container {
         flex-grow: 1;
@@ -21,15 +21,15 @@
     }
 
     .modal-item {
-        display: flex;
-        align-items: center;
-        padding: 0 10px;
-        width: 100%;
-        height: 33px;
         font-size: 0.95em;
         font-weight: 500;
+        display: block;
         border-radius: 5px;
-        letter-spacing: .2px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        width: 100%;
+        height: 33px;
         
         &:hover {
             color: $clr1;
@@ -38,7 +38,7 @@
     }
 
     .logout {
-        margin-top: 10px;
+        padding-top: 12px;
         font-weight: 100;
         position: relative;
         
@@ -49,7 +49,20 @@
             height: 10px;
             position: absolute;
             left: 0;
-            top: -10px;
+            top: 0;
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border: none;
+        font-size: 0.7em;
+        font-weight: 700;
+
+        &:hover {
+            opacity: 0.8;
         }
     }
 }

@@ -16,8 +16,8 @@ export function UserModal({onLogout, toggleUserModal}: UserModalProps) {
 
     return <div onClick={ev => ev.stopPropagation()} className="user-modal" >
         <div className="links-container">
-            <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile modal-item">Profile</Link>
+            <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile">Profile</Link>
         </div>
-        <h5 className="logout modal-item" onClick={onLogout}>Logout</h5>
+        <h5 className="logout" onClick={onLogout}>Logout</h5>
     </div>
 }

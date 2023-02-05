@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { selectedUser } from "../store/store"
 
 interface UserModalProps {
-    onLogout: MouseEventHandler<HTMLHeadingElement>
+    onLogout: MouseEventHandler<HTMLButtonElement>
     toggleUserModal: MouseEventHandler<HTMLAnchorElement>
 }
 
@@ -18,6 +18,6 @@ export function UserModal({onLogout, toggleUserModal}: UserModalProps) {
         <div className="links-container">
             <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile modal-item">Profile</Link>
         </div>
-        <h5 className="logout modal-item" onClick={onLogout}>Logout</h5>
+        <button className="logout modal-item" onClick={onLogout}>Logout</button>
     </div>
 }

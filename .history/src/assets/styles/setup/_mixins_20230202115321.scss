@@ -62,6 +62,7 @@
       object-fit: cover;
     }
   }
+  
 
 // Elements
 // Form
@@ -126,12 +127,6 @@
     }
 }
 
-@mixin info-theme-box { 
-    border-radius: rem(6px);
-    border: 1px solid $purple-strong;
-    background-color: rgb(237 236 252);
-}
-
 // Buttons
 @mixin primary-btn() {
     background: $clr1;
@@ -149,7 +144,7 @@
     }
 }
 
-@mixin secondary-btn($color: $clr3, $hover-color: $clr7) {
+@mixin secondary-btn($color: $clr3) {
     color: $color;
     letter-spacing: -0.03em;
     border-radius: 8px;
@@ -160,7 +155,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $hover-color;
+        background-color: $clr7;
         transition: background-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
     }
 }

@@ -18,6 +18,9 @@ export function UserModal({onLogout, toggleUserModal}: UserModalProps) {
         <div className="links-container">
             <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile modal-item">Profile</Link>
         </div>
+        <button>
+
         <h5 className="logout modal-item" onClick={onLogout}>Logout</h5>
+        </button>
     </div>
 }
