@@ -1,5 +1,5 @@
 // React and stuff
-import { useEffect, MouseEvent } from 'react'
+import { MouseEvent, useEffect } from 'react'
 import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // Cmps
@@ -33,6 +33,11 @@ export function AppHeader() {
     const isRegister = (location.pathname === '/login' || location.pathname === '/signup')
     const isHome = (location.pathname === '/')
 
+    useEffect(() => {
+        console.log('location.pathname changed', location.pathname);
+
+    }, [location.pathname])
+
     function onWindowWidthChange(x: any) {
         if (x.matches) {
             setIsNarrow(true)
@@ -44,7 +49,7 @@ export function AppHeader() {
     const mmObj = window.matchMedia("(max-width: 760px)")
     mmObj.addListener(onWindowWidthChange);
 
-    async function onLogout(ev: MouseEvent ) {
+    async function onLogout(ev: MouseEvent) {
         ev.stopPropagation()
         try {
             await userService.logout()
@@ -62,10 +67,10 @@ export function AppHeader() {
         toggleMenu()
     }
 
-    const toggleMenu = () => { 
+    const toggleMenu = () => {
         setMenuState(prevIsMenuOpen => !prevIsMenuOpen)
     }
-  
+
     const toggleUserModal = (ev: MouseEvent) => {
         ev.stopPropagation()
         setUserModalOpen(prevIsUserModalOpen => !prevIsUserModalOpen)
@@ -80,7 +85,7 @@ export function AppHeader() {
                 <NavLink className={`logo mobile`} to={user ? '/feed' : '/'}>ArtiDuel</NavLink>
 
                 <div className={`nav-container ${isMenuOpen ? 'low-nav' : ''} `}>
-                    {(!isMenuOpen || !isNarrow) && <button className='primary-btn' onClick={onOpenGameModal}>New game</button>}
+                    {((!isMenuOpen || !isNarrow) && !location.pathname.includes('/game')) && <button className='primary-btn' onClick={onOpenGameModal}>New game</button>}
 
 
                     <NavLink className='logo desktop' to={user ? '/feed' : '/'}>ArtiDuel</NavLink>
@@ -93,10 +98,9 @@ export function AppHeader() {
                             <FaUserAlt className='nav-icon user' />
                             <GiHamburgerMenu className='nav-icon hamburger' />
                             {isUserModalOpen && <div className="screen"></div>}
-                            {isUserModalOpen && <UserModal toggleUserModal={toggleUserModal} onLogout={onLogout}/>}
+                            {isUserModalOpen && <UserModal toggleUserModal={toggleUserModal} onLogout={onLogout} />}
                         </div>}
 
-                        {/*  */}
                         {!user && <NavLink className="register-link" to={'/login'}> <li>Login</li></NavLink>}
                         {!user && <NavLink className="register-link" to={'/signup'}> <li>Signup</li></NavLink>}
                     </ul>

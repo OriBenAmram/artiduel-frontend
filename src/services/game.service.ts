@@ -1,4 +1,13 @@
-export function getDefaultDraws(){
+export const gameService = {
+    loadOpenRooms,
+    getDefaultDraws
+}
+
+function loadOpenRooms() {
+    
+}
+
+function getDefaultDraws() {
     return [
         {
             _id: '123',

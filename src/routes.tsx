@@ -4,6 +4,7 @@ import { LoginPage } from './pages/login-page';
 import { SignupPage } from './pages/signup-page';
 import { UserProfile } from './pages/user-profile';
 import { Game } from './pages/game';
+import { WaitingRoom } from './pages/waiting-room';
 
 export interface RootRoute {
     path: string
@@ -32,9 +33,13 @@ const routes: RootRoute[] = [
         element: <UserProfile />,
     },
     {
+        path: '/waiting-room',
+        element: <WaitingRoom />,
+    },
+    {
         path: '/game/:roomId',
         element: <Game />,
-    }
+    },
 ];
 
 export default routes;

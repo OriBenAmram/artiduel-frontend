@@ -10,7 +10,7 @@ import { setUser } from '../store/slicers/user.slice';
 // import { updateUser } from '../store/actions/user.actions'
 
 import { userService } from '../services/user.service'
-import { getDefaultDraws } from '../services/draw.service'
+import { gameService } from '../services/game.service'
 
 import { IUser } from '../interfaces/IUser'
 import avatar from '../assets/imgs/avatar2.jpg'
@@ -56,7 +56,7 @@ export function UserProfile() {
 
     if (!userProfile) return <h1>Loading...</h1>
 
-    if (!userProfile.draws || !userProfile.draws.length) userProfile.draws = getDefaultDraws()
+    if (!userProfile.draws || !userProfile.draws.length) userProfile.draws = gameService.getDefaultDraws()
 
     return <div className="profile-page-container grid">
         <div className="info-container">

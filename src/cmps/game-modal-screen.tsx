@@ -1,10 +1,7 @@
-import { useState, useEffect, MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-import { SOCKET_EMIT_ENTER_ROOM } from '../services/socket.service'
+import { useState, MouseEvent } from 'react'
+import { useNavigate, useLocation, Location } from 'react-router-dom'
 
 import { MdClose } from 'react-icons/md'
-import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
 
 interface GameModalProps {
@@ -14,25 +11,15 @@ interface GameModalProps {
 export function GameModalScreen({ toggleMenu }: GameModalProps) {
     const [level, setLevel] = useState('Easy')
     const navigate = useNavigate()
-
-    useEffect(() => {
-        loadOpenRooms()
-    }, [])
-
-    const loadOpenRooms = () => {
-        console.log('loading')
-    }
+    const location: Location = useLocation()
 
     const onClickModal = (ev: MouseEvent) => {
         ev.stopPropagation()
     }
 
     const onNewGame = () => {
-        // if there is already a room with the same chosed level - go there. else - create a new one.
-        const roomId = utilService.makeId()
-        const socketInfo = { roomId, level }
-        socketService.emit('room-level-entrance', JSON.stringify(socketInfo))
-        navigate(`/game/${roomId}`)
+        if (location.pathname !== '/waiting-room') navigate(`/waiting-room`)
+        socketService.emit('room-level-entrance', level)
         toggleMenu()
     }
 

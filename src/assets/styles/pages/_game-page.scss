@@ -1,0 +1,43 @@
+.game-page {
+    background-color: pink;
+    flex: 1;
+
+    .game-content-conatiner {
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 100px;
+
+        @include for-normal-layout {
+            width: 80%;
+            padding-top: 50px;
+        }
+
+        @include for-wide-layout {
+            width: 70%;
+            max-width: 1300px;
+        }
+    }
+
+    .game-hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .room-title {
+        font-size: rem(28px);
+        margin: 0;
+
+        @include for-narrow-layout {
+            font-size: rem(36px);
+        }
+
+        @include for-normal-layout {
+            font-size: rem(42px);
+        }
+
+        @include for-wide-layout {
+            font-size: rem(46px);
+        }
+    }
+}
