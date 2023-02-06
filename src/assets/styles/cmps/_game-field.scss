@@ -1,0 +1,124 @@
+.game-field {
+    // border: pink 1px solid;
+    display: flex;
+    padding: 50px 10px;
+    flex-direction: column;
+    flex: 1;
+
+    @include for-narrow-layout {
+        padding: 50px 0;
+    }
+
+    @include for-normal-layout {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 0;
+    }
+
+    @include for-wide-layout {
+        padding: 0;
+    }
+
+    .main-canvas-container {
+        position: relative;
+        @include aspect-ratio(1, 1);
+        background-color: $dark-grey;
+        border-radius: 10px;
+        border: gray 1px solid;
+        background-color: rgb(74, 117, 124);
+        width: 100%;
+        margin-bottom: rem(30px);
+        align-self: center;
+
+        @include for-narrow-layout {
+            width: 80%;
+            margin-left: 50px;
+        }
+
+        @include for-normal-layout {
+            width: 50%;
+            margin: 0;
+        }
+
+        @include for-wide-layout {
+            width: 40%;
+        }
+    }
+
+    .canvas-tool-bar {
+        position: absolute;
+        top: unset;
+        right: unset;
+        bottom: 0px;
+        left: 0;
+        height: 18px;
+        width: 100%;
+        padding: 6px;
+        background-color: $dark-opacity;
+
+        &.open {
+            height: 60px;
+        }
+
+        @include for-normal-layout {
+            height: 100%;
+            width: 18px;
+
+            &.open {
+                width: 60px;
+                height: 100%;
+            }
+        }
+    }
+
+    .toggle-arrow-btn {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $dark-strong;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        @include for-normal-layout {
+            transform: translate(50%, -50%);
+            left: unset;
+            right: 0;
+            top: 50%;
+        }
+    }
+
+    .circle {
+        border-radius: 50%;
+        background-color: rgb(184, 80, 191);
+        width: 48px;
+        height: 48px;
+    }
+
+    .secondary-canvas-container {
+        background-color: rgb(74, 117, 124);
+        border-radius: 10px;
+        border: gray 1px solid;
+        width: 100px;
+        @include aspect-ratio(1, 1);
+        cursor: pointer;
+
+        @include for-narrow-layout {
+            width: 150px;
+        }
+
+        @include for-normal-layout {
+            width: 30%;
+        }
+
+        @include for-wide-layout {
+            width: 40%;
+        }
+    }
+}

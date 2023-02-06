@@ -1,7 +1,7 @@
 .user-modal {
     width: 136px;
     height: 155px;
-    background-color: $clr2;
+    background-color: $bright-txt;
     position: absolute;
     transform: translate(calc(-100% + 30px), 5px);
     border-radius: 5px;
@@ -45,7 +45,7 @@
         font-size: 0.7em;
 
         &:hover {
-            color: $clr5;
+            color: $dark-strong;
         }
     }
 }

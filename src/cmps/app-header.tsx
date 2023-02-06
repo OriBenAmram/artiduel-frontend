@@ -32,9 +32,9 @@ export function AppHeader() {
     const location: Location = useLocation()
     const isRegister = (location.pathname === '/login' || location.pathname === '/signup')
     const isHome = (location.pathname === '/')
+    const isPlaying = (location.pathname.includes('/game'))
 
     useEffect(() => {
-        console.log('location.pathname changed', location.pathname);
 
     }, [location.pathname])
 
@@ -77,7 +77,7 @@ export function AppHeader() {
     }
 
     return (
-        <header className={`app-header full ${(isRegister || isHome) ? 'hide' : ''}`}>
+        <header className={`app-header full ${(isRegister || isHome || isPlaying) ? 'hide' : ''}`}>
 
             {isMenuOpen && <GameModalScreen toggleMenu={toggleMenu} />}
             <div className="header-content">

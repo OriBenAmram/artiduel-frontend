@@ -130,6 +130,7 @@
     border-radius: rem(6px);
     border: 1px solid $purple-strong;
     background-color: rgb(237 236 252);
+    color: $purple-strong;
 }
 
 // Buttons
@@ -149,7 +150,7 @@
     }
 }
 
-@mixin secondary-btn($color: $clr3, $hover-color: $clr7) {
+@mixin secondary-btn($color: $clr3, $hover-color: $dark-grey) {
     color: $color;
     letter-spacing: -0.03em;
     border-radius: 8px;

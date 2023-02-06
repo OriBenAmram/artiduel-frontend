@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
+import { GameField } from '../cmps/game-field'
+import { GameHeader } from '../cmps/game-header'
 
 import { socketService } from '../services/socket.service'
 export function Game() {
@@ -27,10 +29,8 @@ export function Game() {
 
     return <div className="game-page">
         <div className="game-content-conatiner">
-            <div className="game-hero">
-                <h1 className='room-title'>Room with id: {roomId}</h1>
-                <div className="timer-box">07:42</div>
-            </div>
+            <GameHeader />
+            <GameField />
             <button onClick={onQuitGame}>Cancel game</button>
         </div>
     </div>

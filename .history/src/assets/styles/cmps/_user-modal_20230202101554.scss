@@ -2,7 +2,7 @@
     width: 280px;
     min-height: 130px;
     background-color: $clr4;
-    color: $clr2;
+    color: $bright-txt;
     position: absolute;
     transform: translate(calc(-100% + 30px), 5px);
     border-radius: 5px;
@@ -31,7 +31,7 @@
 
     .logout {
         opacity: 0.9;
-        border-top: 1px solid $clr2;
+        border-top: 1px solid $bright-txt;
         padding-top: 12px;
 
         &:hover {

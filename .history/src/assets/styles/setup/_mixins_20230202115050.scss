@@ -153,7 +153,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $clr7;
+        background-color: $dark-grey;
         border-color: $clr6;
         transition: border-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
     }

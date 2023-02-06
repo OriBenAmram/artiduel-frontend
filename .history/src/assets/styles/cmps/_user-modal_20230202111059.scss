@@ -2,7 +2,7 @@
     width: 280px;
     min-height: 225px;
     background-color: $clr4;
-    color: $clr2;
+    color: $bright-txt;
     position: absolute;
     transform: translate(calc(-100% + 30px), 5px);
     border-radius: 8px;
@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 12px;
-    box-shadow: .25px 0px 0px 0px $clr2, 0px .25px 0px 0px $clr2,  -.25px 0px 0px 0px $clr2,  0px -.25px 0px 0px $clr2;
+    box-shadow: .25px 0px 0px 0px $bright-txt, 0px .25px 0px 0px $bright-txt,  -.25px 0px 0px 0px $bright-txt,  0px -.25px 0px 0px $bright-txt;
 
     .links-container {
         flex-grow: 1;
@@ -33,7 +33,7 @@
         
         &:hover {
             color: $clr1;
-            background-color: $clr7;
+            background-color: $dark-grey;
         }
     }
 
@@ -43,7 +43,7 @@
         
         &::before{
             content: "";
-            box-shadow: 0px -.25px 0px 0px $clr2;
+            box-shadow: 0px -.25px 0px 0px $bright-txt;
             width: 10px;
             height: 10px;
             // background-color: red;

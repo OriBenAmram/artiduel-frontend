@@ -7,7 +7,7 @@ button {
     width: 100%;
     padding: 14px;
     background-color: $clr1;
-    color: $clr2;
+    color: $bright-txt;
     border-radius: 8px;
     border: none;
 
@@ -22,13 +22,13 @@ button {
     padding: 14px;
     letter-spacing: -0.03em;
     color: #f8fafd;
-    background-color: $clr5;
+    background-color: $dark-strong;
     border-radius: 8px;
     border: 2px solid #f8fafd;
     transition: border-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
 
     &:hover {
-        color: $clr5;
+        color: $dark-strong;
         background-color: #f8fafd;
         border-color: #f8fafd;
     }
