@@ -1,21 +1,28 @@
 import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 
+import { setGameSetting, setOpponent } from "../store/slicers/game.slice"
+
 import { socketService } from "../services/socket.service"
+import { userService } from "../services/user.service"
 
-export function WaitingRoom() { 
+
+export function WaitingRoom() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    useEffect(() => { 
+    useEffect(() => {
         socketService.on('matched-opponent', onMatchedOpponent)
 
-        return (() => { 
+        return (() => {
             socketService.off('matched-opponent')
         })
     })
 
-    const onMatchedOpponent = (roomId : string) => { 
-        console.log('roomId going to:', roomId);
+    const onMatchedOpponent = async ({ roomId, isHost, opponentPlayer }: { roomId: string, isHost: boolean, opponentPlayer: { id: string, fullname: string } }) => {
+        await dispatch(setGameSetting(opponentPlayer))
+        userService.saveOpponent(opponentPlayer)
         navigate(`/game/${roomId}`)
     }
 

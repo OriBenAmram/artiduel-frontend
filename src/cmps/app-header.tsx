@@ -1,7 +1,7 @@
 // React and stuff
 import { MouseEvent, useEffect } from 'react'
-import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 // Cmps
 
 // Store
@@ -30,9 +30,7 @@ export function AppHeader() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location: Location = useLocation()
-    const isRegister = (location.pathname === '/login' || location.pathname === '/signup')
-    const isHome = (location.pathname === '/')
-    const isPlaying = (location.pathname.includes('/game'))
+    const isHide = ((location.pathname === '/login' || location.pathname === '/signup') || (location.pathname === '/') || (location.pathname.includes('/game')))
 
     useEffect(() => {
 
@@ -77,7 +75,7 @@ export function AppHeader() {
     }
 
     return (
-        <header className={`app-header full ${(isRegister || isHome || isPlaying) ? 'hide' : ''}`}>
+        <header className={`app-header full ${(isHide) ? 'hide' : ''}`}>
 
             {isMenuOpen && <GameModalScreen toggleMenu={toggleMenu} />}
             <div className="header-content">

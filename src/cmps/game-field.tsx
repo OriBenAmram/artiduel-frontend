@@ -1,8 +1,15 @@
-import { useState, useEffect, useRef } from "react"
+import { useEffect } from "react"
+import { OpponentCanvas } from "./opponent-canvas"
 
 import { PlayerCanvas } from "./player-canvas"
 
-export function GameField() {
+interface GameFieldProps {
+    playerCanvasRef: any
+    opponentCanvasRef: any
+    opponentUser: any
+}
+
+export function GameField({ opponentUser, playerCanvasRef, opponentCanvasRef }: GameFieldProps) {
 
 
 
@@ -11,7 +18,7 @@ export function GameField() {
     }, [])
 
     return <div className="game-field">
-        <PlayerCanvas />
-        <div className="secondary-canvas-container"></div>
+        <PlayerCanvas playerCanvasRef={playerCanvasRef} />
+        <OpponentCanvas opponentUser={opponentUser} opponentCanvasRef={opponentCanvasRef}/>
     </div>
 }
