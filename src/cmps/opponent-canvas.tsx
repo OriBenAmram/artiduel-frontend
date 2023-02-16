@@ -3,15 +3,15 @@ import { canvasService } from "../services/canvas.service"
 
 import { socketService } from "../services/socket.service"
 
-interface opponentCanvasProps { 
+interface opponentCanvasProps {
     opponentCanvasRef: any
     opponentUser: any
 }
 
-export function OpponentCanvas({ opponentUser, opponentCanvasRef : canvasRef } : opponentCanvasProps) {
+export function OpponentCanvas({ opponentUser, opponentCanvasRef: canvasRef }: opponentCanvasProps) {
 
     const canvasContainerRef = useRef<HTMLDivElement | null>(null);
-    
+
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
     useEffect(() => {
@@ -37,10 +37,10 @@ export function OpponentCanvas({ opponentUser, opponentCanvasRef : canvasRef } :
     const onOpponentChange = (dataURL: string) => {
         canvasService.saveOpponentCanvas(canvasRef.current, ctxRef.current, dataURL)
     }
-    console.log('Your are playing against ', opponentUser.fullname);
-    
+    if (opponentUser) console.log('Your are playing against ', opponentUser.fullname);
+
 
     return <div className="secondary-canvas-container" ref={canvasContainerRef}>
-            <canvas ref={canvasRef}></canvas>
-        </div>
+        <canvas ref={canvasRef}></canvas>
+    </div>
 }

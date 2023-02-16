@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import RootCmp from './root-cmp';
-// import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux'
-import store from './store/store'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+import RootCmp from './root-cmp';
+import store from './store/store'
 import './assets/styles/style.scss'
+// import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

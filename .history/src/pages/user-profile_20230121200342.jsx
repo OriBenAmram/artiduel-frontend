@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { userService } from "../services/user.service"
 import {updateUser} from "../store/actions/user.actions"
 
-import { PostList } from "../cmps/post-list"
+import { DrawList } from "../cmps/post-list"
 import {ImgUploader} from "../cmps/img-uploader"
 import avatar from "../assets/imgs/avatar2.jpg"
 
@@ -131,7 +131,7 @@ export function UserProfile() {
             {!isLoggedInProfile && <button className="profile-btn primary-btn">Invite For a Game</button>}
             {/* TODO - if not friends: */}
             {/* <button>Add to Friends</button> */}
-            <PostList posts={user.draws}></PostList>
+            <DrawList posts={user.draws}></DrawList>
 
         </div>
     </div>

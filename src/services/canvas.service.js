@@ -127,9 +127,8 @@ function _loadCanvasFromStorage(storageKey) {
 
 // Format
 
-function createDrawing(playerCanvas, opponentCanvas) {
+function createDrawing(playerCanvas, opponentCanvas, opponentUser) {
     const player = userService.getLoggedinUser()
-    console.log('player:', player);
     const playerDataURL = playerCanvas.toDataURL()
     const opponentDataURL = opponentCanvas.toDataURL()
     const drawing = {
@@ -141,6 +140,8 @@ function createDrawing(playerCanvas, opponentCanvas) {
             dataUrl: playerDataURL
         },
         player2: {
+            userId: opponentUser._id,
+            fullname: opponentUser.fullname,
             dataUrl: opponentDataURL
         },
     }

@@ -2,7 +2,7 @@ import { useEffect, useState, FC } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { PostList } from '../cmps/post-list'
+import { DrawList } from '../cmps/post-list'
 import { ImgUploader } from '../cmps/img-uploader'
 
 import { selectedUser } from '../store/store'
@@ -77,7 +77,7 @@ export function UserProfile() {
             {!isLoggedInProfile && <button className="profile-btn primary-btn">Invite For a Game</button>}
             {/* TODO - if not friends: */}
             {/* <button>Add to Friends</button> */}
-            <PostList posts={userProfile.draws}></PostList>
+            <DrawList posts={userProfile.draws}></DrawList>
 
         </div>
     </div>

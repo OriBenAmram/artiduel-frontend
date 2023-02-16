@@ -1,20 +1,23 @@
 import { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom"
 
 import { selectedOpponent } from '../store/store'
+import { addDrawing } from '../store/slicers/draw.slice'
 
 import { GameField } from '../cmps/game-field'
 import { GameHeader } from '../cmps/game-header'
 
 import { canvasService } from '../services/canvas.service'
 import { socketService } from '../services/socket.service'
+import { drawService } from '../services/draw.service'
 
 export function Game() {
     const navigate = useNavigate()
     const playerCanvasRef = useRef<HTMLCanvasElement | null>(null);
     const opponentCanvasRef = useRef<HTMLCanvasElement | null>(null);
     const opponentUser = useSelector(selectedOpponent)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         socketService.on('opponent-left', onOpponentLeft)
@@ -35,20 +38,28 @@ export function Game() {
         navigate('/feed')
     }
 
-    const onSaveBoard = () => { 
-        console.log('save')
-        // const drawingToSave = canvasService.createDrawing(playerCanvasRef.current, opponentCanvasRef.current)
+    const onSaveBoard = async () => {
         // TODO - game end modal - post it to your profile or continue to feed
-        // TODO - create an object with two datas and more details
-        // { player1 : { _id : 111, fullname: 'Ori', dataUrl: fsdkmgdfk, likes: 20 }, player2: { _id: 2312, fullname: 'Vicky', dataUrl: 3rfsd, likes: 42 }, createdAt: 102393420, _id: mongoId, word: 'Elephant', comments: []}
-        // TODO - send it to backend to save to feed
-        // TODO - send the user to feed - there we would load the drawings and add it
+        // DONE - create an object with two datas and more details
+        const drawingToSave = canvasService.createDrawing(playerCanvasRef.current, opponentCanvasRef.current, opponentUser)
+        // TODO - add it in backend
+        try {
+
+            const savedDraw = await drawService.save(drawingToSave)
+            console.log('savedDraw:', savedDraw);
+            // TODO - add it to the drawings in the feed (store)
+            dispatch(addDrawing(savedDraw))
+            console.log('Done setting to store')
+            // TODO - send the user to feed - there we would load the drawings and add it
+        } catch (err) {
+            console.log('err when saving drawing -', err);
+        }
     }
 
     return <div className="game-page">
         <div className="game-content-conatiner">
-            <GameHeader onSaveBoard={onSaveBoard}/>
-            <GameField opponentUser={opponentUser} playerCanvasRef={playerCanvasRef} opponentCanvasRef={opponentCanvasRef}/>
+            <GameHeader onSaveBoard={onSaveBoard} />
+            <GameField opponentUser={opponentUser} playerCanvasRef={playerCanvasRef} opponentCanvasRef={opponentCanvasRef} />
             <button onClick={onQuitGame}>Cancel game</button>
         </div>
     </div>
