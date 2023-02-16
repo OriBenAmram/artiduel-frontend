@@ -30,56 +30,36 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
     }, [])
 
     useEffect(() => {
-        if (dragPercent > 80) {
-            resetModal()
-            toggleUserModal(undefined!)
-        }
-    }, [dragPercent])
+        const dragPercent = getDragPercent()
+        if (modalOptions.dragPercent > 70) toggleUserModal(undefined!)
+    }, [modalOptions])
 
-    function onDown(ev: MouseEvent | TouchEvent<HTMLDivElement>) {
+    function onDown(ev: MouseEvent | TouchEvent<HTMLDivElement>) { 
         setIsDragging(true)
         const mousePosY = getClientY(ev)
-        setDragPercent(getDragPercent())
-        console.log('DOWN - getDragPercent', getDragPercent())
-        setModalOptions((prevOpts: IModalOpts) => ({ ...prevOpts as IModalOpts, dragStartY: mousePosY }))
+        const dragPercent = getDragPercent()
+        setModalOptions((prevOpts: IModalOpts) => ({ ...prevOpts as IModalOpts, dragPercent, dragStartY: mousePosY}))
     }
 
     function onDrag(ev: MouseEvent | TouchEvent) {
         if (!isDragging) return
         const mousePosY = getClientY(ev)
         setModalOptions((prevOpts: IModalOpts) => ({ ...prevOpts as IModalOpts, mousePosY, diff: mousePosY - prevOpts.dragStartY }))
-        setDragPercent(getDragPercent())
-        console.log('DRAG - getDragPercent', getDragPercent())
-        console.log('diff', modalOptions.diff)
-        console.log('height', modalOptions.modalHeight)
-
     }
 
     function onUp() {
         setIsDragging(false)
-        setDragPercent(0)
     }
 
     function getClientY(ev: MouseEvent | TouchEvent) {
         return ev.type?.includes('touch') ? (ev as TouchEvent).targetTouches[0].clientY : (ev as MouseEvent).clientY
     }
 
-    function getDragPercent() {
-        const { diff, modalHeight } = modalOptions
+    function getDragPercent(diff: number = modalOptions.diff, modalHeight: number = modalOptions.modalHeight) {
         const percent = (diff / modalHeight) * 100
-        return percent > 0 ? percent : 0
-    }
 
-    function resetModal(){
-        setModalOptions({
-            diff: 0,
-            mousePosY: 0,
-            dragStartY: 0,
-            modalTop: 0,
-            modalHeight: 0,
-        })
-        setDragPercent(0)
-        setIsDragging(false)
+        if (isDragging) return percent > 0 ? percent : 0
+        return percent >= 70 ? 110 : percent
     }
 
     return <div
@@ -92,8 +72,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
         onTouchEnd={onUp}
         onMouseUp={onUp}
         className="user-modal"
-        style={ dragPercent ? {transform: `translateY(${dragPercent + '%'}`} : {} } >
-        {/* style={{ transform: `translateY(${dragPercent + '%'}` }} > */}
+        style={{ transform: `translateY(${modalOptions.dragPercent + '%'}` }} >
         <div className="links-container">
             {/* <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile modal-item">Profile</Link> */}
         </div>

@@ -13,7 +13,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
 
     const loggedInUserId = useSelector(selectedUser)?._id
     const [isDragging, setIsDragging] = useState<boolean>(false)
-    const [dragPercent, setDragPercent] = useState<number>(0)
+    const [dragPercent, setDragPercent] = useState<number | undefined>(0)
     const [modalOptions, setModalOptions] = useState<IModalOpts>({
         diff: 0,
         mousePosY: 0,
@@ -30,8 +30,16 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
     }, [])
 
     useEffect(() => {
-        if (dragPercent > 80) {
-            resetModal()
+        if (dragPercent && dragPercent > 70) {
+            setDragPercent(0)
+            setIsDragging(false)
+            setModalOptions({
+                diff: 0,
+                mousePosY: 0,
+                dragStartY: 0,
+                modalTop: 0,
+                modalHeight: 0,
+            })
             toggleUserModal(undefined!)
         }
     }, [dragPercent])
@@ -70,18 +78,6 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
         return percent > 0 ? percent : 0
     }
 
-    function resetModal(){
-        setModalOptions({
-            diff: 0,
-            mousePosY: 0,
-            dragStartY: 0,
-            modalTop: 0,
-            modalHeight: 0,
-        })
-        setDragPercent(0)
-        setIsDragging(false)
-    }
-
     return <div
         ref={modalRef}
         onClick={ev => ev.stopPropagation()}
@@ -92,8 +88,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
         onTouchEnd={onUp}
         onMouseUp={onUp}
         className="user-modal"
-        style={ dragPercent ? {transform: `translateY(${dragPercent + '%'}`} : {} } >
-        {/* style={{ transform: `translateY(${dragPercent + '%'}` }} > */}
+        style={{ transform: `translateY(${dragPercent + '%'}` }} >
         <div className="links-container">
             {/* <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile modal-item">Profile</Link> */}
         </div>

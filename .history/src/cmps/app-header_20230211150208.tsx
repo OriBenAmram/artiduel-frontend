@@ -71,7 +71,7 @@ export function AppHeader() {
         setMenuState(prevIsMenuOpen => !prevIsMenuOpen)
     }
 
-    const toggleUserModal = (ev: MouseEvent | undefined) => { // TouchEvent
+    const toggleUserModal = (ev: MouseEvent | TouchEvent | undefined) => {
         ev?.stopPropagation()
         setUserModalOpen(prevIsUserModalOpen => !prevIsUserModalOpen)
     }

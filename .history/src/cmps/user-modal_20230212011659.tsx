@@ -30,7 +30,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
     }, [])
 
     useEffect(() => {
-        if (dragPercent > 80) {
+        if (dragPercent > 90) {
             resetModal()
             toggleUserModal(undefined!)
         }
@@ -92,8 +92,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
         onTouchEnd={onUp}
         onMouseUp={onUp}
         className="user-modal"
-        style={ dragPercent ? {transform: `translateY(${dragPercent + '%'}`} : {} } >
-        {/* style={{ transform: `translateY(${dragPercent + '%'}` }} > */}
+        style={{ transform: `translateY(${dragPercent + '%'}` }} >
         <div className="links-container">
             {/* <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile modal-item">Profile</Link> */}
         </div>

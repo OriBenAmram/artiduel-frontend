@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px 10px 10px;
+    box-shadow: .3px 0 0 0 $bright-txt, 0 .3px 0 0 $bright-txt, -.3px 0 0 0 $bright-txt, 0 -.3px 0 0 $bright-txt;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     position: absolute;
@@ -14,7 +15,6 @@
     right: 0;
     height: 90vh;
     transition: transform .300s;
-    box-shadow: 0 -.3px 0 0 $bright-txt;
 
 
     .links-container {
@@ -67,9 +67,8 @@
         border-radius: 8px;
         padding: 10px;
         transform: translate(calc(-100% + 30px), 5px);
-        box-shadow: .3px 0 0 0 $bright-txt, 0 .3px 0 0 $bright-txt, -.3px 0 0 0 $bright-txt, 0 -.3px 0 0 $bright-txt;
 
-        .logout {
+        .logout {    
             &::before {
                 box-shadow: -.2px -.25px 0 0 $bright-txt;
             }

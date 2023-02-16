@@ -1,5 +1,5 @@
 // React and stuff
-import { MouseEvent, TouchEvent, useEffect } from 'react'
+import { MouseEvent, useEffect } from 'react'
 import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // Cmps
@@ -71,7 +71,7 @@ export function AppHeader() {
         setMenuState(prevIsMenuOpen => !prevIsMenuOpen)
     }
 
-    const toggleUserModal = (ev: MouseEvent | undefined) => { // TouchEvent
+    const toggleUserModal = (ev: MouseEvent | TouchEvent | null = null) => {
         ev?.stopPropagation()
         setUserModalOpen(prevIsUserModalOpen => !prevIsUserModalOpen)
     }
