@@ -34,9 +34,9 @@ export function GameModalScreen({ toggleMenu }: GameModalProps) {
             <h2>Draw to win!</h2>
             <div className="level-display">{level}</div>
             <div className="level-options">
-                <button className="secondary-btn-light" onClick={() => setLevel('Easy')}>Easy</button>
-                <button className="secondary-btn-light" onClick={() => setLevel('Meduim')}>Medium</button>
-                <button className="secondary-btn-light" onClick={() => setLevel('Hard')}>Hard</button>
+                <button className="secondary-btn-light" onClick={() => setLevel('easy')}>Easy</button>
+                <button className="secondary-btn-light" onClick={() => setLevel('medium')}>Medium</button>
+                <button className="secondary-btn-light" onClick={() => setLevel('hard')}>Hard</button>
             </div>
             <button className="primary-btn" onClick={onNewGame}>Start Game</button>
             <button className="alternative-opt-btn secondary-btn-light" onClick={onPlayFriends}>Play against friends</button>

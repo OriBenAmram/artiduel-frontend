@@ -15,5 +15,6 @@ type RootState = ReturnType<typeof store.getState>
 export const selectedUser = (state: RootState) => state.user.loggedinUser
 export const selectedOpponent = (state: RootState) => state.game.opponentPlayer
 export const selectedDrawings = (state: RootState) => state.draw.drawings
+export const word = (state: RootState) => state.game.word
 
 export default store
