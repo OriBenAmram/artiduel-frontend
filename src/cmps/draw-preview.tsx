@@ -28,8 +28,9 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
             <div className="draw-preview__user-bar">
                 <IoIosHeartEmpty className="draw-preview__like-btn" />
                 <div className="draw-preview__user-details-container">
-                    <div className="draw-preview__likes-amount">5 likes</div>
-                    <div className="draw-preview__user-avatar"></div>
+                    <div className="draw-preview__user-avatar" title={`${draw.player1.fullname}'s image `}></div>
+                    
+                    <span className="draw-preview__likes-amount">5 likes</span>
                 </div>
             </div>
         </div>
