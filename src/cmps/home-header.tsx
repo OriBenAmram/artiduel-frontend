@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { setUser } from '../store/slicers/user.slice';
 
 import { NavLink } from 'react-router-dom';
-
-import { logout } from '../store/actions/user.actions';
 
 import { IUser } from '../interfaces/IUser';
 
@@ -16,6 +17,7 @@ interface HomeHeaderProps {
 
 export function HomeHeader({user} : HomeHeaderProps) {
     const [isMenuOpen, setMenuState] = useState(false)
+    const dispatch = useDispatch()
 
     const toggleMenu = () => {
         setMenuState(!isMenuOpen)
@@ -23,7 +25,7 @@ export function HomeHeader({user} : HomeHeaderProps) {
 
     async function onLogout() {
         try {
-            await logout()
+            dispatch(setUser(null))
             console.log('bye now')
             // showSuccessMsg(`Bye now`)
         } catch (err) {

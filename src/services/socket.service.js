@@ -41,8 +41,8 @@ function createSocketService() {
     emit(eventName, data) {
       socket.emit(eventName, data)
     },
-    login(userId) {
-      socket.emit(SOCKET_EMIT_LOGIN, userId)
+    login(miniUser) {
+      socket.emit(SOCKET_EMIT_LOGIN, miniUser)
     },
     logout() {
       socket.emit(SOCKET_EMIT_LOGOUT)

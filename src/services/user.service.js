@@ -1,19 +1,19 @@
-import { storageService } from "./async-storage.service"
 import { httpService } from "./http.service"
 import { socketService } from "./socket.service"
-import { utilService } from "./util.service"
 
 export const userService = {
     login,
     signup,
     logout,
     getLoggedinUser,
+    getOpponentUser,
     getById,
-    update
+    update,
+    saveOpponent
 }
 
-const USER_KEY = 'user'
 const LOGGEDIN_USER_KEY = 'loggedinUser'
+const OPPONENT_USER_KEY = 'opponentUser'
 const AUTH_URL = 'auth'
 const USER_URL = 'user'
 
@@ -76,6 +76,15 @@ async function update(user) {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(LOGGEDIN_USER_KEY))
+}
+
+function getOpponentUser() {
+    return JSON.parse(sessionStorage.getItem(OPPONENT_USER_KEY))
+}
+
+function saveOpponent(opponent) {
+    sessionStorage.setItem(OPPONENT_USER_KEY, JSON.stringify(opponent))
+    return opponent
 }
 
 function _setLoggedinUser(user) {

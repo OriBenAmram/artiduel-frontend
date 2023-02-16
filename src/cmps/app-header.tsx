@@ -1,7 +1,8 @@
 // React and stuff
-import { MouseEvent, TouchEvent, useEffect } from 'react'
-import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
+import { MouseEvent, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
+
 // Cmps
 
 // Store
@@ -23,20 +24,19 @@ import { UserModal } from './user-modal';
 
 export function AppHeader() {
     const user = useSelector(selectedUser)
-    const [isMenuOpen, setMenuState] = useState(false)
-    const [isNarrow, setIsNarrow] = useState(window.matchMedia("(max-width: 760px)").matches)
-
-    const [isUserModalOpen, setUserModalOpen] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location: Location = useLocation()
-    const isRegister = (location.pathname === '/login' || location.pathname === '/signup')
-    const isHome = (location.pathname === '/')
-    const isPlaying = (location.pathname.includes('/game'))
+
+    const [isMenuOpen, setMenuState] = useState(false)
+    const [isNarrow, setIsNarrow] = useState(window.matchMedia("(max-width: 760px)").matches)
+    const [isUserModalOpen, setUserModalOpen] = useState(false)
 
     useEffect(() => {
 
     }, [location.pathname])
+
+    const isHide = ((location.pathname === '/login' || location.pathname === '/signup') || (location.pathname === '/') || (location.pathname.includes('/game')))
 
     function onWindowWidthChange(x: any) {
         if (x.matches) {
@@ -55,7 +55,6 @@ export function AppHeader() {
             await userService.logout()
             dispatch(setUser(null))
             navigate('/login')
-            console.log('bye now')
             // showSuccessMsg(`Bye now`)
         } catch (err) {
             console.log('cannot logout')
@@ -77,7 +76,7 @@ export function AppHeader() {
     }
 
     return (
-        <header className={`app-header full ${(isRegister || isHome || isPlaying) ? 'hide' : ''}`}>
+        <header className={`app-header full ${(isHide) ? 'hide' : ''}`}>
 
             {isMenuOpen && <GameModalScreen toggleMenu={toggleMenu} />}
             <div className="header-content">

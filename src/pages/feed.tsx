@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FeedHeader } from "../cmps/feed-header";
-import { PostList } from "../cmps/post-list";
+import { DrawList } from "../cmps/draw-list";
+
+import { setDrawings } from "../store/slicers/draw.slice";
+import { selectedDrawings } from "../store/store";
+
+import { drawService } from "../services/draw.service";
 
 export function Feed() {
+    const dispatch = useDispatch()
+    const drawings = useSelector(selectedDrawings)
+
     const [isLoading, setIsLoading] = useState(false)
 
     const posts = [
@@ -74,14 +83,20 @@ export function Feed() {
 
     useEffect(() => {
         setIsLoading(true)
+        loadDrawings()
         setTimeout(() => {
             setIsLoading(false)
         }, 2000);
     }, [])
 
-    return <div className="feed-page basic-layout">
+    const loadDrawings = async () => {
+        const drawingsToSave = await drawService.query()
+        dispatch(setDrawings(drawingsToSave))
+    }
+
+    return <div className="feed-page">
         <FeedHeader />
-        {!isLoading && <PostList posts={posts} />}
+        {!isLoading && <DrawList drawings={drawings} />}
         {/* Loader */}
         {isLoading && <div className="loading-text-container">
             <h2>Loading the posts...</h2>

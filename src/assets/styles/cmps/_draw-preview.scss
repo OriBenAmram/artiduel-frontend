@@ -1,0 +1,127 @@
+.draw-preview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @include for-narrow-layout {
+        width: 100%;
+        flex-direction: row;
+        margin: 0 auto;
+    }
+
+    &__title-display {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #2124278f;
+        color: whitesmoke;
+        padding: 12px;
+        border-radius: 2em;
+    }
+
+    &__first-draw {
+        width: 100%;
+        margin: 0 auto;
+        border-bottom: 0.5px solid whitesmoke;
+        position: relative;
+
+        @include for-narrow-layout {
+            border: none;
+            border-right: 0.5px solid whitesmoke;
+        }
+    }
+
+    &__second-draw {
+        width: 100%;
+        margin: 0 auto;
+        border-top: 0.5px solid whitesmoke;
+        position: relative;
+
+        @include for-narrow-layout {
+            border: none;
+            border-left: 0.5px solid whitesmoke;
+        }
+    }
+
+    &__img {
+        background-color: rgb(80, 124, 151);
+        width: 100%;
+        @include aspect-ratio(1, 1);
+    }
+
+    &__user-bar {
+        background-color: #21242734;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+
+        @include for-narrow-layout {
+            width: 100%;
+            height: 60px;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
+    }
+    
+    &__like-btn {
+        all: unset;
+        box-sizing: border-box;
+        padding: 6px;
+        border-radius: 50%;
+        border: none;
+        font-size: rem(28px);
+        cursor: pointer;
+        transform: all 0.5s;
+
+        &:hover {
+            font-size: rem(32px);
+        }
+
+        @include for-narrow-layout {
+        }
+    }
+
+    &__user-details-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include for-narrow-layout {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    &__user-avatar {
+        height: rem(40px);
+        width: rem(40px);
+        border-radius: 50%;
+        background-color: rgb(144, 63, 148);
+        cursor: pointer;
+
+        @include for-narrow-layout {
+            margin-right: 10px;
+        }
+    }
+
+    &__likes-amount {
+        text-align: center;
+        font-size: rem(12px);
+
+        @include for-narrow-layout { 
+          font-size: rem(14px) 
+        } 
+        
+        @include for-normal-layout { 
+            font-size: rem(16px) 
+        } 
+    }
+}

@@ -1,3 +1,35 @@
-.feed-header { 
-    
+.feed-header {
+    padding: 0 20px;
+
+    h1 {
+        font-size: rem(30px);
+
+        @include for-narrow-layout { 
+          font-size: rem(34px) 
+        } 
+        
+        @include for-normal-layout { 
+            font-size: rem(42px) 
+        } 
+        
+        @include for-wide-layout { 
+            font-size: rem(46px) 
+        } 
+    }
+
+    h2 {
+        font-size: rem(18px);
+
+        @include for-narrow-layout { 
+          font-size: rem(22px) 
+        } 
+        
+        @include for-normal-layout { 
+            font-size: rem(26px) 
+        } 
+        
+        @include for-wide-layout { 
+            font-size: rem(30px) 
+        } 
+    }
 }
