@@ -20,6 +20,9 @@ export const drawSlice = createSlice({
         addDrawing: (state, action: PayloadAction<any>) => {
             state.drawings.push(action.payload)
         },
+        updateDrawing: (state, action: PayloadAction<any>) => {
+            state.drawings = state.drawings.map(draw => (draw._id === action.payload._id) ? action.payload : draw)
+        },
         removeDrawing: (state, action: PayloadAction<any>) => {
             state.drawings = state.drawings.filter(d => d._id !== action.payload)
         },
@@ -31,4 +34,4 @@ export const drawSlice = createSlice({
     }
 })
 
-export const { setDrawings, addDrawing, removeDrawing } = drawSlice.actions
+export const { setDrawings, addDrawing, updateDrawing, removeDrawing } = drawSlice.actions

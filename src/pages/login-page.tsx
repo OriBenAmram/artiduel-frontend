@@ -22,7 +22,6 @@ export function LoginPage() {
     const onSubmit = async (ev: any) => {
         ev.preventDefault()
         if (!credentials.username || !credentials.password) {
-            // TODO - add nice visuall message 
             console.log('Please fill out all the fields in the form')
             return
         }

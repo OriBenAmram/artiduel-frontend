@@ -5,11 +5,11 @@ import { PlayerCanvas } from "./player-canvas"
 
 interface GameFieldProps {
     playerCanvasRef: any
-    opponentCanvasRef: any
+    opponentImageRef: any
     opponentUser: any
 }
 
-export function GameField({ opponentUser, playerCanvasRef, opponentCanvasRef }: GameFieldProps) {
+export function GameField({ opponentUser, playerCanvasRef, opponentImageRef }: GameFieldProps) {
 
 
 
@@ -19,6 +19,6 @@ export function GameField({ opponentUser, playerCanvasRef, opponentCanvasRef }: 
 
     return <div className="game-field">
         <PlayerCanvas playerCanvasRef={playerCanvasRef} />
-        <OpponentCanvas opponentUser={opponentUser} opponentCanvasRef={opponentCanvasRef}/>
+        <OpponentCanvas opponentUser={opponentUser} opponentImageRef={opponentImageRef}/>
     </div>
 }

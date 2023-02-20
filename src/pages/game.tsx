@@ -15,7 +15,7 @@ import { drawService } from '../services/draw.service'
 export function Game() {
     const navigate = useNavigate()
     const playerCanvasRef = useRef<HTMLCanvasElement | null>(null);
-    const opponentCanvasRef = useRef<HTMLCanvasElement | null>(null);
+    const opponentImageRef = useRef<HTMLImageElement | null>(null);
     const opponentUser = useSelector(selectedOpponent)
     const dispatch = useDispatch()
 
@@ -41,12 +41,11 @@ export function Game() {
     const onSaveBoard = async () => {
         // TODO - game end modal - post it to your profile or continue to feed
         // DONE - create an object with two datas and more details
-        const drawingToSave = canvasService.createDrawing(playerCanvasRef.current, opponentCanvasRef.current, opponentUser)
+        const drawingToSave = canvasService.createDrawing(playerCanvasRef.current, opponentImageRef.current, opponentUser)
         // TODO - add it in backend
         try {
 
             const savedDraw = await drawService.save(drawingToSave)
-            console.log('savedDraw:', savedDraw);
             // TODO - add it to the drawings in the feed (store)
             dispatch(addDrawing(savedDraw))
             console.log('Done setting to store')
@@ -59,7 +58,7 @@ export function Game() {
     return <div className="game-page">
         <div className="game-content-conatiner">
             <GameHeader onSaveBoard={onSaveBoard} />
-            <GameField opponentUser={opponentUser} playerCanvasRef={playerCanvasRef} opponentCanvasRef={opponentCanvasRef} />
+            <GameField opponentUser={opponentUser} playerCanvasRef={playerCanvasRef} opponentImageRef={opponentImageRef} />
             <button onClick={onQuitGame}>Cancel game</button>
         </div>
     </div>

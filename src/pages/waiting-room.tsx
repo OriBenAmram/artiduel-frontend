@@ -28,8 +28,8 @@ export function WaitingRoom() {
         })
     })
 
-    const onMatchedOpponent = async ({ roomId, isHost, level, word, opponentPlayer }: IGameSettings) => {
-        await userService.saveOpponent(opponentPlayer)
+    const onMatchedOpponent = ({ roomId, isHost, level, word, opponentPlayer }: IGameSettings) => {
+        userService.saveOpponent(opponentPlayer)
         dispatch(setWord(word))
         dispatch(setOpponent(opponentPlayer))
         navigate(`/game/${roomId}`)

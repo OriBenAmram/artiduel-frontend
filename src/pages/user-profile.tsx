@@ -64,7 +64,7 @@ export function UserProfile() {
                 <img src={userProfile.imgUrl ? userProfile.imgUrl : avatar} alt="Profile" />
                 {isLoggedInProfile && <ImgUploader onUploadedImg={onUploadedImg} />}
             </div>
-            <h2 className="flex justify-center">{userProfile.fullName}</h2>
+            <h2 className="flex justify-center">{userProfile.fullname}</h2>
             <h3 className="flex justify-center">Contact info:</h3>
             <h3 className="flex justify-center">{userProfile.email}</h3>
             {userProfile.description && <h3>more about me: /n {userProfile.description}</h3>}

@@ -11,13 +11,14 @@ export const canvasService = {
     // saving
     loadPlayerCanvas,
     savePlayerCanvas,
-    loadOpponentCanvas,
-    saveOpponentCanvas,
+    getOpponentImageSrc,
+    saveOpponentImage,
     // formatting
     createDrawing
 }
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
+const opponentDefaultBcg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAFhAWEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AKpgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z'
 // POS
 
 function getEvPos(ev) {
@@ -96,15 +97,19 @@ function savePlayerCanvas(canvas) {
     socketService.emit('canvas-changed', canvasDataUrl)
 }
 
-function loadOpponentCanvas(canvas, ctx) {
-    const opponentDataUrl = _loadCanvasFromStorage('opponentCanvas')
-    if (opponentDataUrl) drawImgFromRemote(canvas, ctx, opponentDataUrl)
-    else drawBgcColor(canvas, ctx, 'white')
+
+function getOpponentImageSrc() {
+    // TODO: change opponent canvas to imageSrc
+    const opponentImageSrc = _loadCanvasFromStorage('opponentImageSrc')
+    if(!opponentImageSrc) return opponentDefaultBcg
+    return opponentImageSrc
+    // if (opponentDataUrl) drawImgFromRemote(canvas, ctx, opponentDataUrl)
+    // else drawBgcColor(canvas, ctx, 'white')
 }
 
-function saveOpponentCanvas(canvas, ctx, dataUrl) {
-    drawImgFromRemote(canvas, ctx, dataUrl)
-    _saveCanvasToStorage('opponentCanvas', dataUrl)
+function saveOpponentImage(dataUrl) {
+    console.log('saving to storage opponent dataURL', dataUrl)
+    _saveCanvasToStorage('opponentImageSrc', dataUrl)
 }
 
 function _saveCanvasToStorage(storageKey, canvasDataUrl) {
@@ -127,22 +132,24 @@ function _loadCanvasFromStorage(storageKey) {
 
 // Format
 
-function createDrawing(playerCanvas, opponentCanvas, opponentUser) {
+function createDrawing(playerCanvas, opponentImage, opponentUser) {
     const player = userService.getLoggedinUser()
     const playerDataURL = playerCanvas.toDataURL()
-    const opponentDataURL = opponentCanvas.toDataURL()
+    const opponentDataURL = opponentImage.src
     const drawing = {
         createdAt: Date.now(),
         title: 'Elephant',
         player1: {
             userId: player._id,
             fullname: player.fullname,
-            dataUrl: playerDataURL
+            dataUrl: playerDataURL,
+            imgUrl: player.imgUrl
         },
         player2: {
             userId: opponentUser._id,
             fullname: opponentUser.fullname,
-            dataUrl: opponentDataURL
+            dataUrl: opponentDataURL,
+            imgUrl: opponentUser.imgUrl
         },
     }
     return drawing

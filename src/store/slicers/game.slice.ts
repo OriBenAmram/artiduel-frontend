@@ -6,13 +6,13 @@ import { userService } from "../../services/user.service";
 interface GameSliceState {
     opponentPlayer: any,
     isHost: boolean,
-    word: string
+    word: string | null
 }
 
 const initialState: GameSliceState = {
     opponentPlayer: userService.getOpponentUser() || null,
     isHost: false,
-    word: null!
+    word: null
 }
 
 export const gameSlice = createSlice({

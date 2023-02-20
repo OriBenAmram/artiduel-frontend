@@ -1,7 +1,7 @@
 import { IDraw } from "./IDraw";
 export interface IUser {
     _id?: string
-    fullName?: string
+    fullname?: string
     username?: string | undefined
     email?: string | undefined
     imgUrl?: string | undefined

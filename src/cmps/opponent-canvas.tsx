@@ -1,46 +1,39 @@
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import { canvasService } from "../services/canvas.service"
 
 import { socketService } from "../services/socket.service"
 
 interface opponentCanvasProps {
-    opponentCanvasRef: any
+    opponentImageRef: any
     opponentUser: any
 }
 
-export function OpponentCanvas({ opponentUser, opponentCanvasRef: canvasRef }: opponentCanvasProps) {
-
-    const canvasContainerRef = useRef<HTMLDivElement | null>(null);
-
-    const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+export function OpponentCanvas({ opponentUser, opponentImageRef}: opponentCanvasProps) {
 
     useEffect(() => {
-        setCanvas()
+        setOpponentImage()
         socketService.on('opponent-canvas-change', onOpponentChange)
-        window.addEventListener('resize', setCanvas);
+        window.addEventListener('resize', setOpponentImage);
         return (() => {
             socketService.off('opponent-canvas-change')
-            window.addEventListener('resize', setCanvas);
+            window.addEventListener('resize', setOpponentImage);
         })
     }, [])
 
-    const setCanvas = () => {
-        const canvas = canvasRef.current
-        const containerRef = canvasContainerRef.current
-        if (!canvas || !containerRef) return
-        ctxRef.current = canvas.getContext('2d');
-        canvas.width = containerRef.offsetWidth
-        canvas.height = containerRef.offsetHeight
-        canvasService.loadOpponentCanvas(canvas, ctxRef.current)
+    const setOpponentImage = () => {
+        if(!opponentImageRef?.current) return
+        const imageSrc = canvasService.getOpponentImageSrc()
+        opponentImageRef.current.src = imageSrc
     }
 
     const onOpponentChange = (dataURL: string) => {
-        canvasService.saveOpponentCanvas(canvasRef.current, ctxRef.current, dataURL)
+        canvasService.saveOpponentImage(dataURL)
+        opponentImageRef.current.src = dataURL
     }
     if (opponentUser) console.log('Your are playing against ', opponentUser.fullname);
 
 
-    return <div className="secondary-canvas-container" ref={canvasContainerRef}>
-        <canvas ref={canvasRef}></canvas>
+    return <div className="secondary-canvas-container">
+        <img src="" alt="your opponent canvas" ref={opponentImageRef} />
     </div>
 }
