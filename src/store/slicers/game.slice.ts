@@ -19,6 +19,11 @@ export const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
+        setGameSettings: (state, action: PayloadAction<any>) => {
+            state.opponentPlayer = action.payload.opponentPlayer
+            state.isHost = action.payload.isHost
+            state.word = action.payload.word
+        },
         setOpponent: (state, action: PayloadAction<any>) => {
             state.opponentPlayer = action.payload
         },
@@ -31,4 +36,4 @@ export const gameSlice = createSlice({
     }
 })
 
-export const { setOpponent, setWord } = gameSlice.actions
+export const { setOpponent, setWord, setGameSettings } = gameSlice.actions

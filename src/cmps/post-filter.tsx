@@ -1,31 +1,38 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 import { BiSortAlt2 } from 'react-icons/bi'
 import { FiFilter } from 'react-icons/fi'
 
-export function PostFilter() {
-    const [typedText, setTypedText] = useState('')
-    // const inputRef = useRef<HTMLInputElement | null>(null)
-    
-    useEffect(() => {
-        startTyping()
-    }, [])
+interface PostFilterProps {
+    text: string
+}
 
-    const startTyping = () => {
+export function PostFilter({ text }: PostFilterProps) {
+    const [typedText, setTypedText] = useState('')
+    let typingIntervalId: any = useRef(null)
+
+    const startTyping = useCallback(() => {
         let i = 0
-        const text = 'Search drawings by users & game titles...'
-        const typingIntervalId = setInterval(() => {
-            setTypedText((prevState) => prevState + text.charAt(i))
+        typingIntervalId.current = setInterval(() => {
+            setTypedText((prevState) => {
+                return prevState + text.charAt(i)
+            })
             i++
             if (i === text.length) {
-                clearInterval(typingIntervalId)
+                clearInterval(typingIntervalId.current)
             }
-        }, 1500)
-    }
+        }, 80)
+    }, [text])
+
+    useEffect(() => {
+        startTyping()
+
+        return (() => clearInterval(typingIntervalId.current))
+    }, [startTyping])
 
     return <div className="post-filter-container">
         <input className="search-input" type="text" placeholder={typedText} />
-        {/* <input className="search-input" type="text" placeholder={typedText} ref={inputRef} /> */}
+        {/* <input className="search-input" type="text" placeholder={typedText} /> */}
         <div className="filter-options">
             <button className="sort-btn"> <BiSortAlt2 className="icon" /> Sort</button>
             <button className="filter-btn"> <FiFilter className="icon" /> Filter</button>

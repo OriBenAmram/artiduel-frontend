@@ -6,9 +6,10 @@ import { socketService } from "../services/socket.service"
 interface opponentCanvasProps {
     opponentImageRef: any
     opponentUser: any
+    isGameOn: boolean
 }
 
-export function OpponentCanvas({ opponentUser, opponentImageRef}: opponentCanvasProps) {
+export function OpponentCanvas({ isGameOn, opponentUser, opponentImageRef}: opponentCanvasProps) {
 
     useEffect(() => {
         setOpponentImage()
@@ -30,7 +31,6 @@ export function OpponentCanvas({ opponentUser, opponentImageRef}: opponentCanvas
         canvasService.saveOpponentImage(dataURL)
         opponentImageRef.current.src = dataURL
     }
-    if (opponentUser) console.log('Your are playing against ', opponentUser.fullname);
 
 
     return <div className="secondary-canvas-container">

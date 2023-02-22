@@ -23,7 +23,6 @@ async function login(userCred) {
         // const user = users.find(user => user.username === userCred.username)
         const user = await httpService.post(`${AUTH_URL}/login`, userCred)
         if (user) {
-            console.log('user:', user);
             socketService.login(user._id)
             return _setLoggedinUser(user)
         }

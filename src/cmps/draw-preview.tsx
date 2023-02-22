@@ -35,7 +35,7 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
     useEffect(() => {
         if (firstDrawingRef.current) firstDrawingRef.current.src = draw.player1.dataUrl
         if (secondDrawingRef.current) secondDrawingRef.current.src = draw.player2.dataUrl
-    }, [])
+    })
 
     const onRemoveDrawing = async () => {
         await drawService.remove(draw._id)
@@ -73,7 +73,7 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
 
     return <article className="draw-preview">
         <h2 className='draw-preview__title-display'>{draw.title}</h2>
-        {/* <button className='draw-preview__close-btn' onClick={onRemoveDrawing}>X</button> */}
+        <button className='draw-preview__close-btn' onClick={onRemoveDrawing}>X</button>
         <div className="draw-preview__first-draw">
             <img className="draw-preview__img" alt='user-img' src='' ref={firstDrawingRef} />
             <div className="draw-preview__user-bar">

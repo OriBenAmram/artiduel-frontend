@@ -48,7 +48,6 @@
         border: $purple-strong 1px solid;
         width: 100px;
         @include aspect-ratio(1, 1);
-        cursor: pointer;
 
         @include for-narrow-layout {
             width: 150px;

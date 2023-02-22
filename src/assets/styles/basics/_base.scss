@@ -7,8 +7,9 @@ html {
 }
 
 ::selection {
-    // background-color: lighten(#{var(--primary-dominant)}, 20%);
-    // color: var(--main-font-clr);
+    background-color:$purple-strong;
+    // background-color: lighten(($purple-strong), 20%);
+    color: $bright-txt;
 }
 
 body {

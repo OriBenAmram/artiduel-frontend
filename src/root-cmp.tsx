@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
 import { AppHeader } from './cmps/app-header';
@@ -5,6 +6,7 @@ import { AppHeader } from './cmps/app-header';
 import routes, { RootRoute } from './routes';
 
 export default function RootCmp() {
+
   return (
     <div className="root-cmp">
       <AppHeader />

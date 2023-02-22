@@ -14,7 +14,8 @@ export const canvasService = {
     getOpponentImageSrc,
     saveOpponentImage,
     // formatting
-    createDrawing
+    createDrawing,
+    emptyCanvasFromStorage
 }
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
@@ -97,7 +98,6 @@ function savePlayerCanvas(canvas) {
     socketService.emit('canvas-changed', canvasDataUrl)
 }
 
-
 function getOpponentImageSrc() {
     // TODO: change opponent canvas to imageSrc
     const opponentImageSrc = _loadCanvasFromStorage('opponentImageSrc')
@@ -108,8 +108,12 @@ function getOpponentImageSrc() {
 }
 
 function saveOpponentImage(dataUrl) {
-    console.log('saving to storage opponent dataURL', dataUrl)
     _saveCanvasToStorage('opponentImageSrc', dataUrl)
+}
+
+function emptyCanvasFromStorage() { 
+    _saveCanvasToStorage('playerCanvas', null)
+    _saveCanvasToStorage('opponentImageSrc', null)
 }
 
 function _saveCanvasToStorage(storageKey, canvasDataUrl) {

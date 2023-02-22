@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { OpponentCanvas } from "./opponent-canvas"
 
 import { PlayerCanvas } from "./player-canvas"
@@ -7,18 +6,13 @@ interface GameFieldProps {
     playerCanvasRef: any
     opponentImageRef: any
     opponentUser: any
+    isGameOn: boolean
 }
 
-export function GameField({ opponentUser, playerCanvasRef, opponentImageRef }: GameFieldProps) {
-
-
-
-    useEffect(() => {
-
-    }, [])
+export function GameField({ isGameOn, opponentUser, playerCanvasRef, opponentImageRef }: GameFieldProps) {
 
     return <div className="game-field">
-        <PlayerCanvas playerCanvasRef={playerCanvasRef} />
-        <OpponentCanvas opponentUser={opponentUser} opponentImageRef={opponentImageRef}/>
+        <PlayerCanvas isGameOn={isGameOn} playerCanvasRef={playerCanvasRef} />
+        <OpponentCanvas isGameOn={isGameOn} opponentUser={opponentUser} opponentImageRef={opponentImageRef}/>
     </div>
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
 
 import { PlayerToolbar } from './player-toolbar';
@@ -8,9 +8,10 @@ import { socketService } from '../services/socket.service';
 
 interface PlayerCanvasProps {
     playerCanvasRef: any
+    isGameOn: boolean
 }
 
-export function PlayerCanvas({ playerCanvasRef: canvasRef }: PlayerCanvasProps) {
+export function PlayerCanvas({ isGameOn, playerCanvasRef: canvasRef }: PlayerCanvasProps) {
 
     const [isToolBarOpen, setToolBar] = useState(false)
 
@@ -22,12 +23,27 @@ export function PlayerCanvas({ playerCanvasRef: canvasRef }: PlayerCanvasProps) 
     const drawSettingsRef = useRef<{ isDraw: boolean, isDrag: boolean, isErase: boolean }>({ isDraw: false, isDrag: false, isErase: false, })
     const brushRef = useRef<{ color: string, width: number }>({ color: 'black', width: 10 })
 
+    
+    const removeListeners = useCallback(() => {
+        if (!canvasRef.current) return
+        removeMouseListeners(canvasRef.current)
+        removeTouchListeners(canvasRef.current)
+        window.removeEventListener('resize', resizeCanvas);
+    }, [])
+
+
     useEffect(() => {
         reJoinRoom()
         setCanvas()
         removeListeners()
         addListeners()
     }, [])
+
+    useEffect(() => {
+        if (!isGameOn) {
+            removeListeners()
+        }
+    }, [isGameOn, removeListeners])
 
     const reJoinRoom = () => {
         socketService.emit('rejoin-room', roomId)
@@ -63,13 +79,6 @@ export function PlayerCanvas({ playerCanvasRef: canvasRef }: PlayerCanvasProps) 
         canvas.addEventListener('touchend', onUp)
     }
 
-    const removeListeners = () => {
-        if (!canvasRef.current) return
-        removeMouseListeners(canvasRef.current)
-        removeTouchListeners(canvasRef.current)
-        window.removeEventListener('resize', resizeCanvas);
-    }
-
     function removeMouseListeners(canvas: HTMLCanvasElement) {
         canvas.removeEventListener('mousedown', onDown)
         canvas.removeEventListener('mousemove', onMove)
@@ -91,13 +100,13 @@ export function PlayerCanvas({ playerCanvasRef: canvasRef }: PlayerCanvasProps) 
         drawSettingsRef.current.isDraw = true
         canvasService.setStartPoint(ev, ctxRef.current)
     }
-
+    
     const onMove = (ev: any) => {
         if (!drawSettingsRef.current.isDraw) return
         canvasService.pencilDraw(ev, ctxRef.current, brushRef.current)
         ev.preventDefault()
     }
-
+    
     const onUp = () => {
         drawSettingsRef.current.isDraw = false
         ctxRef.current?.stroke()

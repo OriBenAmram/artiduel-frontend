@@ -1,0 +1,20 @@
+.screen-overlay {
+    @include screen-overlay;
+    .game-end-modal {
+        @include pop-up-modal;
+    }
+
+    .primary-btn { 
+        margin-bottom: rem(10px)
+    }
+
+    .alternative-btn {
+        @include option-btn;
+        border: 1px solid #ededed;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 0;
+    }
+}

@@ -6,6 +6,6 @@ export function FeedHeader() {
             <h1>Get some inspiration</h1>
             <h2>Explore what others have been doing lately</h2>
         </div>
-        <PostFilter />
+        <PostFilter text={'Look for drawings by users & game titles...!'} />
     </div>
 }

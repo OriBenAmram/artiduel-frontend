@@ -15,10 +15,6 @@ export function LoginPage() {
         setCredentials((prevCreds) => ({ ...prevCreds, [field]: value }))
     }
 
-    const clearState = () => {
-        setCredentials({ username: '', password: '' })
-    }
-
     const onSubmit = async (ev: any) => {
         ev.preventDefault()
         if (!credentials.username || !credentials.password) {

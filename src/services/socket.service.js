@@ -47,10 +47,6 @@ function createSocketService() {
     logout() {
       socket.emit(SOCKET_EMIT_LOGOUT)
     },
-    terminate() {
-      socket = null
-    },
-
   }
   return socketService
 }

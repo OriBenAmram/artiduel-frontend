@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 
-import { setWord, setOpponent } from "../store/slicers/game.slice"
+import { setWord, setOpponent, setGameSettings } from "../store/slicers/game.slice"
 
 import { socketService } from "../services/socket.service"
 import { userService } from "../services/user.service"
@@ -30,8 +30,7 @@ export function WaitingRoom() {
 
     const onMatchedOpponent = ({ roomId, isHost, level, word, opponentPlayer }: IGameSettings) => {
         userService.saveOpponent(opponentPlayer)
-        dispatch(setWord(word))
-        dispatch(setOpponent(opponentPlayer))
+        dispatch(setGameSettings({ opponentPlayer, isHost, word }))
         navigate(`/game/${roomId}`)
     }
 
