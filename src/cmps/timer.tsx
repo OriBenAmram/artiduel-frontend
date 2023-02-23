@@ -11,10 +11,8 @@ export const Timer: React.FC<TimerProps> = ({ seconds, onGameEnd, isOppDisconnec
     let timerIntervalId = useRef<any>(null)
 
     useEffect(() => {
-        console.log('mount')
         startTimer()
         return () => {
-            console.log('unmount')
             clearInterval(timerIntervalId.current);
         };
     }, []);
@@ -29,7 +27,6 @@ export const Timer: React.FC<TimerProps> = ({ seconds, onGameEnd, isOppDisconnec
     useEffect(() => {
         if (timeRemaining === 0) {
             clearInterval(timerIntervalId.current);
-            console.log('onGameEnd - saving drawing!@')
             onGameEnd()
             return
         }
@@ -57,7 +54,7 @@ export const Timer: React.FC<TimerProps> = ({ seconds, onGameEnd, isOppDisconnec
         </div>
     };
 
-    return <div>{formatTime()}</div>;
+    return <div className="time-display">{formatTime()}</div>;
 };
 
 export default Timer;

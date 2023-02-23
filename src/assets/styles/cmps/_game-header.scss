@@ -3,37 +3,45 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: rem(24px);
+    .work-info {
+        h4 {
+            font-size: rem(18px);
+            margin: 0;
 
-    .game-end-modal { 
-        
+            @include for-narrow-layout {
+                font-size: rem(20px);
+            }
+
+            @include for-normal-layout {
+                font-size: rem(24px);
+            }
+
+            @include for-wide-layout {
+                font-size: rem(28px);
+            }
+        }
+
+        .word-display {
+            @include info-theme-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            padding: 6px 12px;
+            margin-bottom: rem(10px);
+        }
     }
-}
 
-.work-info {
-    h4 {
-        font-size: rem(18px);
-        margin: 0;
-
-        @include for-narrow-layout {
-            font-size: rem(20px);
-        }
-
-        @include for-normal-layout {
-            font-size: rem(24px);
-        }
-
-        @include for-wide-layout {
-            font-size: rem(28px);
-        }
-    }
-
-    .word-display {
-        @include info-theme-box;
+    .game-settings-zone {
         display: flex;
-        justify-content: center;
         align-items: center;
-        width: fit-content;
-        padding: 6px 12px;
-        margin-bottom: rem(10px);
+        
+        .time-display { 
+            margin-right: rem(8px)
+        }
+
+        .cancel-btn {
+            @include secondary-btn;
+        }
     }
 }

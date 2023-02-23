@@ -67,8 +67,8 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
     const getLikeIconToDisplay = (player: Player, playerDesc: string) => {
         let isLike
         if (loggedInUser) isLike = player.likes.findIndex((l: ILikeEntity) => l.userId === loggedInUser._id)
-        if (isLike !== -1) return <IoIosHeart className="draw-preview__like-btn" title="Like button" onClick={() => onLikeDrawing(playerDesc)} />
-        return <IoIosHeartEmpty className="draw-preview__like-btn" title="Like button" onClick={() => onLikeDrawing(playerDesc)} />
+        if (isLike !== -1) return <IoIosHeart className="draw-preview__like-btn draw-preview__like-btn--full" title="Like button" onClick={() => onLikeDrawing(playerDesc)} />
+        return <IoIosHeartEmpty className="draw-preview__like-btn " title="Like button" onClick={() => onLikeDrawing(playerDesc)} />
     }
 
     return <article className="draw-preview">
