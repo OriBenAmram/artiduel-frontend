@@ -1,15 +1,18 @@
 .profile-page-container {
     background-color: $dark-strong;
+    flex: 1;
+    margin-top: 60px;
 
     .info-container {
         color: $bright-txt;
         font-size: 0.9em;
         margin-bottom: 1rem;
-        
+        margin-top: 5px;
+
         .avatar-container {
             margin-bottom: 25px;
             gap: 5px;
-            
+
             img {
                 width: 50%;
                 min-width: 150px;
@@ -23,6 +26,7 @@
         @include for-normal-layout {
             font-size: unset;
             margin-bottom: unset;
+            margin-top: unset;
         }
 
     }
@@ -35,9 +39,9 @@
         .achievements {
             color: $bright-txt;
 
-            .score{
+            .score {
                 color: $clr1;
-                white-space:pre
+                white-space: pre
             }
         }
 
@@ -56,6 +60,7 @@
     @include for-normal-layout {
         grid-template-columns: 25% 75%;
         padding: 30px;
+        margin-top: unset;
     }
 
 }

@@ -1,51 +1,74 @@
 import { useEffect, useState, FC } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
 import { DrawList } from '../cmps/draw-list'
 import { ImgUploader } from '../cmps/img-uploader'
 
-import { selectedUser } from '../store/store'
+import { selectedUser, selectedDrawings } from '../store/store'
 import { setUser } from '../store/slicers/user.slice';
 // import { updateUser } from '../store/actions/user.actions'
+import { setDrawings } from "../store/slicers/draw.slice";
 
 import { userService } from '../services/user.service'
-import { gameService } from '../services/game.service'
+import { drawService } from '../services/draw.service'
 
-import { IUser } from '../interfaces/IUser'
+import { IStorageUser } from '../model/interfaces/IUser'
 import avatar from '../assets/imgs/avatar2.jpg'
+import { IDraw } from '../model/interfaces/IDraw'
+import { IFormattedDraw } from '../model/interfaces/IFormattedDraw'
 
-export function UserProfile() {
 
-    const loggedinUser: IUser | null = useSelector(selectedUser)
+export const UserProfile: FC<{}> = () => {
+    const loggedinUser: IStorageUser | null = useSelector(selectedUser)
+    const drawings: IDraw[] = useSelector(selectedDrawings, shallowEqual)
     const { userId } = useParams<{ userId: string }>()
-    // const { userId } : Readonly<Partial<{ userId: string; }>> = useParams<{userId: string}>()
-    const [userProfile, setUserProfile] = useState<IUser | null>(null)
-    const [isLoggedInProfile, setIsLoggedInProfile] = useState<boolean | null>(null)
+
+    const [userProfile, setUserProfile] = useState<IStorageUser>(null!)
+    const [isLoggedInProfile, setIsLoggedInProfile] = useState<boolean>(null!)
+    const [profileDrawings, setProfileDrawings] = useState<IFormattedDraw[]>(null!)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
         if (loggedinUser?._id === userId) {
-            setIsLoggedInProfile(true)
-            return setUserProfile(loggedinUser)
+            setProfileSettings(true, loggedinUser as IStorageUser)
+        } else {
+            userService.getById(userId)
+                .then((user: IStorageUser) => {
+                    setProfileSettings(false, user as IStorageUser)
+                })
+                .catch(err => {
+                    console.log('Some Error', err)
+                    navigate('/')
+                })
         }
+    }, [loggedinUser, userId])
 
-        userService.getById(userId)
-            .then((user: IUser) => {
-                setIsLoggedInProfile(false)
-                setUserProfile(user)
-            })
-            .catch(err => {
-                console.log('Some Error', err)
-                navigate('/')
-            })
-    }, [loggedinUser])
+    useEffect(() => {
+        const drawingsToShow = drawService.getDrawingsByUser(drawings, userProfile?._id)
+        setProfileDrawings(drawingsToShow)
+    }, [drawings])
 
+    async function setProfileSettings(isLoggedInProfile: boolean, user: IStorageUser): Promise<void> {
+        setIsLoggedInProfile(isLoggedInProfile)
+        setUserProfile(user)
+        if (!drawings) await loadDrawings()
+    }
+
+    const loadDrawings = async () => {
+        try {
+            const drawingsToSave = await drawService.query()
+            dispatch(setDrawings(drawingsToSave))
+        } catch (err) {
+            console.log('Something went wrong', err)
+        }
+    }
 
     async function onUploadedImg(imgUrl: string): Promise<void> {
         try {
-            const userToSave: IUser = { ...userProfile, imgUrl }
+            const userToSave: IStorageUser = { ...userProfile, imgUrl }
             const user = await userService.update(userToSave)
             dispatch(setUser(user))
         } catch (err) {
@@ -54,9 +77,7 @@ export function UserProfile() {
 
     }
 
-    if (!userProfile) return <h1>Loading...</h1>
-
-    if (!userProfile.draws || !userProfile.draws.length) userProfile.draws = gameService.getDefaultDraws()
+    if (!userProfile || !profileDrawings) return <h1>Loading...</h1>
 
     return <div className="profile-page-container grid">
         <div className="info-container">
@@ -75,7 +96,7 @@ export function UserProfile() {
             {!isLoggedInProfile && <button className="profile-btn primary-btn">Invite For a Game</button>}
             {/* TODO - if not friends: */}
             {/* <button>Add to Friends</button> */}
-            {/* <DrawList drawings={userProfile.draws}></DrawList> */}
+            <DrawList drawings={profileDrawings} context='profile'></DrawList>
 
         </div>
     </div>

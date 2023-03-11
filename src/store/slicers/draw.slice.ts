@@ -7,7 +7,7 @@ interface DrawSliceState {
 }
 
 const initialState: DrawSliceState = {
-    drawings: []
+    drawings: null!
 }
 
 export const drawSlice = createSlice({

@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
 import { selectedWord } from '../store/store';
 import Timer from "./timer";
-
 interface GameHeaderProps {
     onGameEnd: () => void
     isOppDisconnect: boolean
@@ -10,6 +9,7 @@ interface GameHeaderProps {
 
 export function GameHeader({ setGameModalSettings, onGameEnd, isOppDisconnect }: GameHeaderProps) {
     const gameWord = useSelector(selectedWord)
+
     return <div className="game-header">
         <div className="work-info">
             <div className="word-display">{gameWord}</div>

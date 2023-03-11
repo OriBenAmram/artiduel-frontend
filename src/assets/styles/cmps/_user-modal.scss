@@ -33,12 +33,15 @@
         height: 33px;
         font-size: 0.95em;
         font-weight: 500;
-        border-radius: 5px;
+        border-radius: 10px;
         letter-spacing: .2px;
 
         &:hover {
-            color: $clr1;
-            background-color: $dark-grey;
+            opacity: 0.8;
+        }
+
+        @include for-normal-layout {
+            border-radius: 5px;
         }
     }
 
