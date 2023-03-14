@@ -1,0 +1,54 @@
+.game-hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .work-info {
+        display: flex;
+        flex-direction: column;
+
+        @include for-normal-layout {
+            width: 100%;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .time-display {
+        margin-bottom: 12px;
+
+        @include for-normal-layout {
+            margin: 0;
+        }
+    }
+
+    .word-display {
+        @include info-theme-box;
+        padding: 8px 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        padding: 6px 12px;
+        font-size: rem(18px);
+        
+        @include for-narrow-layout { 
+            font-size: rem(20px);
+        }
+
+        @include for-normal-layout {
+            height: 100%;
+            font-size: rem(22px);
+        }
+    }
+
+    .opponent-section { 
+        .opponent { 
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            border-radius: 10px;
+        }
+    }
+}

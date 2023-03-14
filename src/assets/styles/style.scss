@@ -8,6 +8,7 @@
 @import "basics/base.scss";
 @import "basics/buttons.scss";
 @import "basics/layout.scss";
+
 // Pages
 @import "pages/home-page.scss";
 @import "pages/feed-page.scss";
@@ -24,8 +25,13 @@
 @import "cmps/feed-header.scss";
 @import "cmps/timer.scss";
 
+// Game
 @import "cmps/game-header.scss";
+@import "cmps/game-hero-section.scss";
 @import "cmps/game-field.scss";
+@import "cmps/player-user-bar.scss";
+@import "cmps/player-board.scss";
+@import "cmps/player-toolbar.scss";
 
 
 @import "cmps/draw-list.scss";

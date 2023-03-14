@@ -1,19 +1,18 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
 
 import { PlayerToolbar } from './player-toolbar';
 
 import { canvasService } from '../services/canvas.service';
 import { socketService } from '../services/socket.service';
+import { PlayerUserBar } from './player-user-bar';
 
-interface PlayerCanvasProps {
+interface PlayerBoardProps {
     playerCanvasRef: any
     isGameOn: boolean
 }
 
-export function PlayerCanvas({ isGameOn, playerCanvasRef: canvasRef }: PlayerCanvasProps) {
-
-    const [isToolBarOpen, setToolBar] = useState(false)
+export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef }: PlayerBoardProps) {
 
     const { roomId } = useParams()
 
@@ -23,7 +22,7 @@ export function PlayerCanvas({ isGameOn, playerCanvasRef: canvasRef }: PlayerCan
     const drawSettingsRef = useRef<{ isDraw: boolean, isDrag: boolean, isErase: boolean }>({ isDraw: false, isDrag: false, isErase: false, })
     const brushRef = useRef<{ color: string, width: number }>({ color: 'black', width: 10 })
 
-    
+
     const removeListeners = useCallback(() => {
         if (!canvasRef.current) return
         removeMouseListeners(canvasRef.current)
@@ -51,9 +50,14 @@ export function PlayerCanvas({ isGameOn, playerCanvasRef: canvasRef }: PlayerCan
 
     // Setting the canvas after initiating
     const setCanvas = () => {
+        console.log('setting canvas')
+        
         const canvas = canvasRef.current
         const containerRef = canvasContainerRef.current
         if (!canvas || !containerRef) return
+        console.log('containerRef.offsetWidth:', containerRef.offsetWidth);
+        console.log('containerRef.offsetHeight:', containerRef.offsetHeight);
+        
         ctxRef.current = canvas.getContext('2d');
         canvas.width = containerRef.offsetWidth
         canvas.height = containerRef.offsetHeight
@@ -100,13 +104,13 @@ export function PlayerCanvas({ isGameOn, playerCanvasRef: canvasRef }: PlayerCan
         drawSettingsRef.current.isDraw = true
         canvasService.setStartPoint(ev, ctxRef.current)
     }
-    
+
     const onMove = (ev: any) => {
         if (!drawSettingsRef.current.isDraw) return
         canvasService.pencilDraw(ev, ctxRef.current, brushRef.current)
         ev.preventDefault()
     }
-    
+
     const onUp = () => {
         drawSettingsRef.current.isDraw = false
         ctxRef.current?.stroke()
@@ -122,8 +126,11 @@ export function PlayerCanvas({ isGameOn, playerCanvasRef: canvasRef }: PlayerCan
         }
     }
 
-    return <div className="main-canvas-container" ref={canvasContainerRef}>
-        <canvas ref={canvasRef}></canvas>
-        <PlayerToolbar clearCanvas={clearCanvas} isToolBarOpen={isToolBarOpen} setToolBar={setToolBar} drawSettingsRef={drawSettingsRef.current} brushRef={brushRef.current} />
+    return <div className="player-board" ref={canvasContainerRef}>
+        <PlayerUserBar />
+        <div className="canvas-container" ref={canvasContainerRef}>
+            <canvas ref={canvasRef}></canvas>
+        </div>
+        <PlayerToolbar clearCanvas={clearCanvas} drawSettingsRef={drawSettingsRef.current} brushRef={brushRef.current} />
     </div>
 }

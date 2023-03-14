@@ -259,3 +259,23 @@
          
     }
 }
+
+@mixin game-header-font-size { 
+    font-size: rem(16px);
+        line-height: rem(16px);
+        
+        @include for-narrow-layout { 
+            font-size: rem(18px) ;
+            line-height: rem(18px);
+        } 
+        
+        @include for-normal-layout { 
+            font-size: rem(22px) ;
+            line-height: rem(22px);
+        } 
+        
+        @include for-wide-layout { 
+            font-size: rem(24px) ;
+            line-height: rem(24px);
+        } 
+}

@@ -1,5 +1,5 @@
 // React and stuff
-import { MouseEvent, useEffect } from 'react'
+import { MouseEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { NavLink, useLocation, Location, useNavigate } from 'react-router-dom';
 // Store
 import { setUser } from '../store/slicers/user.slice';
 import { userService } from '../services/user.service';
-import { selectedUser } from '../store/store';
+import { isScreenNarrow, selectedUser } from '../store/store';
 
 // Services
 
@@ -21,28 +21,24 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState } from 'react';
 import { GameModalScreen } from './game-modal-screen';
 import { UserModal } from './user-modal';
+import { setNarrowState } from '../store/slicers/app.slice';
 
 export function AppHeader() {
-    const user = useSelector(selectedUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location: Location = useLocation()
+    const user = useSelector(selectedUser)
+    const isNarrow = useSelector(isScreenNarrow)
 
     const [isMenuOpen, setMenuState] = useState(false)
-    const [isNarrow, setIsNarrow] = useState(window.matchMedia("(max-width: 760px)").matches)
     const [isUserModalOpen, setUserModalOpen] = useState(false)
-
-    useEffect(() => {
-
-    }, [location.pathname])
-
     const isHide = ((location.pathname === '/login' || location.pathname === '/signup') || (location.pathname === '/') || (location.pathname.includes('/game')))
 
     function onWindowWidthChange(x: any) {
         if (x.matches) {
-            setIsNarrow(true)
+            dispatch(setNarrowState(true))
         } else {
-            setIsNarrow(false)
+            dispatch(setNarrowState(false))
         }
     }
 

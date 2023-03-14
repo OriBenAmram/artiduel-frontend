@@ -4,13 +4,11 @@ import { BsFillPencilFill, BsFillEraserFill } from 'react-icons/bs'
 
 interface PlayerToolbarProps {
     clearCanvas: () => void
-    isToolBarOpen: boolean
-    setToolBar: any
     brushRef: Record<'color' | 'width', string | number>
     drawSettingsRef : ({ isDraw: boolean, isDrag: boolean, isErase: boolean, })
 }
 
-export function PlayerToolbar({ clearCanvas, isToolBarOpen, setToolBar, brushRef, drawSettingsRef }: PlayerToolbarProps) {
+export function PlayerToolbar({ clearCanvas, brushRef, drawSettingsRef }: PlayerToolbarProps) {
 
     const handleBrushChange = ({ target }: any) => {
         const { value, name: field }: { value: string | number, name: 'color' | 'width' } = target
@@ -24,11 +22,9 @@ export function PlayerToolbar({ clearCanvas, isToolBarOpen, setToolBar, brushRef
         }
     }
 
-    return <div className={`player-tool-bar ${isToolBarOpen ? 'open' : ''}`}>
-        <div className="toggle-arrow-btn" onClick={() => setToolBar((prevState: boolean) => !prevState)}>
-            <div className="icon">{isToolBarOpen ? <IoIosArrowDown /> : <IoIosArrowUp />}</div>
-        </div>
-        {isToolBarOpen && <div className="settings-container">
+    return <div className={`player-toolbar`}>
+        
+        <div className="settings-container">
             <div className="btns-container">
                 <BsFillPencilFill title='puncil'/>
                 <BsFillEraserFill name='eraser' title='eraser' onChange={() => handleSettingsChange('eraser')}/>
@@ -40,6 +36,6 @@ export function PlayerToolbar({ clearCanvas, isToolBarOpen, setToolBar, brushRef
             <div>
                 <button onClick={clearCanvas}>Clear</button>
             </div>
-        </div>}
+        </div>
     </div>
 }

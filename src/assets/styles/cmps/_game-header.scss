@@ -1,47 +1,47 @@
 .game-header {
+    // background-color: blueviolet;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: rem(24px);
-    .work-info {
-        h4 {
-            font-size: rem(18px);
-            margin: 0;
+    margin: 0 auto;
+    width: 90%;
+    padding: rem(12px) 0;
 
-            @include for-narrow-layout {
-                font-size: rem(20px);
-            }
+    // @include for-normal-layout {
+    //     margin: 0 auto;
+    //     width: 90%;
+    //     padding: rem(12px) 0;
+    // }
 
-            @include for-normal-layout {
-                font-size: rem(24px);
-            }
+    .icon {
+        @include game-header-font-size;
+    }
 
-            @include for-wide-layout {
-                font-size: rem(28px);
-            }
+    .connection-indication {
+        height: fit-content;
+        @include game-header-font-size;
+    }
+
+    .logo {
+        font-size: rem(20px);
+
+        @include for-narrow-layout {
+            font-size: rem(22px);
         }
 
-        .word-display {
-            @include info-theme-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: fit-content;
-            padding: 6px 12px;
-            margin-bottom: rem(10px);
+        @include for-normal-layout {
+            font-size: rem(24px);
+        }
+
+        @include for-wide-layout {
+            font-size: rem(27px);
         }
     }
 
-    .game-settings-zone {
-        display: flex;
-        align-items: center;
-        
-        .time-display { 
-            margin-right: rem(8px)
-        }
-
-        .cancel-btn {
-            @include secondary-btn;
-        }
+    .cancel-back-btn {
+        all: unset;
+        cursor: pointer;
+        height: fit-content;
+        @include game-header-font-size;
     }
 }

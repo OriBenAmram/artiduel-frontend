@@ -11,12 +11,7 @@
         flex: 1;
         width: 90%;
         margin: 0 auto;
-        padding-top: 40px;
 
-        @include for-normal-layout {
-            // width: 80%;
-            padding-top: 50px;
-        }
 
         @include for-wide-layout {
             width: 80%;

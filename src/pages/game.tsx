@@ -6,12 +6,13 @@ import { selectedIsHost, selectedOpponent } from '../store/store'
 import { addDrawing } from '../store/slicers/draw.slice'
 
 import { GameField } from '../cmps/game-field'
-import { GameHeader } from '../cmps/game-header'
+import { GameHeroSection } from '../cmps/game-hero-section'
 import { DynamicGameModal } from '../cmps/dynamic-game-modal'
 
 import { canvasService } from '../services/canvas.service'
 import { socketService } from '../services/socket.service'
 import { drawService } from '../services/draw.service'
+import { GameHeader } from '../cmps/game-header'
 
 export function Game() {
     const navigate = useNavigate()
@@ -98,8 +99,9 @@ export function Game() {
 
     return <div className="game-page">
         {DynamicGameModalSettings.isOpen && <DynamicGameModal type={DynamicGameModalSettings.type} onQuitGame={onQuitGame} toggleModal={toggleGameModal} isOppDisconnect={isOppDisconnect} isOppQuit={isOppQuit} onSaveBoard={onSaveBoard} />}
+        <GameHeader setGameModalSettings={setGameModalSettings} />
         <div className="game-content-conatiner">
-            <GameHeader setGameModalSettings={setGameModalSettings} onGameEnd={onGameEnd} isOppDisconnect={isOppDisconnect} />
+            <GameHeroSection onGameEnd={onGameEnd} isOppDisconnect={isOppDisconnect} />
             <GameField isGameOn={isGameOn} opponentUser={opponentUser} playerCanvasRef={playerCanvasRef} opponentImageRef={opponentImageRef} />
         </div>
     </div>

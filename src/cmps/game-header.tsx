@@ -1,24 +1,14 @@
-import { useSelector } from "react-redux"
-import { selectedWord } from '../store/store';
-import Timer from "./timer";
+import { IoArrowForwardSharp } from 'react-icons/io5'
+import { FaSignal } from 'react-icons/fa'
 
 interface GameHeaderProps {
-    onGameEnd: () => void
-    isOppDisconnect: boolean
     setGameModalSettings: any
 }
 
-export function GameHeader({ setGameModalSettings, onGameEnd, isOppDisconnect }: GameHeaderProps) {
-    const gameWord = useSelector(selectedWord)
+export function GameHeader({ setGameModalSettings}: GameHeaderProps) {
     return <div className="game-header">
-        <div className="work-info">
-            <div className="word-display">{gameWord}</div>
-            <h4>Draw the displayed word!</h4>
-        </div>
-        <div className="game-settings-zone">
-            < Timer seconds={90} onGameEnd={onGameEnd} isOppDisconnect={isOppDisconnect} />
-            <button className="secondary-btn-dark" onClick={() => setGameModalSettings({ isOpen: true, type: 'cancel-game' })}>Cancel</button>
-        </div>
-        {/* <button onClick={onSaveBoard}>Save</button> */}
+        <span className="connection-indication"><FaSignal className="icon" title="connection signal" /></span>
+        <div className="logo" title="Game Logo">ArtiDuel</div>
+        <button className="cancel-back-btn" title="Go back"><IoArrowForwardSharp className="icon" onClick={() => setGameModalSettings({ isOpen: true, type: 'cancel-game' })} /></button>
     </div>
 }
