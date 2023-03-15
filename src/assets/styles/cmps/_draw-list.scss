@@ -3,15 +3,22 @@
     max-width: 1500px;
     display: grid;
     gap: 35px;
-    
-    @include for-normal-layout { 
+    grid-template-columns: minmax(200px, 365px);
+    justify-content: center;
+
+    @include for-narrow-layout { 
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include for-normal-layout {
         // grid-template-columns: 300px 300px;
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
         gap: 25px;
     }
-    
-    @include for-wide-layout { 
+
+    @include for-wide-layout {
         // grid-template-columns: 300px 300px;
-        grid-template-columns: repeat(3, auto);
+        // grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     }
 }

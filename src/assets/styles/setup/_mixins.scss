@@ -44,24 +44,44 @@
     position: relative;
     overflow: hidden;
     &::before {
-      display: block;
-      content: "";
-      width: 100%;
-      padding-top: calc(($height / $width) * 100%);
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: calc(($height / $width) * 100%);
     }
     > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
-  
+
     > img {
-      height: 100%;
-      object-fit: cover;
+        height: 100%;
+        object-fit: cover;
     }
-  }
+}
+
+@mixin font-size($mobile, $narrow, $medium, $wide) {
+    font-size: rem($mobile);
+    line-height: rem($mobile);
+
+    @include for-narrow-layout {
+        font-size: rem($narrow);
+        line-height: rem($narrow);
+    }
+    
+    @include for-normal-layout {
+        font-size: rem($medium);
+        line-height: rem($medium);
+    }
+    
+    @include for-wide-layout {
+        font-size: rem($wide);
+        line-height: rem($wide);
+    }
+}
 
 // Elements
 // Form
@@ -75,12 +95,12 @@
     background-color: $clr10;
     border-radius: 9px;
     cursor: text;
-    
-    &:hover { 
+
+    &:hover {
         border: 1px solid $purple-strong;
     }
-    
-    &:focus-visible{ 
+
+    &:focus-visible {
         transition: border-color 200ms ease-in 0s;
         outline: $purple-strong;
         border: 1px solid $purple-strong;
@@ -88,20 +108,20 @@
     }
 }
 
-@mixin bordered-input { 
+@mixin bordered-input {
     background-color: #fafbfc;
     border: 2px solid #dfe1e6;
     border-radius: 3px;
     height: 40px;
-    transition: background-color .2s ease-in-out 0s,border-color .2s ease-in-out 0s;
+    transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
     padding: 0.5em;
     margin: 0 0 1.2em;
 
-    &:hover { 
+    &:hover {
         border: 1px solid $purple-strong;
     }
-    
-    &:focus-visible{ 
+
+    &:focus-visible {
         transition: border-color 200ms ease-in 0s;
         outline: $purple-strong;
         border: 1px solid $purple-strong;
@@ -122,11 +142,11 @@
 
     &:hover {
         color: $purple-strong;
-        background-color: $clr9;
+        background-color: $bright-gray;
     }
 }
 
-@mixin info-theme-box { 
+@mixin info-theme-box {
     border-radius: rem(6px);
     border: 1px solid $purple-strong;
     background-color: rgb(237 236 252);
@@ -150,7 +170,7 @@
     }
 }
 
-@mixin secondary-btn($color: $clr3, $hover-color: $dark-grey) {
+@mixin secondary-btn($color: $clr3, $hover-color: $dark-gray) {
     color: $color;
     letter-spacing: -0.03em;
     border-radius: 8px;
@@ -167,7 +187,7 @@
 }
 
 // Screens & Modals
-@mixin screen-overlay { 
+@mixin screen-overlay {
     position: fixed;
     z-index: 10;
     width: 100vw;
@@ -180,7 +200,7 @@
     // opacity: 1;
 }
 
-@mixin pop-up-modal { 
+@mixin pop-up-modal {
     position: fixed;
     z-index: 15;
     left: 50%;
@@ -231,7 +251,7 @@
         font-size: rem(18px);
 
         &:hover {
-            background-color: $clr9;
+            background-color: $bright-gray;
         }
 
         .icon {
@@ -241,41 +261,40 @@
         }
     }
 
-    h1 { 
+    h1 {
         font-size: rem(40px);
         margin: 0;
 
-        @include for-narrow-layout { 
-          font-size: rem(34px) 
-        } 
-        
-        @include for-normal-layout { 
-            font-size: rem(38px) 
-        } 
-        
-        @include for-wide-layout { 
-            font-size: rem(42px) 
-        } 
-         
+        @include for-narrow-layout {
+            font-size: rem(34px);
+        }
+
+        @include for-normal-layout {
+            font-size: rem(38px);
+        }
+
+        @include for-wide-layout {
+            font-size: rem(42px);
+        }
     }
 }
 
-@mixin game-header-font-size { 
+@mixin game-header-font-size {
     font-size: rem(16px);
-        line-height: rem(16px);
-        
-        @include for-narrow-layout { 
-            font-size: rem(18px) ;
-            line-height: rem(18px);
-        } 
-        
-        @include for-normal-layout { 
-            font-size: rem(22px) ;
-            line-height: rem(22px);
-        } 
-        
-        @include for-wide-layout { 
-            font-size: rem(24px) ;
-            line-height: rem(24px);
-        } 
+    line-height: rem(16px);
+
+    @include for-narrow-layout {
+        font-size: rem(18px);
+        line-height: rem(18px);
+    }
+
+    @include for-normal-layout {
+        font-size: rem(22px);
+        line-height: rem(22px);
+    }
+
+    @include for-wide-layout {
+        font-size: rem(24px);
+        line-height: rem(24px);
+    }
 }

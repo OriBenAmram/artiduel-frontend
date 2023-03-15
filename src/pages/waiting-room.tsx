@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 
-import { setWord, setOpponent, setGameSettings } from "../store/slicers/game.slice"
+import { setGameSettings } from "../store/slicers/game.slice"
 
 import { socketService } from "../services/socket.service"
 import { userService } from "../services/user.service"
@@ -14,7 +14,6 @@ interface IGameSettings {
     level: string
     opponentPlayer: { id: string, fullname: string }
 }
-
 
 export function WaitingRoom() {
     const navigate = useNavigate()

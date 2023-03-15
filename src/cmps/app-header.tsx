@@ -30,20 +30,16 @@ export function AppHeader() {
     const user = useSelector(selectedUser)
     const isNarrow = useSelector(isScreenNarrow)
 
-    const [isMenuOpen, setMenuState] = useState(false)
-    const [isUserModalOpen, setUserModalOpen] = useState(false)
+    const [isMenuOpen, setMenuState] = useState<boolean>(false)
+    const [isUserModalOpen, setUserModalOpen] = useState<boolean>(false)
     const isHide = ((location.pathname === '/login' || location.pathname === '/signup') || (location.pathname === '/') || (location.pathname.includes('/game')))
 
-    function onWindowWidthChange(x: any) {
-        if (x.matches) {
-            dispatch(setNarrowState(true))
-        } else {
-            dispatch(setNarrowState(false))
-        }
+    function onWindowWidthChange(ev: MediaQueryListEvent) {
+        (ev.matches) ? dispatch(setNarrowState(true)) : dispatch(setNarrowState(false))
     }
 
     const mmObj = window.matchMedia("(max-width: 760px)")
-    mmObj.addListener(onWindowWidthChange);
+    mmObj.addEventListener('change', onWindowWidthChange);
 
     async function onLogout(ev: MouseEvent) {
         ev.stopPropagation()
@@ -66,7 +62,7 @@ export function AppHeader() {
         setMenuState(prevIsMenuOpen => !prevIsMenuOpen)
     }
 
-    const toggleUserModal = (ev: MouseEvent | undefined) => { // TouchEvent
+    const toggleUserModal = (ev: MouseEvent | null) => { // TouchEvent
         ev?.stopPropagation()
         setUserModalOpen(prevIsUserModalOpen => !prevIsUserModalOpen)
     }

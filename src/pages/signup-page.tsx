@@ -6,13 +6,12 @@ import { setUser } from "../store/slicers/user.slice";
 
 import { userService } from "../services/user.service";
 
-
 export function SignupPage() {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const handleChange = (ev: any) => {
+    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
         const field = ev.target.name
         const value = ev.target.value
         setCredentials((prevCreds) => ({ ...prevCreds, [field]: value }))
@@ -22,14 +21,13 @@ export function SignupPage() {
         setCredentials({ username: '', password: '', fullname: '' })
     }
 
-    const onSubmit = async (ev: any) => {
+    const onSubmit = async (ev: React.FormEvent<HTMLFormElement>): Promise<void> => {
         ev.preventDefault()
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         try {
             const user = await userService.signup(credentials)
             dispatch(setUser(user))
             if (user) navigate('/feed')
-            console.log('Hello', user.fullname)
             clearState()
         } catch {
             console.log('Could not signup')

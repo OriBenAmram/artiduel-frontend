@@ -1,3 +1,5 @@
+// TODO - add lazy loading
+
 import { HomePage } from './pages/home-page';
 import { Feed } from './pages/feed';
 import { LoginPage } from './pages/login-page';
@@ -41,5 +43,6 @@ const routes: RootRoute[] = [
         element: <Game />,
     },
 ];
+
 
 export default routes;

@@ -5,17 +5,17 @@ import { setUser } from '../store/slicers/user.slice';
 
 import { NavLink } from 'react-router-dom';
 
-import { IUser } from '../interfaces/IUser';
+import { IStorageUser } from '../model/interfaces/IUser';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 
 
 interface HomeHeaderProps {
-    user: IUser | null
+    user: IStorageUser | null
 }
 
-export function HomeHeader({user} : HomeHeaderProps) {
+export function HomeHeader({ user }: HomeHeaderProps) {
     const [isMenuOpen, setMenuState] = useState(false)
     const dispatch = useDispatch()
 

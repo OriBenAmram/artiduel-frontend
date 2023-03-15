@@ -7,12 +7,13 @@ import { canvasService } from '../services/canvas.service';
 import { socketService } from '../services/socket.service';
 import { PlayerUserBar } from './player-user-bar';
 
-interface PlayerBoardProps {
-    playerCanvasRef: any
+interface IPlayerBoardProps {
+    playerCanvasRef: {current : HTMLCanvasElement | null}
     isGameOn: boolean
+    isNarrow: boolean
 }
 
-export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef }: PlayerBoardProps) {
+export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef, isNarrow }: IPlayerBoardProps) {
 
     const { roomId } = useParams()
 
@@ -50,17 +51,12 @@ export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef }: PlayerBoar
 
     // Setting the canvas after initiating
     const setCanvas = () => {
-        console.log('setting canvas')
-        
         const canvas = canvasRef.current
         const containerRef = canvasContainerRef.current
         if (!canvas || !containerRef) return
-        console.log('containerRef.offsetWidth:', containerRef.offsetWidth);
-        console.log('containerRef.offsetHeight:', containerRef.offsetHeight);
-        
         ctxRef.current = canvas.getContext('2d');
         canvas.width = containerRef.offsetWidth
-        canvas.height = containerRef.offsetHeight
+        canvas.height = containerRef.offsetWidth
         canvasService.loadPlayerCanvas(canvas, ctxRef.current)
     }
 
@@ -100,12 +96,12 @@ export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef }: PlayerBoar
     }
 
     // Drawing
-    const onDown = (ev: any) => {
+    const onDown = (ev: MouseEvent | TouchEvent) => {
         drawSettingsRef.current.isDraw = true
         canvasService.setStartPoint(ev, ctxRef.current)
     }
 
-    const onMove = (ev: any) => {
+    const onMove = (ev: MouseEvent | TouchEvent) => {
         if (!drawSettingsRef.current.isDraw) return
         canvasService.pencilDraw(ev, ctxRef.current, brushRef.current)
         ev.preventDefault()
@@ -127,7 +123,7 @@ export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef }: PlayerBoar
     }
 
     return <div className="player-board" ref={canvasContainerRef}>
-        <PlayerUserBar />
+        {isNarrow && <PlayerUserBar />}
         <div className="canvas-container" ref={canvasContainerRef}>
             <canvas ref={canvasRef}></canvas>
         </div>

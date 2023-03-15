@@ -9,16 +9,16 @@ interface PostFilterProps {
 
 export function PostFilter({ text }: PostFilterProps) {
     const [typedText, setTypedText] = useState('')
-    let typingIntervalId: any = useRef(null)
+    let typingIntervalId = useRef<null | NodeJS.Timeout>(null)
 
     const startTyping = useCallback(() => {
         let i = 0
         typingIntervalId.current = setInterval(() => {
             setTypedText((prevState) => {
-                return prevState + text.charAt(i)
+                return prevState + text[i]
             })
             i++
-            if (i === text.length) {
+            if (i === text.length && typingIntervalId.current) {
                 clearInterval(typingIntervalId.current)
             }
         }, 80)
@@ -27,7 +27,9 @@ export function PostFilter({ text }: PostFilterProps) {
     useEffect(() => {
         startTyping()
 
-        return (() => clearInterval(typingIntervalId.current))
+        return (() => {
+            if(typingIntervalId.current) clearInterval(typingIntervalId.current)
+        })
     }, [startTyping])
 
     return <div className="post-filter-container">

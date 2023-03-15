@@ -1,8 +1,8 @@
 import { MouseEventHandler, useState, useEffect, useRef, TouchEventHandler, TouchEvent } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectedUser } from "../store/store"
-import { IModalOpts } from "../interfaces/IModalOpts"
+import { IModalOpts } from "../model/interfaces/IModalOpts"
 
 interface UserModalProps {
     onLogout: MouseEventHandler<HTMLHeadingElement>
@@ -22,6 +22,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
         modalHeight: 0,
     })
     const modalRef = useRef<HTMLDivElement | null>(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const modal = modalRef.current
@@ -32,7 +33,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
     useEffect(() => {
         if (dragPercent > 80) {
             resetModal()
-            toggleUserModal(undefined!)
+            toggleUserModal(null!)
         }
     }, [dragPercent])
 
@@ -70,7 +71,7 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
         return percent > 0 ? percent : 0
     }
 
-    function resetModal(){
+    function resetModal() {
         setModalOptions({
             diff: 0,
             mousePosY: 0,
@@ -82,20 +83,23 @@ export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
         setIsDragging(false)
     }
 
+    function onProfileNavigate() {
+        toggleUserModal(null!)
+        navigate(`/profile/${loggedInUserId}`)
+    }
+
     return <div
         ref={modalRef}
         onClick={ev => ev.stopPropagation()}
         onTouchStart={onDown}
-        // onMouseDown={onDown}
         onTouchMove={onDrag}
-        // onMouseMove={onDrag}
         onTouchEnd={onUp}
         onMouseUp={onUp}
         className="user-modal"
-        style={ dragPercent ? {transform: `translateY(${dragPercent + '%'}`} : {} } >
+        style={dragPercent ? { transform: `translateY(${dragPercent + '%'}` } : {}} >
         {/* style={{ transform: `translateY(${dragPercent + '%'}` }} > */}
         <div className="links-container">
-            {/* <Link onClick={toggleUserModal} to={`/profile/${loggedInUserId}`} className="profile modal-item">Profile</Link> */}
+            <button onClick={onProfileNavigate} className="profile modal-item">Profile</button>
         </div>
         <h5 className="logout modal-item" onClick={onLogout}>Logout</h5>
     </div>

@@ -8,24 +8,23 @@ interface TimerProps {
 
 export const Timer: React.FC<TimerProps> = ({ seconds, onGameEnd, isOppDisconnect }) => {
     const [timeRemaining, setTimeRemaining] = useState(seconds);
-    let timerIntervalId = useRef<any>(null)
+    let timerIntervalId = useRef<null | NodeJS.Timeout>(null)
 
     useEffect(() => {
         startTimer()
         return () => {
-            clearInterval(timerIntervalId.current);
+            if(timerIntervalId.current) clearInterval(timerIntervalId.current);
         };
     }, []);
 
     useEffect(() => {
-        if (isOppDisconnect) {
-            console.log('clearing interval - isOppDisconnect', isOppDisconnect)
+        if (isOppDisconnect && timerIntervalId.current) {
             clearInterval(timerIntervalId.current);
         }
     }, [isOppDisconnect])
 
     useEffect(() => {
-        if (timeRemaining === 0) {
+        if (timeRemaining === 0 && timerIntervalId.current) {
             clearInterval(timerIntervalId.current);
             onGameEnd()
             return
@@ -34,11 +33,6 @@ export const Timer: React.FC<TimerProps> = ({ seconds, onGameEnd, isOppDisconnec
 
     const startTimer = () => {
         timerIntervalId.current = setInterval(() => {
-            // if (timeRemaining === 0) {
-            //     clearInterval(timerIntervalId.current);
-            //     onGameEnd()
-            //     return
-            // }
             setTimeRemaining(prevTimeRemaining => prevTimeRemaining - 1);
         }, 1000);
     }
@@ -49,6 +43,8 @@ export const Timer: React.FC<TimerProps> = ({ seconds, onGameEnd, isOppDisconnec
         const minutesToDisplay = minutes.toString().padStart(2, '0')
         const secondsToDisplay = seconds.toString().padStart(2, '0')
         return <div className="timer">
+            <div className="left-bell bell"></div>
+            <div className="right-bell bell"></div>
             <div className="timer__minutes">{minutesToDisplay}:</div>
             <div className={`timer__seconds${timeRemaining < 10 ? "--times-up" : ""}`}>{secondsToDisplay}</div>
         </div>

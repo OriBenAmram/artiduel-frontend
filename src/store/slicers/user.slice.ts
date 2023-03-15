@@ -2,11 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit/dist/createAction";
 import { userService } from "../../services/user.service";
-import { IUser } from "../../interfaces/IUser";
+import { IStorageUser } from "../../model/interfaces/IUser";
 
 interface UserSliceState {
-    loggedinUser: IUser | null;
-    users: IUser[]
+    loggedinUser: IStorageUser | null;
+    users: IStorageUser[]
 }
 
 const initialState: UserSliceState = {
@@ -18,7 +18,7 @@ export const usersSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUser: (state, action: PayloadAction<IUser | null>) => {
+        setUser: (state, action: PayloadAction<IStorageUser | null>) => {
             state.loggedinUser = action.payload
         },
         removeUser: (state, action: PayloadAction<string>) => {

@@ -1,21 +1,24 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { userService } from "../services/user.service";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 import { setUser } from "../store/slicers/user.slice";
+
+import { userService } from "../services/user.service";
 
 export function LoginPage() {
     const dispatch = useDispatch()
-    const [credentials, setCredentials] = useState({ username: '', password: '' })
     const navigate = useNavigate()
-    const handleChange = (ev: any) => {
+    
+    const [credentials, setCredentials] = useState({ username: '', password: '' })
+
+    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
         const field = ev.target.name
         const value = ev.target.value
         setCredentials((prevCreds) => ({ ...prevCreds, [field]: value }))
     }
 
-    const onSubmit = async (ev: any) => {
+    const onSubmit = async (ev: React.FormEvent<HTMLFormElement>): Promise<void> => {
         ev.preventDefault()
         if (!credentials.username || !credentials.password) {
             console.log('Please fill out all the fields in the form')
@@ -25,10 +28,8 @@ export function LoginPage() {
             const user = await userService.login(credentials)
             dispatch(setUser(user))
             if (user) navigate('/feed')
-            // showSuccessMsg(`Welcome: ${user.fullname}`)
         } catch (err) {
             console.log('could not login')
-            // showErrorMsg('Cannot login')
         }
     }
 

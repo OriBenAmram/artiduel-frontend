@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
-import { MdClose } from 'react-icons/md'
 import { CancelGameModal } from './cancel-game-modal'
 import { GameEndModal } from './game-end-modal'
+
+import { MdClose } from 'react-icons/md'
 
 interface ModalProps {
     type: string
@@ -14,7 +15,7 @@ interface ModalProps {
 }
 
 export function DynamicGameModal({  type, isOppDisconnect, isOppQuit ,onQuitGame, toggleModal,  onSaveBoard }: ModalProps) {
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const setModalLoading = (isLoading: boolean) => {
         setIsLoading(isLoading)

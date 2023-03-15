@@ -1,14 +1,31 @@
 .timer { 
     display: flex;
     align-items: center;
-    background-color: $purple-strong;
+    position: relative;
     color: whitesmoke;
+    background-color: $purple-strong;
     padding: 8px 12px;
-    border-radius: 10px;
+    width: fit-content;
+    border-radius: 15px;
 
-    // &__minutes { 
+    .bell {
+        position: absolute;
+        width: 4px;
+        height: 20px;
+        border-radius: 2em;
+        background-color: $purple-strong;
+        top: -15px;
+    }
 
-    // }
+    .left-bell { 
+        left: 40%;
+        transform: rotate(330deg);
+    }
+    
+    .right-bell {
+        left: 60%;
+        transform: rotate(30deg);
+    }
 
     &__seconds { 
 

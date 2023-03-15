@@ -1,13 +1,19 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit/dist/createAction";
+import { IDraw } from "../../model/interfaces/IDraw";
 
-interface DrawSliceState {
-    drawings: any[]
+interface IDrawSliceState {
+    drawings: IDraw[]
 }
 
-const initialState: DrawSliceState = {
-    drawings: []
+interface IAction {
+    type: string
+    payload: IDraw[]
+}
+
+const initialState: IDrawSliceState = {
+    drawings: null!
 }
 
 export const drawSlice = createSlice({
@@ -15,6 +21,7 @@ export const drawSlice = createSlice({
     initialState,
     reducers: {
         setDrawings: (state, action: PayloadAction<any>) => {
+            console.log('action:', action);
             state.drawings = action.payload
         },
         addDrawing: (state, action: PayloadAction<any>) => {

@@ -1,15 +1,16 @@
 import { useEffect } from "react"
+import { IOpponentMiniUser } from "../model/interfaces/IUser"
 import { canvasService } from "../services/canvas.service"
 
 import { socketService } from "../services/socket.service"
 
 interface opponentCanvasProps {
-    opponentImageRef: any
-    opponentUser: any
     isGameOn: boolean
+    opponentUser: IOpponentMiniUser
+    opponentImageRef: { current: HTMLImageElement | null }
 }
 
-export function OpponentCanvas({ isGameOn, opponentUser, opponentImageRef}: opponentCanvasProps) {
+export function OpponentCanvas({ isGameOn, opponentUser, opponentImageRef }: opponentCanvasProps) {
 
     useEffect(() => {
         setOpponentImage()
@@ -22,14 +23,14 @@ export function OpponentCanvas({ isGameOn, opponentUser, opponentImageRef}: oppo
     }, [])
 
     const setOpponentImage = () => {
-        if(!opponentImageRef?.current) return
+        if (!opponentImageRef?.current) return
         const imageSrc = canvasService.getOpponentImageSrc()
         opponentImageRef.current.src = imageSrc
     }
 
     const onOpponentChange = (dataURL: string) => {
         canvasService.saveOpponentImage(dataURL)
-        opponentImageRef.current.src = dataURL
+        if(opponentImageRef.current) opponentImageRef.current.src = dataURL
     }
 
 

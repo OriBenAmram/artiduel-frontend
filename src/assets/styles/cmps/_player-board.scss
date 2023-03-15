@@ -2,15 +2,36 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    height: fit-content;
+    position: relative;
+    // border: 1px solid red;
+
+    @include for-normal-layout { 
+        // flex-direction: row;
+        flex: initial;
+        width: 500px;
+    }
+
+    @include for-wide-layout { 
+        flex-direction: row;
+    }
 }
 
 // canvas
 
 .canvas-container { 
     width: 100%;
-    @include aspect-ratio(1, 1);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-bottom: 12px;
+    @include aspect-ratio(1, 1);
     
+    @include for-normal-layout { 
+        margin: 0;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    @include for-wide-layout { 
+        border-radius: 10px 0 0 10px;
+    }
 }

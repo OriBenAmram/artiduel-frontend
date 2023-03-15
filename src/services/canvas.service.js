@@ -136,13 +136,13 @@ function _loadCanvasFromStorage(storageKey) {
 
 // Format
 
-function createDrawing(playerCanvas, opponentImage, opponentUser) {
+function createDrawing(playerCanvas, opponentImage, opponentUser, selectedWord) {
     const player = userService.getLoggedinUser()
     const playerDataURL = playerCanvas.toDataURL()
     const opponentDataURL = opponentImage.src
     const drawing = {
         createdAt: Date.now(),
-        title: 'Elephant',
+        title: selectedWord,
         player1: {
             userId: player._id,
             fullname: player.fullname,
