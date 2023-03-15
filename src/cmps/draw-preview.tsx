@@ -43,7 +43,7 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
     }
 
     const onLikeDrawing = async (playerId: string) => {
-        
+
         if (!loggedInUser) return
         let chosePlayer
         // create deep copy
@@ -78,7 +78,6 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
     }
 
     return <article className="draw-preview">
-        <h2 className='draw-preview__title-display'>{draw.title}</h2>
         {/* <button className='draw-preview__close-btn' onClick={onRemoveDrawing}>X</button> */}
         <div className="draw-preview__first-draw">
             <img className="draw-preview__img" alt='user-img' src='' ref={firstDrawingRef} />
@@ -106,5 +105,6 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
                 </div>
             </div>
         </div>
+        <h2 className='draw-preview__title-display'>{draw.title}</h2>
     </article>
 }

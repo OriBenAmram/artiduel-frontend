@@ -12,29 +12,25 @@ export function PostFilter({ text }: PostFilterProps) {
     let typingIntervalId = useRef<null | NodeJS.Timeout>(null)
 
     const startTyping = useCallback(() => {
-        let i = 0
+        let i = -1
         typingIntervalId.current = setInterval(() => {
-            setTypedText((prevState) => {
-                return prevState + text[i]
-            })
             i++
+            setTypedText((prevState) => prevState + text.charAt(i))
             if (i === text.length && typingIntervalId.current) {
                 clearInterval(typingIntervalId.current)
             }
-        }, 80)
+        }, 90)
     }, [text])
 
     useEffect(() => {
         startTyping()
-
         return (() => {
-            if(typingIntervalId.current) clearInterval(typingIntervalId.current)
+            if (typingIntervalId.current) clearInterval(typingIntervalId.current)
         })
     }, [startTyping])
 
     return <div className="post-filter-container">
         <input className="search-input" type="text" placeholder={typedText} />
-        {/* <input className="search-input" type="text" placeholder={typedText} /> */}
         <div className="filter-options">
             <button className="sort-btn"> <BiSortAlt2 className="icon" /> Sort</button>
             <button className="filter-btn"> <FiFilter className="icon" /> Filter</button>

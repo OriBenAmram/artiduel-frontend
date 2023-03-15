@@ -1,10 +1,11 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { PayloadAction } from "@reduxjs/toolkit/dist/createAction";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { IOpponentMiniUser } from "../../model/interfaces/IUser";
 import { userService } from "../../services/user.service";
 
 interface GameSliceState {
-    opponentPlayer: any,
+    opponentPlayer: IOpponentMiniUser,
     isHost: boolean,
     word: string | null
 }
@@ -20,6 +21,8 @@ export const gameSlice = createSlice({
     initialState,
     reducers: {
         setGameSettings: (state, action: PayloadAction<any>) => {
+            console.log('action:', action);
+            
             state.opponentPlayer = action.payload.opponentPlayer
             state.isHost = action.payload.isHost
             state.word = action.payload.word

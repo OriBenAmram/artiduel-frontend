@@ -52,13 +52,14 @@ export const ProfileDrawPreview: FC<DrawPreviewProps> = ({ draw }: DrawPreviewPr
         else chosePlayer?.likes.splice(likeIdx, 1)
 
         // update data
-        try {
-            dispatch(updateDrawing(drawToSave))
-            await drawService.save(drawToSave)
-        } catch (err) {
-            console.log('err when liking a drawing, replacing draw back', err);
-            dispatch(updateDrawing(draw))
-        }
+        // Vicky - go over it together
+        // try {
+        //     dispatch(updateDrawing(drawToSave))
+        //     await drawService.save(drawToSave)
+        // } catch (err) {
+        //     console.log('err when liking a drawing, replacing draw back', err);
+        //     dispatch(updateDrawing(draw))
+        // }
     }
 
     return <article className="profile-draw-preview">
