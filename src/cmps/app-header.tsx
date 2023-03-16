@@ -13,6 +13,7 @@ import { isScreenNarrow, selectedUser } from '../store/store';
 // Services
 
 // 3rd side libraries
+import { toast } from 'react-toastify';
 
 // Icons
 import { AiFillHome } from 'react-icons/ai'
@@ -55,6 +56,10 @@ export function AppHeader() {
     }
 
     const onOpenGameModal = () => {
+        if (!user) {
+            toast.info(`In order to play you have to sign in!`);
+            return
+        }
         toggleMenu()
     }
 

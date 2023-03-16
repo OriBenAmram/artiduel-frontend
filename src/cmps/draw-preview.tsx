@@ -9,6 +9,7 @@ import { drawService } from '../services/draw.service'
 import { IDraw, ILikeEntity } from '../model/interfaces/IDraw'
 
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
+import { toast } from 'react-toastify';
 
 import avatar2 from '../assets/imgs/avatar2.jpg'
 
@@ -44,7 +45,12 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
 
     const onLikeDrawing = async (playerId: string) => {
 
-        if (!loggedInUser) return
+        if (!loggedInUser) {
+            toast.info(
+                `Please sign in so you could like drawings`,
+            );
+            return
+        }
         let chosePlayer
         // create deep copy
         const drawToSave = JSON.parse(JSON.stringify(draw))
@@ -64,6 +70,7 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
         try {
             dispatch(updateDrawing(drawToSave))
             await drawService.save(drawToSave)
+
         } catch (err) {
             console.log('err when liking a drawing, replacing draw back', err);
             dispatch(updateDrawing(draw))
