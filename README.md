@@ -13,7 +13,6 @@ ___
 - [Features](#features)
 - [Getting started](#getting-started)
 - [Status](#current-status)
-- [Showcase](#showcase)
 
 ## Description
 This app is kind of a social network, based on drawing battles. 
@@ -56,7 +55,7 @@ Our list of technologies:
 
 ## Getting started
 From the back to the front!
-Head to the next [repository](https://github.com/vicky-polatov/artiduel-backend "Backend repo link") and clone the project or download the files.
+Clone the next line or Head to the next [repository](https://github.com/vicky-polatov/artiduel-backend "Backend repo link") and clone the project (or download the files).
 
 ```
 git clone https://github.com/vicky-polatov/artiduel-backend.git
@@ -72,7 +71,7 @@ npm start
 
 You shuold get a console ouput that the server is up and running at port 3030.
 
-Now, clone the frontend: in this link ([on top](https://github.com/OriBenAmram/artiduel-frontend "Frontend repo link")) you can download the files or clone the code.
+Now, clone the frontend using the line of code below. You can also download the files or clone the code in this link ([on top](https://github.com/OriBenAmram/artiduel-frontend "Frontend repo link")).
 
 ```
 git clone https://github.com/OriBenAmram/artiduel-frontend.git
@@ -92,6 +91,12 @@ That's it! The App should be opened automatically, enjoy!
 
 ## Current status
 85% of our work is done! 
-This app would soon be uploaded and ready to be used. 
+We are close to end this project and upload it, but we still have some work to do. 
+Our next steps are:
+- Fix a few important features, such as drawing options through out the game and more.
+- Upload the first version to Render.com (which is a bit problematic with supporting sockets)
+- Finishing designing and adding a few more features.
+- Uploading the app using AWS and even make it PWA(!).
 
-## Showcase
+This project was supposed to be short and basic, and it's only goal was to make us learn new skills.
+Nonetheless, we are investing a lot of effort to make it looks good enough for people to play with! 
