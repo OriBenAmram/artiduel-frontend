@@ -19,7 +19,7 @@ export function HomeHeader({ user }: HomeHeaderProps) {
     const [isMenuOpen, setMenuState] = useState(false)
     const dispatch = useDispatch()
 
-    const toggleMenu = () => {
+    const toggleMenu = () : void => {
         setMenuState(!isMenuOpen)
     }
 

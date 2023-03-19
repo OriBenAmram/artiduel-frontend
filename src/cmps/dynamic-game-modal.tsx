@@ -17,7 +17,7 @@ interface ModalProps {
 export function DynamicGameModal({  type, isOppDisconnect, isOppQuit ,onQuitGame, toggleModal,  onSaveBoard }: ModalProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const setModalLoading = (isLoading: boolean) => {
+    const setModalLoading = (isLoading: boolean) : void => {
         setIsLoading(isLoading)
     }
 

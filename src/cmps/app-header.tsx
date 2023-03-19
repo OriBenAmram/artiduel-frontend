@@ -35,7 +35,7 @@ export function AppHeader() {
     const [isUserModalOpen, setUserModalOpen] = useState<boolean>(false)
     const isHide = ((location.pathname === '/login' || location.pathname === '/signup') || (location.pathname === '/') || (location.pathname.includes('/game')))
 
-    function onWindowWidthChange(ev: MediaQueryListEvent) {
+    function onWindowWidthChange(ev: MediaQueryListEvent) : void {
         (ev.matches) ? dispatch(setNarrowState(true)) : dispatch(setNarrowState(false))
     }
 
@@ -55,7 +55,7 @@ export function AppHeader() {
         }
     }
 
-    const onOpenGameModal = () => {
+    const onOpenGameModal = ()  : void => {
         if (!user) {
             toast.info(`In order to play you have to sign in!`);
             return
@@ -63,11 +63,11 @@ export function AppHeader() {
         toggleMenu()
     }
 
-    const toggleMenu = () => {
+    const toggleMenu = () : void  => {
         setMenuState(prevIsMenuOpen => !prevIsMenuOpen)
     }
 
-    const toggleUserModal = (ev: MouseEvent | null) => { // TouchEvent
+    const toggleUserModal = (ev: MouseEvent | null) : void  => { // TouchEvent
         ev?.stopPropagation()
         setUserModalOpen(prevIsUserModalOpen => !prevIsUserModalOpen)
     }

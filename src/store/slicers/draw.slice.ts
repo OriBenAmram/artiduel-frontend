@@ -1,7 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IDraw } from "../../model/interfaces/IDraw";
+import { IDraw } from "../../model/interfaces/IDraw.interface";
 import { IFormattedDraw } from "../../model/interfaces/IFormattedDraw";
 
 interface IDrawSliceState {

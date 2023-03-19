@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
 export function HomeContent() {
-
     return (
         <div className="home-content">
             <section className="home-hero main-layout">

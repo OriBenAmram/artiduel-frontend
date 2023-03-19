@@ -6,7 +6,7 @@ import { selectedUser } from '../store/store'
 
 import { drawService } from '../services/draw.service'
 
-import { IDraw, ILikeEntity } from '../model/interfaces/IDraw'
+import { IDraw, ILikeEntity } from '../model/interfaces/IDraw.interface'
 
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
 import { toast } from 'react-toastify';
@@ -38,12 +38,12 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
         if (secondDrawingRef.current) secondDrawingRef.current.src = draw.player2?.dataUrl || ''
     })
 
-    const onRemoveDrawing = async () => {
+    const onRemoveDrawing = async () : Promise<void>  => {
         await drawService.remove(draw._id)
         dispatch(removeDrawing(draw._id))
     }
 
-    const onLikeDrawing = async (playerId: string) => {
+    const onLikeDrawing = async (playerId: string): Promise<void>  => {
 
         if (!loggedInUser) {
             toast.info(

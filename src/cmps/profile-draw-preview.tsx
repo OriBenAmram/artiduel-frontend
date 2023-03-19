@@ -9,7 +9,7 @@ import { drawService } from '../services/draw.service'
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
 
 import { IFormattedDraw } from '../model/interfaces/IFormattedDraw'
-import { ILikeEntity } from '../model/interfaces/IDraw'
+import { ILikeEntity } from '../model/interfaces/IDraw.interface'
 import { IStorageUser } from "../model/interfaces/IUser";
 
 

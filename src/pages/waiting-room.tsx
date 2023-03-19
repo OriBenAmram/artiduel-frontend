@@ -27,7 +27,7 @@ export function WaitingRoom() {
         })
     })
 
-    const onMatchedOpponent = ({ roomId, isHost, level, word, opponentPlayer }: IGameSettings) => {
+    const onMatchedOpponent = ({ roomId, isHost, level, word, opponentPlayer }: IGameSettings) : void => {
         userService.saveOpponent(opponentPlayer)
         dispatch(setGameSettings({ opponentPlayer, isHost, word }))
         navigate(`/game/${roomId}`)

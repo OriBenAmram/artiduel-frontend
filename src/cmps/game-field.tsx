@@ -1,3 +1,4 @@
+import { FC } from "react"
 import { useSelector } from "react-redux"
 import { isScreenNarrow } from "../store/store"
 import { OpponentCanvas } from "./opponent-canvas"
@@ -13,7 +14,7 @@ interface GameFieldProps {
     isGameOn: boolean
 }
 
-export function GameField({ isGameOn, opponentUser, playerCanvasRef, opponentImageRef }: GameFieldProps) {
+export const GameField: FC<GameFieldProps> = ({ isGameOn, opponentUser, playerCanvasRef, opponentImageRef }) => {
     const isNarrow = useSelector(isScreenNarrow)
     return <div className="game-field">
         <PlayerBoard isGameOn={isGameOn} playerCanvasRef={playerCanvasRef} isNarrow={isNarrow} />

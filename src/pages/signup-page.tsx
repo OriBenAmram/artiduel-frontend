@@ -17,7 +17,7 @@ export function SignupPage() {
         setCredentials((prevCreds) => ({ ...prevCreds, [field]: value }))
     }
 
-    const clearState = () => {
+    const clearState = (): void => {
         setCredentials({ username: '', password: '', fullname: '' })
     }
 

@@ -14,7 +14,7 @@ export function Feed() {
     const drawings = useSelector(selectedDrawings)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const loadDrawings = useCallback(async () => {
+    const loadDrawings = useCallback(async () : Promise<void> => {
         const drawingsToSave = await drawService.query()
         dispatch(setDrawings(drawingsToSave))
     }, [dispatch])

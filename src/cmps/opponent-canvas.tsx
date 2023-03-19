@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useCallback } from "react"
 import { IOpponentMiniUser } from "../model/interfaces/IUser"
 import { canvasService } from "../services/canvas.service"
 
@@ -12,6 +12,18 @@ interface opponentCanvasProps {
 
 export function OpponentCanvas({ isGameOn, opponentUser, opponentImageRef }: opponentCanvasProps) {
 
+
+    const setOpponentImage = useCallback((): void => {
+        if (!opponentImageRef?.current) return
+        const imageSrc = canvasService.getOpponentImageSrc()
+        opponentImageRef.current.src = imageSrc
+    }, [opponentImageRef])
+
+    const onOpponentChange = useCallback((dataURL: string): void => {
+        canvasService.saveOpponentImage(dataURL)
+        if (opponentImageRef.current) opponentImageRef.current.src = dataURL
+    }, [opponentImageRef])
+
     useEffect(() => {
         setOpponentImage()
         socketService.on('opponent-canvas-change', onOpponentChange)
@@ -20,18 +32,7 @@ export function OpponentCanvas({ isGameOn, opponentUser, opponentImageRef }: opp
             socketService.off('opponent-canvas-change')
             window.addEventListener('resize', setOpponentImage);
         })
-    }, [])
-
-    const setOpponentImage = () => {
-        if (!opponentImageRef?.current) return
-        const imageSrc = canvasService.getOpponentImageSrc()
-        opponentImageRef.current.src = imageSrc
-    }
-
-    const onOpponentChange = (dataURL: string) => {
-        canvasService.saveOpponentImage(dataURL)
-        if(opponentImageRef.current) opponentImageRef.current.src = dataURL
-    }
+    }, [onOpponentChange, setOpponentImage])
 
 
     return <div className="secondary-canvas-container">

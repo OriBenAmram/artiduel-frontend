@@ -15,7 +15,7 @@ import { drawService } from '../services/draw.service'
 
 import { IStorageUser } from '../model/interfaces/IUser'
 import avatar from '../assets/imgs/avatar2.jpg'
-import { IDraw } from '../model/interfaces/IDraw'
+import { IDraw } from '../model/interfaces/IDraw.interface'
 import { IFormattedDraw } from '../model/interfaces/IFormattedDraw'
 
 

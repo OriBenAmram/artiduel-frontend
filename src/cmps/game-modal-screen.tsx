@@ -13,17 +13,18 @@ export function GameModalScreen({ toggleMenu }: GameModalProps) {
     const navigate = useNavigate()
     const location: Location = useLocation()
 
-    const onClickModal = (ev: MouseEvent) => {
+    const onClickModal = (ev: MouseEvent) : void => {
         ev.stopPropagation()
+        // prevent closing it
     }
 
-    const onNewGame = () => {
+    const onNewGame = () : void => {
         if (location.pathname !== '/waiting-room') navigate(`/waiting-room`)
         socketService.emit('room-level-entrance', level)
         toggleMenu()
     }
 
-    const onPlayFriends = () => {
+    const onPlayFriends = () : void => {
         toggleMenu()
         navigate('/friends')
     }

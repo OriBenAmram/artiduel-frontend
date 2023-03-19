@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useSelector } from "react-redux"
 
 import Timer from "./timer";
@@ -20,8 +20,17 @@ interface GameHeroSectionProps {
 export function GameHeroSection({ onGameEnd, isOppDisconnect, opponentUser, opponentImageRef }: GameHeroSectionProps) {
     const gameWord = useSelector(selectedWord)
     const isNarrow = useSelector(isScreenNarrow)
-    console.log('opponentImageRef:', opponentImageRef);
 
+    const setOpponentImage = useCallback(() : void => {
+        if (!opponentImageRef?.current) return
+        const imageSrc = canvasService.getOpponentImageSrc()
+        opponentImageRef.current.src = imageSrc
+    }, [opponentImageRef])
+
+    const onOpponentChange = useCallback((dataURL: string) : void => {
+        canvasService.saveOpponentImage(dataURL)
+        if(opponentImageRef?.current) opponentImageRef.current.src = dataURL
+    }, [opponentImageRef])
 
     useEffect(() => {
         setOpponentImage()
@@ -31,18 +40,7 @@ export function GameHeroSection({ onGameEnd, isOppDisconnect, opponentUser, oppo
             socketService.off('opponent-canvas-change')
             window.addEventListener('resize', setOpponentImage);
         })
-    }, [])
-
-    const setOpponentImage = () => {
-        if (!opponentImageRef?.current) return
-        const imageSrc = canvasService.getOpponentImageSrc()
-        opponentImageRef.current.src = imageSrc
-    }
-
-    const onOpponentChange = (dataURL: string) => {
-        canvasService.saveOpponentImage(dataURL)
-        if(opponentImageRef?.current) opponentImageRef.current.src = dataURL
-    }
+    }, [onOpponentChange, setOpponentImage])
 
     return <div className="game-hero-section">
         <div className="work-info">

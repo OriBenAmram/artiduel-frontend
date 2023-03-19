@@ -24,7 +24,7 @@ export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef, isNarrow }: 
     const brushRef = useRef<{ color: string, width: number }>({ color: 'black', width: 10 })
 
 
-    const removeListeners = useCallback(() => {
+    const removeListeners = useCallback(() : void => {
         if (!canvasRef.current) return
         removeMouseListeners(canvasRef.current)
         removeTouchListeners(canvasRef.current)

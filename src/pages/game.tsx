@@ -34,7 +34,7 @@ export function Game() {
 
 
     // Opp disconnect
-    const onOpponentDisconnect = useCallback(() => {
+    const onOpponentDisconnect = useCallback((): void => {
         console.log('sorry he quited. should stop time and show a victory modal.')
         setOppDisconnect(true)
         setGameMode(false)
@@ -42,7 +42,7 @@ export function Game() {
     }, [])
 
     // Opp left
-    const onOpponentQuit = useCallback((opponentId: string) => {
+    const onOpponentQuit = useCallback((opponentId: string): void => {
         console.log(`Opponent with the Id ${opponentId} left the room`);
         setGameMode(false)
         setOppQuit(true)
@@ -63,14 +63,14 @@ export function Game() {
 
 
     // When the user leaves
-    const onQuitGame = () => {
+    const onQuitGame = (): void => {
         setGameMode(false)
         socketService.emit('left-room')
         toggleGameModal()
         navigate('/feed')
     }
 
-    const onSaveBoard = useCallback(async () => {
+    const onSaveBoard = useCallback(async (): Promise<void> => {
         if (!isHost && !isOppDisconnect && !isOppQuit) {
             console.log('didnt save')
             return
@@ -85,17 +85,17 @@ export function Game() {
     }, [dispatch, isHost, isOppDisconnect, isOppQuit, opponentUser, word])
 
     // Happens only when the time is up. not when someone quit or disconnect.
-    const onGameEnd = useCallback(() => {
+    const onGameEnd = useCallback((): void => {
         setGameModalSettings({ isOpen: true, type: 'game-end' })
         setGameMode(false)
         onSaveBoard()
     }, [onSaveBoard])
 
-    const toggleGameModal = () => {
+    const toggleGameModal = (): void => {
         setModalSettings(prevState => ({ ...prevState, isOpen: !prevState.isOpen }))
     }
 
-    const setGameModalSettings = ({ isOpen, type }: IDynamicModalState) => {
+    const setGameModalSettings = ({ isOpen, type }: IDynamicModalState): void => {
         setModalSettings(prevState => ({ ...prevState, isOpen, type }))
     }
 

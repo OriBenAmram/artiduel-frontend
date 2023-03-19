@@ -11,21 +11,21 @@ interface ModalProps {
 export function GameEndModal({ isOppDisconnect, isOppQuit, toggleModal, onSaveBoard, setIsLoading }: ModalProps) {
     const navigate = useNavigate()
 
-    const onFeedClick = () => {
+    const onFeedClick = () : void => {
         navigate('/feed')
         toggleModal()
     }
 
-    const getModalText = () => {
+    const getModalText = () : string => {
         if (isOppDisconnect) return 'It seems like your opponent disconnected. You can either post this drawing or return home.'
         if (isOppQuit) return 'It seems like your opponent quited. Now, you can either post this drawing or return home'
         return 'Your drawing is already published! Make sure to check it out in the feed...'
     }
 
-    const onPostDrawing = async (ev: { preventDefault: () => void }) => {
+    const onPostDrawing = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) : void => {
         ev.preventDefault()
         setIsLoading(true)
-        await onSaveBoard()
+        onSaveBoard()
         navigate('/feed')
     }
 
@@ -34,7 +34,7 @@ export function GameEndModal({ isOppDisconnect, isOppQuit, toggleModal, onSaveBo
         <p className="desc">{getModalText()}</p>
         {(!isOppDisconnect && !isOppQuit) && <button className="primary-btn" onClick={onFeedClick}>Feed</button>}
         {(isOppDisconnect || isOppQuit) && <div>
-            <button className="primary-btn" onClick={onPostDrawing}>Post</button>
+            <button className="primary-btn" onClick={(ev) => onPostDrawing(ev)}>Post</button>
             <button className="alternative-btn" onClick={onFeedClick}>Home</button>
         </div>}
     </div>

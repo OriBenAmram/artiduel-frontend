@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { DrawPreview } from "./draw-preview";
 import { ProfileDrawPreview } from "./profile-draw-preview";
 
-import { IDraw } from "../model/interfaces/IDraw"
+import { IDraw } from "../model/interfaces/IDraw.interface"
 import { IFormattedDraw } from '../model/interfaces/IFormattedDraw'
 
 interface DrawListProps {

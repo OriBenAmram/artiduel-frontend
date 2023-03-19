@@ -1,4 +1,4 @@
-import { IDraw, ILikeEntity } from './IDraw'
+import { IDraw, ILikeEntity } from './IDraw.interface'
 export interface IStorageUser {
     _id: string
     fullname: string
