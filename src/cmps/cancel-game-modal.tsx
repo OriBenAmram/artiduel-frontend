@@ -1,9 +1,11 @@
+import { FC } from "react"
+
 interface ModalProps {
     toggleModal: () => void
     onQuitGame: () => void
 }
 
-export function CancelGameModal({ toggleModal, onQuitGame }: ModalProps) {
+export const CancelGameModal: FC<ModalProps> = ({ toggleModal, onQuitGame }) => {
 
     return <div className="end-content">
         <h1>Are you sure?</h1>

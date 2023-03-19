@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef, Dispatch } from "react";
+import { useEffect, useState, useCallback, useRef, Dispatch, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FeedHeader } from "../cmps/feed-header";
@@ -9,12 +9,12 @@ import { selectedDrawings } from "../store/store";
 
 import { drawService } from "../services/draw.service";
 
-export function Feed() {
+export const Feed: FC = () => {
     const dispatch = useDispatch()
     const drawings = useSelector(selectedDrawings)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const loadDrawings = useCallback(async () : Promise<void> => {
+    const loadDrawings = useCallback(async (): Promise<void> => {
         const drawingsToSave = await drawService.query()
         dispatch(setDrawings(drawingsToSave))
     }, [dispatch])

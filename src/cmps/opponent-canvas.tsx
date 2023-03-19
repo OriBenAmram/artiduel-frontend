@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react"
+import { useEffect, useCallback, FC } from "react"
 import { IOpponentMiniUser } from "../model/interfaces/IUser"
 import { canvasService } from "../services/canvas.service"
 
@@ -10,7 +10,7 @@ interface opponentCanvasProps {
     opponentImageRef: { current: HTMLImageElement | null }
 }
 
-export function OpponentCanvas({ isGameOn, opponentUser, opponentImageRef }: opponentCanvasProps) {
+export const OpponentCanvas: FC<opponentCanvasProps> = ({ isGameOn, opponentUser, opponentImageRef }) => {
 
 
     const setOpponentImage = useCallback((): void => {

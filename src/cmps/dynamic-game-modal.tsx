@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FC } from 'react'
 
 import { CancelGameModal } from './cancel-game-modal'
 import { GameEndModal } from './game-end-modal'
@@ -14,10 +14,10 @@ interface ModalProps {
     onQuitGame: () => void
 }
 
-export function DynamicGameModal({  type, isOppDisconnect, isOppQuit ,onQuitGame, toggleModal,  onSaveBoard }: ModalProps) {
+export const DynamicGameModal: FC<ModalProps> = ({ type, isOppDisconnect, isOppQuit, onQuitGame, toggleModal, onSaveBoard }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const setModalLoading = (isLoading: boolean) : void => {
+    const setModalLoading = (isLoading: boolean): void => {
         setIsLoading(isLoading)
     }
 

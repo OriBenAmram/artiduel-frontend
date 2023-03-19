@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setUser } from '../store/slicers/user.slice';
@@ -15,11 +15,11 @@ interface HomeHeaderProps {
     user: IStorageUser | null
 }
 
-export function HomeHeader({ user }: HomeHeaderProps) {
+export const HomeHeader: FC<HomeHeaderProps> = ({ user }) => {
     const [isMenuOpen, setMenuState] = useState(false)
     const dispatch = useDispatch()
 
-    const toggleMenu = () : void => {
+    const toggleMenu = (): void => {
         setMenuState(!isMenuOpen)
     }
 

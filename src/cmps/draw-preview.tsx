@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { updateDrawing, removeDrawing } from '../store/slicers/draw.slice'
@@ -26,7 +26,7 @@ interface Player {
     dataUrl: string
 }
 
-export function DrawPreview({ draw }: DrawPreviewProps) {
+export const DrawPreview: FC<DrawPreviewProps> = ({ draw }) => {
     const dispatch = useDispatch()
     const loggedInUser = useSelector(selectedUser)
 
@@ -38,12 +38,12 @@ export function DrawPreview({ draw }: DrawPreviewProps) {
         if (secondDrawingRef.current) secondDrawingRef.current.src = draw.player2?.dataUrl || ''
     })
 
-    const onRemoveDrawing = async () : Promise<void>  => {
+    const onRemoveDrawing = async (): Promise<void> => {
         await drawService.remove(draw._id)
         dispatch(removeDrawing(draw._id))
     }
 
-    const onLikeDrawing = async (playerId: string): Promise<void>  => {
+    const onLikeDrawing = async (playerId: string): Promise<void> => {
 
         if (!loggedInUser) {
             toast.info(

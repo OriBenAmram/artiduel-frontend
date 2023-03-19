@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react'
+import { useState, MouseEvent, FC } from 'react'
 import { useNavigate, useLocation, Location } from 'react-router-dom'
 
 import { MdClose } from 'react-icons/md'
@@ -8,23 +8,23 @@ interface GameModalProps {
     toggleMenu: () => void
 }
 
-export function GameModalScreen({ toggleMenu }: GameModalProps) {
+export const GameModalScreen: FC<GameModalProps> = ({ toggleMenu }) => {
     const [level, setLevel] = useState('Easy')
     const navigate = useNavigate()
     const location: Location = useLocation()
 
-    const onClickModal = (ev: MouseEvent) : void => {
+    const onClickModal = (ev: MouseEvent): void => {
         ev.stopPropagation()
         // prevent closing it
     }
 
-    const onNewGame = () : void => {
+    const onNewGame = (): void => {
         if (location.pathname !== '/waiting-room') navigate(`/waiting-room`)
         socketService.emit('room-level-entrance', level)
         toggleMenu()
     }
 
-    const onPlayFriends = () : void => {
+    const onPlayFriends = (): void => {
         toggleMenu()
         navigate('/friends')
     }

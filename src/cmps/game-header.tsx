@@ -1,12 +1,15 @@
-import { IoArrowForwardSharp } from 'react-icons/io5'
+import { FC } from 'react'
+
+import { IDynamicModalState } from '../model/interfaces/IGame'
+
 import { FaSignal } from 'react-icons/fa'
-import { IDynamicModalState } from '../model/interfaces/IGame' 
+import { IoArrowForwardSharp } from 'react-icons/io5'
 
 interface GameHeaderProps {
     setGameModalSettings: (modalSetts: IDynamicModalState) => void
 }
 
-export function GameHeader({ setGameModalSettings }: GameHeaderProps) {
+export const GameHeader: FC<GameHeaderProps> = ({ setGameModalSettings }) => {
     return <div className="game-header">
         <span className="connection-indication"><FaSignal className="icon" title="connection signal" /></span>
         <div className="logo" title="Game Logo">ArtiDuel</div>

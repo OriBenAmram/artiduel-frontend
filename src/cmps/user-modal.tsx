@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState, useEffect, useRef, TouchEventHandler, TouchEvent } from "react"
+import { MouseEventHandler, useState, useEffect, useRef, TouchEventHandler, TouchEvent, FC } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectedUser } from "../store/store"
@@ -9,7 +9,7 @@ interface UserModalProps {
     toggleUserModal: MouseEventHandler<HTMLAnchorElement> | TouchEventHandler<HTMLAnchorElement>
 }
 
-export function UserModal({ onLogout, toggleUserModal }: UserModalProps) {
+export const UserModal: FC<UserModalProps> = ({ onLogout, toggleUserModal }) => {
 
     const loggedInUserId = useSelector(selectedUser)?._id
     const [isDragging, setIsDragging] = useState<boolean>(false)

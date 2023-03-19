@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface ModalProps {
@@ -8,21 +9,21 @@ interface ModalProps {
     setIsLoading: (isLoading: boolean) => void
 }
 
-export function GameEndModal({ isOppDisconnect, isOppQuit, toggleModal, onSaveBoard, setIsLoading }: ModalProps) {
+export const GameEndModal: FC<ModalProps> = ({ isOppDisconnect, isOppQuit, toggleModal, onSaveBoard, setIsLoading }) => {
     const navigate = useNavigate()
 
-    const onFeedClick = () : void => {
+    const onFeedClick = (): void => {
         navigate('/feed')
         toggleModal()
     }
 
-    const getModalText = () : string => {
+    const getModalText = (): string => {
         if (isOppDisconnect) return 'It seems like your opponent disconnected. You can either post this drawing or return home.'
         if (isOppQuit) return 'It seems like your opponent quited. Now, you can either post this drawing or return home'
         return 'Your drawing is already published! Make sure to check it out in the feed...'
     }
 
-    const onPostDrawing = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) : void => {
+    const onPostDrawing = (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         ev.preventDefault()
         setIsLoading(true)
         onSaveBoard()

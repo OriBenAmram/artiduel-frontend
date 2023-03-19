@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import { IoMdColorPalette } from 'react-icons/io'
 import { BsFillPencilFill, BsFillEraserFill } from 'react-icons/bs'
 
@@ -10,7 +12,7 @@ interface PlayerToolbarProps {
 
 type inputProperties = { value: string | number, name: 'color' | 'width' }
 
-export function PlayerToolbar({ clearCanvas, brushRef, drawSettingsRef }: PlayerToolbarProps) {
+export const PlayerToolbar: FC<PlayerToolbarProps> = ({ clearCanvas, brushRef, drawSettingsRef }) => {
 
     const handleBrushChange = ({ target }: any) => {
         const { value, name: field }: inputProperties = target

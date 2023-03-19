@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, FC } from 'react'
 
 import { toast } from 'react-toastify';
 
@@ -10,7 +10,7 @@ interface PostFilterProps {
     text: string
 }
 
-export function PostFilter({ text }: PostFilterProps) {
+export const PostFilter: FC<PostFilterProps> = ({ text }) => {
     const [typedText, setTypedText] = useState('')
     let typingIntervalId = useRef<null | NodeJS.Timeout>(null)
 
@@ -32,7 +32,7 @@ export function PostFilter({ text }: PostFilterProps) {
         })
     }, [startTyping])
 
-    const onTemporarlyWarning = () => { 
+    const onTemporarlyWarning = () => {
         toast.warning(`I'm currently working on adding this feature, please try it again in a few days`,);
         return
     }

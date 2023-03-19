@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, FC } from "react";
 import { useSelector } from "react-redux"
 
 import Timer from "./timer";
@@ -17,19 +17,19 @@ interface GameHeroSectionProps {
     opponentImageRef: { current: HTMLImageElement | null }
 }
 
-export function GameHeroSection({ onGameEnd, isOppDisconnect, opponentUser, opponentImageRef }: GameHeroSectionProps) {
+export const GameHeroSection: FC<GameHeroSectionProps> = ({ onGameEnd, isOppDisconnect, opponentUser, opponentImageRef }) => {
     const gameWord = useSelector(selectedWord)
     const isNarrow = useSelector(isScreenNarrow)
 
-    const setOpponentImage = useCallback(() : void => {
+    const setOpponentImage = useCallback((): void => {
         if (!opponentImageRef?.current) return
         const imageSrc = canvasService.getOpponentImageSrc()
         opponentImageRef.current.src = imageSrc
     }, [opponentImageRef])
 
-    const onOpponentChange = useCallback((dataURL: string) : void => {
+    const onOpponentChange = useCallback((dataURL: string): void => {
         canvasService.saveOpponentImage(dataURL)
-        if(opponentImageRef?.current) opponentImageRef.current.src = dataURL
+        if (opponentImageRef?.current) opponentImageRef.current.src = dataURL
     }, [opponentImageRef])
 
     useEffect(() => {

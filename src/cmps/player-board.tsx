@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, FC } from 'react'
 import { useParams } from 'react-router-dom';
 
 import { PlayerToolbar } from './player-toolbar';
@@ -8,12 +8,12 @@ import { socketService } from '../services/socket.service';
 import { PlayerUserBar } from './player-user-bar';
 
 interface IPlayerBoardProps {
-    playerCanvasRef: {current : HTMLCanvasElement | null}
+    playerCanvasRef: { current: HTMLCanvasElement | null }
     isGameOn: boolean
     isNarrow: boolean
 }
 
-export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef, isNarrow }: IPlayerBoardProps) {
+export const PlayerBoard: FC<IPlayerBoardProps> = ({ isGameOn, playerCanvasRef: canvasRef, isNarrow }) => {
 
     const { roomId } = useParams()
 
@@ -24,7 +24,7 @@ export function PlayerBoard({ isGameOn, playerCanvasRef: canvasRef, isNarrow }: 
     const brushRef = useRef<{ color: string, width: number }>({ color: 'black', width: 10 })
 
 
-    const removeListeners = useCallback(() : void => {
+    const removeListeners = useCallback((): void => {
         if (!canvasRef.current) return
         removeMouseListeners(canvasRef.current)
         removeTouchListeners(canvasRef.current)
