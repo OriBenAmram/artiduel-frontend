@@ -29,7 +29,7 @@
     }
 
     .register-modal {
-        background-color: $clr3;
+        background-color: $white;
         border-radius: 0;
         box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
         display: flex;
@@ -61,10 +61,29 @@
             }
         }
 
+        .input-container { 
+            width: 100%;
+            margin: 0 0 1.2em;
+        }
+
         input {
             @include bordered-input;
             width: 100%;
             padding-left: 16px;
+            margin: 0
+        }
+    }
+
+    .cta-btn { 
+        @include primary-btn;
+        background-color: $purple-strong;
+        font-weight: 600;
+        width: 100%;
+        border: 1px solid transparent;
+
+        &:hover { 
+            background-color: $purple-strong-hover;
+            border: 1px solid $purple-strong-hover;
         }
     }
 
@@ -73,7 +92,7 @@
     }
 
     .alternative-login-btn {
-        background: $clr3;
+        background: $white;
         color: rgba(0, 0, 0, 0.54);
         box-shadow: rgb(0 0 0 / 20%) 1px 1px 5px 0;
         border-color: transparent;
@@ -89,17 +108,35 @@
         cursor: pointer;
     }
 
+    .form-seperator { 
+        margin: rem(25px) 0;
+        width: 100%;
+        border-top: 1px solid hsl(0,0%,80%);
+    }
+
     .nav-options {
         display: flex;
         align-content: center;
 
         span {
             color: rgba(0, 0, 0, 0.386);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
     .nav-options > * {
         margin: 0 10px;
         color: rgba(0, 0, 0, 0.54);
+    }
+
+    .error-msg { 
+        width: 100%;
+        font-weight: 600;
+        color: #f2545b;
+        font-weight: 600;
+        @include font-size(10px, 12px, 12px, 12px);
+        padding-top: 6px;
     }
 }

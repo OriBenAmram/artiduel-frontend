@@ -6,12 +6,18 @@ import { setUser } from "../store/slicers/user.slice";
 
 import { userService } from "../services/user.service";
 
+import { toast } from 'react-toastify';
+
+
+type validationMsg = string | null
+
 export function LoginPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    
-    const [credentials, setCredentials] = useState({ username: '', password: '' })
 
+    const [credentials, setCredentials] = useState({ username: '', password: '' })
+    const [credentialsError, setCredentialsError] = useState('')
+    
     const handleChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
         const field = ev.target.name
         const value = ev.target.value
@@ -20,8 +26,9 @@ export function LoginPage() {
 
     const onSubmit = async (ev: React.FormEvent<HTMLFormElement>): Promise<void> => {
         ev.preventDefault()
-        if (!credentials.username || !credentials.password) {
-            console.log('Please fill out all the fields in the form')
+        const validationMsg: validationMsg = getValidationErr()
+        if (validationMsg) {
+            setCredentialsError(validationMsg)
             return
         }
         try {
@@ -29,8 +36,19 @@ export function LoginPage() {
             dispatch(setUser(user))
             if (user) navigate('/feed')
         } catch (err) {
-            console.log('could not login')
+            setCredentialsError('Sorry, the username or password you entered is incorrect. Please try again with the correct information.')
         }
+    }
+
+    const getValidationErr = (): string | null => {
+        // username
+        if (!credentials.username) return 'You must enter your username'
+        if (!credentials.password) return 'You must enter your password'
+        return null
+    }
+
+    const onFocus = () => {
+        setCredentialsError('')
     }
 
     return <div className="register-page">
@@ -39,8 +57,13 @@ export function LoginPage() {
         <div className="register-modal">
             <form onSubmit={onSubmit} autoComplete="off">
                 <h1>Log in to ArtiDuel</h1>
-                <input type="text" placeholder="Username" name="username" value={credentials.username} onChange={handleChange} autoFocus />
-                <input type="text" placeholder="Password" name="password" value={credentials.password} onChange={handleChange} />
+                <div className="input-container">
+                    <input type="text" placeholder="Username" name="username" value={credentials.username} onChange={handleChange} onFocus={onFocus} autoFocus />
+                </div>
+                <div className="input-container">
+                    <input type="text" placeholder="Password" name="password" value={credentials.password} onChange={handleChange} onFocus={onFocus} />
+                    {credentialsError && <div className="error-msg">{credentialsError}</div>}
+                </div>
                 <button className="primary-btn">Continue</button>
             </form>
             <div className="or-seperator">Or</div>

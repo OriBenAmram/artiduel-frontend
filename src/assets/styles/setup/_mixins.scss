@@ -92,7 +92,7 @@
     border: 1px solid transparent;
     text-overflow: ellipsis;
     transition: border-color 150ms ease-out 0s;
-    background-color: $clr10;
+    background-color: $medium-gray;
     border-radius: 9px;
     cursor: text;
 
@@ -104,7 +104,7 @@
         transition: border-color 200ms ease-in 0s;
         outline: $purple-strong;
         border: 1px solid $purple-strong;
-        background-color: $clr3;
+        background-color: $white;
     }
 }
 
@@ -125,7 +125,7 @@
         transition: border-color 200ms ease-in 0s;
         outline: $purple-strong;
         border: 1px solid $purple-strong;
-        background-color: $clr3;
+        background-color: $white;
     }
 }
 
@@ -155,8 +155,8 @@
 
 // Buttons
 @mixin primary-btn() {
-    background: $clr1;
-    color: $clr3;
+    background: $main-purple;
+    color: $white;
     letter-spacing: -0.03em;
     border-radius: 8px;
     border: 2px solid transparent;
@@ -164,13 +164,13 @@
     text-align: center;
 
     &:hover {
-        background-color: $clr6;
-        border-color: $clr6;
+        background-color: $light-purple;
+        border-color: $light-purple;
         transition: border-color 0.1s ease-out, background-color 0.1s ease-out, color 0.1s ease-out;
     }
 }
 
-@mixin secondary-btn($color: $clr3, $hover-color: $dark-gray) {
+@mixin secondary-btn($color: $white, $hover-color: $dark-gray) {
     color: $color;
     letter-spacing: -0.03em;
     border-radius: 8px;

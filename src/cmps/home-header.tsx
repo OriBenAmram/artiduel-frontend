@@ -45,8 +45,10 @@ export const HomeHeader: FC<HomeHeaderProps> = ({ user }) => {
             <div className={`nav-container ${isMenuOpen ? 'open' : ''}`}>
                 <button className="close-btn" onClick={toggleMenu}><AiOutlineClose className='close-icon' /></button>
                 <div className="logo desktop">ArtiDue</div>
-                <NavLink to={'/about'}>Who are we</NavLink>
-                <NavLink to={'/instructions'}>Instructions</NavLink>
+                <div className="links-container">
+                    <NavLink to={'/login'}>Log in</NavLink>
+                    <NavLink to={'/instructions'}>Instructions</NavLink>
+                </div>
             </div>
             {!user && <div className="auth-options">
                 <NavLink to={'/login'}>Log in</NavLink>

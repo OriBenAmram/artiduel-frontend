@@ -6,14 +6,14 @@ button {
     text-align: center;
     width: 100%;
     padding: 14px;
-    background-color: $clr1;
-    color: $bright-txt;
+    background-color: $main-purple;
+    color: $medium-gray;
     border-radius: 8px;
     border: none;
 
     &:hover {
-        color: $clr3;
-        background-color: $clr6;
+        color: $white;
+        background-color: $light-purple;
     }
 }
 

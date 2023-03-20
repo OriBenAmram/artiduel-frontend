@@ -4,7 +4,7 @@
     margin-top: 60px;
 
     .info-container {
-        color: $bright-txt;
+        color: $medium-gray;
         font-size: 0.9em;
         margin-bottom: 1rem;
         margin-top: 5px;
@@ -37,10 +37,10 @@
         font-size: 0.9em;
 
         .achievements {
-            color: $bright-txt;
+            color: $medium-gray;
 
             .score {
-                color: $clr1;
+                color: $main-purple;
                 white-space: pre
             }
         }

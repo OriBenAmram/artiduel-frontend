@@ -10,6 +10,7 @@ export function HomeContent() {
                     <NavLink to={'/signup'} className="primary-btn">Sign up</NavLink>
                     <NavLink to={'/feed'} className="secondary-btn-dark">Guest mode</NavLink>
                 </div>
+                <small>Sign in for a real experience</small>
             </section>
         </div>
     )

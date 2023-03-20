@@ -21,6 +21,7 @@
 
     .logo {
         margin-right: rem(35px);
+        @include font-size(25px, 27px, 32px, 35px);
         &.mobile {
             @include for-wide-layout {
                 display: none;
@@ -31,12 +32,14 @@
             display: none;
             @include for-wide-layout {
                 display: inline;
+                font-size: rem(27px);
             }
         }
     }
 
     .nav-container {
         position: fixed;
+        z-index: 10;
         height: 100vh;
         top: 0;
         right: 0;
@@ -55,17 +58,29 @@
             transform: translateX(0);
         }
 
-        a {
-            text-align: center;
-            padding: 6px;
-            transition: background-color 0.3s;
-            font-weight: 400;
-            margin: 0;
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
-            white-space: nowrap;
+            margin: 0;
 
-            &:hover { 
-                background-color: $dark-gray;
+            a {
+                text-align: center;
+                padding: 6px;
+                transition: background-color 0.3s;
+                font-weight: 400;
+                margin: 0;
+                width: 100%;
+                white-space: nowrap;
+
+                &:hover {
+                    background-color: $dark-gray;
+                }
+            }
+
+            @include for-wide-layout {
+                display: none;
             }
         }
 
@@ -75,11 +90,11 @@
             top: 10px;
             background-color: transparent;
             border: none;
-            color: $bright-txt;
+            color: $medium-gray;
             margin: 0;
 
-            .close-icon { 
-                color: $bright-txt;
+            .close-icon {
+                color: $medium-gray;
                 font-size: 16px;
                 line-height: 16px;
             }
@@ -125,7 +140,7 @@
 
     .auth-options > * {
         margin-right: rem(25px);
-        font-size: rem(14px);
+        @include font-size(14px, 16px, 16px, 18px)
     }
 
     .hamburger-btn {
@@ -145,6 +160,7 @@
 
     .screen-overlay {
         position: fixed;
+        z-index: 5;
         width: 100%;
         height: 100%;
         top: 0;
@@ -161,33 +177,33 @@
     }
 }
 
-.hero-container { 
+.hero-container {
     display: flex;
     flex-direction: column;
 
     // 960px
-    @include for-normal-layout { 
+    @include for-normal-layout {
         flex-direction: row;
     }
 
-    h1 { 
+    h1 {
         font-size: rem(20px);
-        
-        @include for-narrow-layout { 
+
+        @include for-narrow-layout {
             font-size: rem(24px);
         }
-        
-        @include for-normal-layout { 
+
+        @include for-normal-layout {
             font-size: rem(30px);
         }
-        
-        @include for-wide-layout { 
+
+        @include for-wide-layout {
             font-size: rem(34px);
         }
     }
 }
 
 // 350px - 550px
-// 550px - 760px 
+// 550px - 760px
 // 760 - 1000px
 // 1000px+
