@@ -1,8 +1,11 @@
 import { useState, MouseEvent, FC } from 'react'
 import { useNavigate, useLocation, Location } from 'react-router-dom'
 
-import { MdClose } from 'react-icons/md'
 import { socketService } from '../services/socket.service'
+
+import { toast } from 'react-toastify';
+
+import { MdClose } from 'react-icons/md'
 
 interface GameModalProps {
     toggleMenu: () => void
@@ -25,6 +28,7 @@ export const GameModalScreen: FC<GameModalProps> = ({ toggleMenu }) => {
     }
 
     const onPlayFriends = (): void => {
+        toast.info(`Sorry, this feature would be available soon.`);
         toggleMenu()
         navigate('/friends')
     }

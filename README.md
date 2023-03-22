@@ -3,7 +3,7 @@
 
 I'm currently working on this project with [Vicky Polatov](https://github.com/vicky-polatov "Vicky's profile link"), who is also an instructor at Coding Academy. 
 ***It is not finished yet***, read about it [here](#current-status).
-<!-- [Take a look, it's on render.com](https://oribenamram.github.io/Bitcoin-Vue "Render link") -->
+[Take a look, it's on render.com](https://artiduel.onrender.com "Render link")
 
 ![Drawing image](src/assets/imgs/drawing-butterfly.avif "Drawing image")
 ___
@@ -13,6 +13,7 @@ ___
 - [Features](#features)
 - [Getting started](#getting-started)
 - [Status](#current-status)
+- [Teach me how to play!](#game-instructions)
 
 ## Description
 This app is kind of a social network, based on drawing battles. 
@@ -100,3 +101,17 @@ Our next steps are:
 
 This project was supposed to be short and basic, and it's only goal was to make us learn new skills.
 Nonetheless, we are investing a lot of effort to make it looks good enough for people to play with! 
+
+## Game instructions
+- Sign up / Log in ([You can do it here](https://artiduel.onrender.com/login "Login link")).
+- Now you are watching the feed page and other drawings: here you can like other drawings, visit other people profiles and more. But, let's play... 
+- Click on the "Start Game" button - it's the large purple button on top (or below in mobile).
+- Choose the level of difficulty, and press the button to be transformed to the waiting room.
+- Now, we are searching for another player around the world that picked the same difficulty. 
+- Now look, this game isn't too popular yet, so if you don't wanna wait just enter through another browser (Ctrl + Shift + N from incognito). Make sure to sign in with different account (just a quick sign up will do).
+- Choose the same level of difficulty and now you'll be matched (finally...) => The game started!
+- You have a minute to draw the word that displays on top.
+- Notice: 
+    - You have a toolbar with some options next to your canvas.
+    - The canvas of your opponent is also displayed, and you can watch them drawing in real time(!)
+    - In order to stop the game, you can click on the top right arrow (and observe how it effects the other browser game when you decide to quit...)

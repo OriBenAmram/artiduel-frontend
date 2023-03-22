@@ -61,7 +61,7 @@ export function LoginPage() {
                     <input type="text" placeholder="Username" name="username" value={credentials.username} onChange={handleChange} onFocus={onFocus} autoFocus />
                 </div>
                 <div className="input-container">
-                    <input type="text" placeholder="Password" name="password" value={credentials.password} onChange={handleChange} onFocus={onFocus} />
+                    <input type="password" placeholder="Password" name="password" value={credentials.password} onChange={handleChange} onFocus={onFocus} />
                     {credentialsError && <div className="error-msg">{credentialsError}</div>}
                 </div>
                 <button className="primary-btn">Continue</button>

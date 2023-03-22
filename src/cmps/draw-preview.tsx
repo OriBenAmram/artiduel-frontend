@@ -61,11 +61,16 @@ export const DrawPreview: FC<DrawPreviewProps> = ({ draw }) => {
             chosePlayer = drawToSave.player1
         } else if (drawToSave.player2.userId === playerId) {
             chosePlayer = drawToSave.player2
+        } else { 
+
         }
         const likeIdx = chosePlayer.likes.findIndex((l: ILikeEntity) => l.userId === loggedInUser._id)
+        console.log('likeIdx:', likeIdx);
+        
         if (likeIdx === -1) chosePlayer.likes.push(like)
         else chosePlayer.likes.splice(likeIdx, 1)
-
+        console.log('drawToSave:', drawToSave);
+        
         // update data
         try {
             dispatch(updateDrawing(drawToSave))
@@ -85,7 +90,7 @@ export const DrawPreview: FC<DrawPreviewProps> = ({ draw }) => {
     }
 
     return <article className="draw-preview">
-        {/* <button className='draw-preview__close-btn' onClick={onRemoveDrawing}>X</button> */}
+        <button className='draw-preview__close-btn' onClick={onRemoveDrawing}>X</button>
         <div className="draw-preview__first-draw">
             <img className="draw-preview__img" alt='user-img' src='' ref={firstDrawingRef} />
             <div className="draw-preview__user-bar">
