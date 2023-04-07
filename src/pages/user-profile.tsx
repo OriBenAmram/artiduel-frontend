@@ -40,7 +40,7 @@ export const UserProfile: FC<{}> = () => {
                     setProfileSettings(false, user as IStorageUser)
                 })
                 .catch(err => {
-                    console.log('Some Error', err)
+                    console.log('Something went wrong', err)
                     navigate('/')
                 })
         }
