@@ -13,7 +13,7 @@ import { isScreenNarrow, selectedUser } from '../store/store';
 // Services
 
 // 3rd side libraries
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 // Icons
 import { AiFillHome } from 'react-icons/ai'
@@ -35,7 +35,7 @@ export function AppHeader() {
     const [isUserModalOpen, setUserModalOpen] = useState<boolean>(false)
     const isHide = ((location.pathname === '/login' || location.pathname === '/signup') || (location.pathname === '/') || (location.pathname.includes('/game')))
 
-    function onWindowWidthChange(ev: MediaQueryListEvent) : void {
+    function onWindowWidthChange(ev: MediaQueryListEvent): void {
         (ev.matches) ? dispatch(setNarrowState(true)) : dispatch(setNarrowState(false))
     }
 
@@ -55,19 +55,19 @@ export function AppHeader() {
         }
     }
 
-    const onOpenGameModal = ()  : void => {
+    const onOpenGameModal = (): void => {
         if (!user) {
-            toast.info(`In order to play you have to sign in!`);
+            // toast.info(`In order to play you have to sign in!`);
             return
         }
         toggleMenu()
     }
 
-    const toggleMenu = () : void  => {
+    const toggleMenu = (): void => {
         setMenuState(prevIsMenuOpen => !prevIsMenuOpen)
     }
 
-    const toggleUserModal = (ev: MouseEvent | null) : void  => { // TouchEvent
+    const toggleUserModal = (ev: MouseEvent | null): void => { // TouchEvent
         ev?.stopPropagation()
         setUserModalOpen(prevIsUserModalOpen => !prevIsUserModalOpen)
     }

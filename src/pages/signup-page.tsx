@@ -6,7 +6,7 @@ import { setUser } from "../store/slicers/user.slice";
 
 import { userService } from "../services/user.service";
 
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { GoPrimitiveDot } from 'react-icons/go'
 
 type validationData = {
@@ -45,7 +45,7 @@ export function SignupPage() {
             if (user) navigate('/feed')
             clearState()
         } catch {
-            toast.warning(`Could not sign up for some reason, please try again soon`);
+            // toast.warning(`Could not sign up for some reason, please try again soon`);
         }
     }
 

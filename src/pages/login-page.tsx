@@ -6,7 +6,7 @@ import { setUser } from "../store/slicers/user.slice";
 
 import { userService } from "../services/user.service";
 
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 
 type validationMsg = string | null
@@ -17,7 +17,7 @@ export function LoginPage() {
 
     const [credentials, setCredentials] = useState({ username: '', password: '' })
     const [credentialsError, setCredentialsError] = useState('')
-    
+
     const handleChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
         const field = ev.target.name
         const value = ev.target.value

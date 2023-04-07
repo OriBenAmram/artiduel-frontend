@@ -9,7 +9,7 @@ import { drawService } from '../services/draw.service'
 import { IDraw, ILikeEntity } from '../model/interfaces/IDraw.interface'
 
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 import avatar2 from '../assets/imgs/avatar2.jpg'
 
@@ -46,9 +46,9 @@ export const DrawPreview: FC<DrawPreviewProps> = ({ draw }) => {
     const onLikeDrawing = async (playerId: string): Promise<void> => {
 
         if (!loggedInUser) {
-            toast.info(
-                `Please sign in so you could like drawings`,
-            );
+            // toast.info(
+            //     `Please sign in so you could like drawings`,
+            // );
             return
         }
         let chosePlayer
@@ -61,16 +61,16 @@ export const DrawPreview: FC<DrawPreviewProps> = ({ draw }) => {
             chosePlayer = drawToSave.player1
         } else if (drawToSave.player2.userId === playerId) {
             chosePlayer = drawToSave.player2
-        } else { 
+        } else {
 
         }
         const likeIdx = chosePlayer.likes.findIndex((l: ILikeEntity) => l.userId === loggedInUser._id)
         console.log('likeIdx:', likeIdx);
-        
+
         if (likeIdx === -1) chosePlayer.likes.push(like)
         else chosePlayer.likes.splice(likeIdx, 1)
         console.log('drawToSave:', drawToSave);
-        
+
         // update data
         try {
             dispatch(updateDrawing(drawToSave))

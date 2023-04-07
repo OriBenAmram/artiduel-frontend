@@ -14,8 +14,8 @@ export const Feed: FC = () => {
     const drawings = useSelector(selectedDrawings)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const loadDrawings = useCallback(async (): Promise<void> => {
-        const drawingsToSave = await drawService.query()
+    const loadDrawings = useCallback(async (filterBy: { txt?: String } = {}): Promise<void> => {
+        const drawingsToSave = await drawService.query(filterBy)
         dispatch(setDrawings(drawingsToSave))
     }, [dispatch])
 
@@ -27,8 +27,12 @@ export const Feed: FC = () => {
         }, 2000);
     }, [loadDrawings])
 
+    const onSetFilter = (filterBy: { txt: String }) => {
+        loadDrawings(filterBy)
+    }
+
     return <div className="feed-page">
-        <FeedHeader />
+        <FeedHeader onSetFilter={onSetFilter} />
         {!isLoading && <DrawList drawings={drawings} />}
         {/* Loader */}
         {isLoading && <div className="loading-text-container">

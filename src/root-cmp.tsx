@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 
 import { AppHeader } from './cmps/app-header';
 
@@ -17,7 +17,7 @@ export default function RootCmp() {
           ))}
         </Routes>
       </main>
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -29,7 +29,7 @@ export default function RootCmp() {
         draggable
         pauseOnHover
         theme="dark"
-      />
+      /> */}
     </div>
   );
 }

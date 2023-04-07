@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Location } from 'react-router-dom'
 
 import { socketService } from '../services/socket.service'
 
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 import { MdClose } from 'react-icons/md'
 
@@ -28,7 +28,7 @@ export const GameModalScreen: FC<GameModalProps> = ({ toggleMenu }) => {
     }
 
     const onPlayFriends = (): void => {
-        toast.info(`Sorry, this feature would be available soon.`);
+        // toast.info(`Sorry, this feature would be available soon.`);
         toggleMenu()
         navigate('/friends')
     }
