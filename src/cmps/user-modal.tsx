@@ -41,7 +41,6 @@ export const UserModal: FC<UserModalProps> = ({ onLogout, toggleUserModal }) => 
         setIsDragging(true)
         const mousePosY = getClientY(ev)
         setDragPercent(getDragPercent())
-        console.log('DOWN - getDragPercent', getDragPercent())
         setModalOptions((prevOpts: IModalOpts) => ({ ...prevOpts as IModalOpts, dragStartY: mousePosY }))
     }
 
@@ -50,10 +49,6 @@ export const UserModal: FC<UserModalProps> = ({ onLogout, toggleUserModal }) => 
         const mousePosY = getClientY(ev)
         setModalOptions((prevOpts: IModalOpts) => ({ ...prevOpts as IModalOpts, mousePosY, diff: mousePosY - prevOpts.dragStartY }))
         setDragPercent(getDragPercent())
-        console.log('DRAG - getDragPercent', getDragPercent())
-        console.log('diff', modalOptions.diff)
-        console.log('height', modalOptions.modalHeight)
-
     }
 
     function onUp() {

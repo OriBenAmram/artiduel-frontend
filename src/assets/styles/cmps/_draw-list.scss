@@ -5,8 +5,15 @@
     gap: 35px;
     grid-template-columns: minmax(200px, 365px);
     justify-content: center;
+    height: calc(100vh - 305px);
+    overflow-y: auto;
+    padding: 4px;
 
-    @include for-narrow-layout { 
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    @include for-narrow-layout {
         grid-template-columns: repeat(2, 1fr);
     }
 

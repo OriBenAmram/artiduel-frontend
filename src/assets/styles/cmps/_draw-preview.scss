@@ -2,7 +2,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 0.1px solid #7856ff;
+    border-radius: 7px;
+    box-shadow: -1px 1px 2px 2px #73689ca3;
 
     @include for-narrow-layout {
         width: 100%;
@@ -26,21 +27,17 @@
             font-size: rem(14px);
         }
 
-        @include for-normal-layout {
-        }
+        @include for-normal-layout {}
 
-        @include for-wide-layout {
-        }
+        @include for-wide-layout {}
     }
 
     &__close-btn {
         position: absolute;
         left: 0%;
         bottom: 0%;
-        transform: translate(-50%, -50%);
         background-color: #2124278f;
         color: whitesmoke;
-        padding: 12px;
         border-radius: 50%;
         z-index: 5;
     }
@@ -48,30 +45,31 @@
     &__first-draw {
         width: 100%;
         margin: 0 auto;
-        border-bottom: 0.5px solid whitesmoke;
+        border-bottom: 0.5px solid #73689c15;
         position: relative;
 
         @include for-narrow-layout {
             border: none;
-            border-right: 0.5px solid whitesmoke;
+            border-right: 0.5px solid #73689c15;
         }
     }
 
     &__second-draw {
         width: 100%;
         margin: 0 auto;
-        border-top: 0.5px solid whitesmoke;
+        border-top: 0.5px solid #73689c15;
         position: relative;
 
         @include for-narrow-layout {
             border: none;
-            border-left: 0.5px solid whitesmoke;
+            border-left: 0.5px solid #73689c15;
         }
     }
 
     &__img {
         background-color: rgb(80, 124, 151);
         width: 100%;
+        border-radius: 7px;
         @include aspect-ratio(1, 1);
     }
 
@@ -115,8 +113,7 @@
             font-size: rem(32px);
         }
 
-        @include for-narrow-layout {
-        }
+        @include for-narrow-layout {}
     }
 
     &__user-details-container {
@@ -124,6 +121,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         @include for-narrow-layout {
             flex-direction: row;
             align-items: center;
@@ -177,11 +175,11 @@
         text-align: center;
         font-size: rem(10px);
         line-height: rem(10px);
-        
+
         @include for-narrow-layout {
             padding: 1px 0;
         }
-        
+
         @include for-normal-layout {
             font-size: rem(12px);
             line-height: rem(12px);

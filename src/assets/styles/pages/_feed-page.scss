@@ -1,10 +1,9 @@
 .feed-page {
-    min-height: 100vh;
-    padding: rem(50px) 0 rem(200px);
+    height: calc(100vh - 70px);
     width: 90%;
     margin: 0 auto;
 
     .header-txt {
-        padding: 50px 0 20px;
+        padding: 10px 0 10px;
     }
 }

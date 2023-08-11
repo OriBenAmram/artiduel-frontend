@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, FC } from 'react'
 import { useSearchParams } from "react-router-dom";
 
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 import { BiSortAlt2 } from 'react-icons/bi'
@@ -68,15 +68,14 @@ export const PostFilter: FC<PostFilterProps> = ({ text, onSetFilter }) => {
     }
 
     const onTemporarlyWarning = () => {
-        // toast.warning(`I'm currently working on adding this feature, please try it again in a few days`,);
-        return
+        toast.warning(`I'm currently working on adding this feature, please try it again in a few days`);
     }
 
     return <div className="post-filter-container">
         <input className="search-input" type="text" value={filterBy.txt} placeholder={typedText} name='txt' onChange={handleChange} />
         <div className="filter-options">
             <button className="sort-btn" onClick={onTemporarlyWarning}> <BiSortAlt2 className="icon" /> Sort</button>
-            <button className="filter-btn" onClick={onTemporarlyWarning}> <FiFilter className="icon" /> Filter</button>
+            {/* <button className="filter-btn" onClick={onTemporarlyWarning}> <FiFilter className="icon" /> Filter</button> */}
         </div>
     </div>
 }
